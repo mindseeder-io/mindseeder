@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MindSeeder - AI & Game Lab</title>
+    <title>mindseeder - AI & Game Lab</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #1a1a1a;
+            background-color: #1a1a1a; /* 다크 모드 배경 */
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -18,33 +19,34 @@
             text-align: center;
             padding: 20px;
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: -1px;
+        /* 로고 이미지 스타일 */
+        .main-logo {
+            max-width: 80%; /* 모바일에서 화면 넘침 방지 */
+            width: 350px;   /* PC에서 보일 적당한 크기 */
+            height: auto;
+            margin-bottom: 1rem;
         }
         p.slogan {
             font-size: 1.2rem;
             color: #aaaaaa;
-            margin-bottom: 2rem;
+            margin-bottom: 3rem;
+            font-weight: 300;
         }
         .contact-btn {
             background-color: transparent;
             border: 1px solid #444;
             color: #fff;
-            padding: 12px 24px;
+            padding: 12px 30px;
             font-size: 1rem;
             border-radius: 5px;
             text-decoration: none;
             transition: 0.3s;
-            margin-bottom: 3rem;
         }
         .contact-btn:hover {
-            background-color: #333;
-            border-color: #666;
+            background-color: #ffffff;
+            color: #000000;
+            border-color: #ffffff;
         }
-        
-        /* 필수 정보 섹션 (푸터) */
         footer {
             margin-top: auto;
             border-top: 1px solid #333;
@@ -55,35 +57,24 @@
             color: #666;
             line-height: 1.6;
         }
-        footer a {
-            color: #888;
-            text-decoration: none;
-            margin: 0 10px;
-        }
-        footer a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-        .legal-info {
-            margin-bottom: 15px;
-        }
+        footer a { color: #888; text-decoration: none; margin: 0 10px; }
+        footer a:hover { color: #fff; text-decoration: underline; }
     </style>
 </head>
 <body>
 
-    <h1>MindSeeder</h1>
+    <img src="logo.png" alt="MindSeeder" class="main-logo">
+    
     <p class="slogan">Code in Silence, Create with Soul.</p>
 
-    <p style="color: #888; margin-bottom: 10px;">Need Help?</p>
     <a href="mailto:support@mindseeder.io" class="contact-btn">Contact Support</a>
 
     <footer>
-        <div class="legal-info">
+        <div style="margin-bottom: 15px;">
             <a href="privacy.html">Privacy Policy</a> | 
             <a href="terms.html">Terms & Conditions</a> | 
             <a href="mailto:support@mindseeder.io">Support</a>
         </div>
-        
         <div>
             &copy; 2025 MindSeeder.<br>
             MindSeeder is a brand operated by Hyoweon Kim.<br>
