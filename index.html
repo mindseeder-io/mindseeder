@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>mindseeder - Planting Play, Growing Genuine with AI.</title>
+    <meta name="description" content="MindSeeder builds playful, genuine AI experiences rooted in culture and heritage.">
+    <title>MindSeeder - Planting Play, Growing Genuine with AI.</title>
     <link rel="icon" type="image/png" href="favicon.png">
-<style>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #1a1a1a;
@@ -18,8 +23,6 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
-            
-            /* ★ 추가: 배경에 은은한 중앙 조명 효과 (Vignette) */
             background: radial-gradient(circle at center, #2a2a2a 0%, #111111 100%);
         }
 
@@ -30,21 +33,20 @@
             justify-content: center;
             align-items: center;
             width: 100%;
+            max-width: 760px;
         }
 
         .main-logo {
             max-width: 80%;
-            width: 380px; /* 로고 크기 약간 키움 */
+            width: 380px;
             height: auto;
             margin-bottom: 2.5rem;
-            /* ★ 추가: 로고가 배경에서 더 튀어나와 보이게 그림자 추가 */
             filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
         }
 
-        p.slogan {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            font-size: 1.3rem; /* ★ 폰트 크기 키움 (가독성 확보) */
-            color: #cccccc;    /* ★ 회색을 훨씬 밝게 수정 (#888 -> #ccc) */
+        .slogan {
+            font-size: 1.3rem;
+            color: #cccccc;
             margin-bottom: 3.5rem;
             font-weight: 300;
             letter-spacing: 0.5px;
@@ -55,29 +57,35 @@
             display: block;
             margin-top: 20px;
             color: #ffffff;
-            font-weight: 600; /* 두께감 강화 */
-            font-size: 1.5rem; /* 강조 문구 더 크게 */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* 은은한 빛 */
+            font-weight: 600;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
         }
 
-        /* ★ 버튼 디자인 전면 수정 */
         .contact-btn {
-            background: linear-gradient(45deg, #7b2cbf, #ff9e00); /* 브랜드 컬러 그라데이션 */
+            background: linear-gradient(45deg, #7b2cbf, #ff9e00);
             border: none;
             color: #fff;
-            padding: 14px 40px; /* 버튼 크기 확대 */
+            padding: 14px 40px;
             font-size: 1.1rem;
             font-weight: 600;
-            border-radius: 50px; /* 둥근 알약 모양 */
+            border-radius: 50px;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(123, 44, 191, 0.4); /* 그림자로 입체감 */
+            box-shadow: 0 4px 15px rgba(123, 44, 191, 0.4);
         }
 
         .contact-btn:hover {
-            transform: translateY(-2px); /* 마우스 올리면 살짝 떠오름 */
-            box-shadow: 0 6px 20px rgba(255, 158, 0, 0.5); /* 그림자 강화 */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 158, 0, 0.5);
             color: #fff;
+        }
+
+        .contact-btn:focus-visible,
+        footer a:focus-visible {
+            outline: 2px solid #ff9e00;
+            outline-offset: 3px;
+            border-radius: 8px;
         }
 
         footer {
@@ -85,20 +93,31 @@
             padding-top: 20px;
             width: 100%;
             max-width: 600px;
-            font-size: 0.85rem; /* 푸터 글씨도 살짝 키움 */
+            font-size: 0.85rem;
             color: #777;
             line-height: 1.6;
         }
 
+        .footer-links {
+            margin-bottom: 15px;
+        }
+
         footer a { color: #999; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: #fff; text-decoration: underline; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
     </style>
 </head>
 <body>
+    <main class="content-wrapper">
+        <img src="logo.png" alt="MindSeeder logo" class="main-logo">
 
-    <div class="content-wrapper">
-        <img src="logo.png" alt="mindseeder" class="main-logo">
-        
         <p class="slogan">
             We seed the Mind, not just Data.<br>
             We cultivate Technology with the roots of Heritage.<br>
@@ -107,12 +126,12 @@
         </p>
 
         <a href="mailto:support@mindseeder.io" class="contact-btn">Get in Touch</a>
-    </div>
+    </main>
 
     <footer>
-        <div style="margin-bottom: 15px;">
-            <a href="privacy.html">Privacy Policy</a> | 
-            <a href="terms.html">Terms & Conditions</a> | 
+        <div class="footer-links">
+            <a href="privacy.html">Privacy Policy</a> |
+            <a href="terms.html">Terms &amp; Conditions</a> |
             <a href="mailto:support@mindseeder.io">Support</a>
         </div>
         <div>
@@ -121,6 +140,5 @@
             Perth, Western Australia
         </div>
     </footer>
-
 </body>
 </html>
