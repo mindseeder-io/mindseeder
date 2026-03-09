@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="MindSeeder builds playful, genuine AI experiences rooted in culture and heritage.">
-    <title>mindseeder - Plant your ideas, Build your Plot.</title>
+    <meta name="description" content="mindseeder — Plant your ideas, grow your thinking. A personal knowledge garden powered by spatial thinking.">
+    <title>mindseeder — Plant your ideas, Build your Plot.</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
-        :root {
-            color-scheme: dark;
-        }
+        :root { color-scheme: dark; }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #1a1a1a;
+            background: radial-gradient(circle at 50% 40%, #2a2a2a 0%, #111111 100%);
             color: #ffffff;
             display: flex;
             flex-direction: column;
@@ -22,10 +22,42 @@
             margin: 0;
             text-align: center;
             padding: 20px;
-            box-sizing: border-box;
-            background: radial-gradient(circle at center, #2a2a2a 0%, #111111 100%);
         }
 
+        /* Language toggle */
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            display: flex;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-btn.active {
+            border-color: #ff9e00;
+            color: #ff9e00;
+            background: rgba(255,158,0,0.08);
+        }
+
+        .lang-btn:hover:not(.active) {
+            border-color: #666;
+            color: #ccc;
+        }
+
+        /* Main */
         .content-wrapper {
             flex: 1;
             display: flex;
@@ -34,111 +66,234 @@
             align-items: center;
             width: 100%;
             max-width: 760px;
+            padding: 60px 0 40px;
         }
 
         .main-logo {
             max-width: 80%;
-            width: 380px;
+            width: 360px;
             height: auto;
             margin-bottom: 2.5rem;
-            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.1));
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.08));
         }
 
         .slogan {
-            font-size: 1.3rem;
-            color: #cccccc;
-            margin-bottom: 3.5rem;
+            font-size: 1.2rem;
+            color: #bbbbbb;
+            margin-bottom: 1.2rem;
             font-weight: 300;
-            letter-spacing: 0.5px;
-            line-height: 1.8;
+            letter-spacing: 0.3px;
+            line-height: 2;
         }
 
         .highlight-text {
             display: block;
-            margin-top: 20px;
+            margin-top: 16px;
             color: #ffffff;
             font-weight: 600;
-            font-size: 1.5rem;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            font-size: 1.4rem;
+            text-shadow: 0 0 12px rgba(255,255,255,0.25);
         }
 
-        .contact-btn {
+        /* Feature pills */
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin: 2rem 0 2.8rem;
+        }
+
+        .feature-pill {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            color: #aaa;
+            letter-spacing: 0.2px;
+        }
+
+        /* CTA buttons */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 1rem;
+        }
+
+        .launch-btn {
             background: linear-gradient(45deg, #7b2cbf, #ff9e00);
             border: none;
             color: #fff;
-            padding: 14px 40px;
+            padding: 15px 48px;
             font-size: 1.1rem;
-            font-weight: 600;
+            font-weight: 700;
             border-radius: 50px;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(123, 44, 191, 0.4);
+            box-shadow: 0 4px 20px rgba(123,44,191,0.45);
+            letter-spacing: 0.3px;
         }
 
-        .contact-btn:hover {
+        .launch-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 158, 0, 0.5);
+            box-shadow: 0 8px 28px rgba(255,158,0,0.5);
             color: #fff;
         }
 
-        .contact-btn:focus-visible,
-        footer a:focus-visible {
-            outline: 2px solid #ff9e00;
-            outline-offset: 3px;
-            border-radius: 8px;
+        .contact-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #aaa;
+            padding: 10px 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.2s;
         }
 
+        .contact-btn:hover {
+            border-color: #888;
+            color: #fff;
+        }
+
+        .launch-btn:focus-visible,
+        .contact-btn:focus-visible,
+        footer a:focus-visible,
+        .lang-btn:focus-visible {
+            outline: 2px solid #ff9e00;
+            outline-offset: 3px;
+        }
+
+        /* Footer */
         footer {
-            border-top: 1px solid #333;
+            border-top: 1px solid #2a2a2a;
             padding-top: 20px;
             width: 100%;
-            max-width: 600px;
-            font-size: 0.85rem;
-            color: #777;
-            line-height: 1.6;
+            max-width: 620px;
+            font-size: 0.82rem;
+            color: #666;
+            line-height: 1.7;
         }
 
         .footer-links {
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
-        footer a { color: #999; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
-        footer a:hover { color: #fff; text-decoration: underline; }
+        footer a { color: #777; text-decoration: none; margin: 0 8px; transition: color 0.2s; }
+        footer a:hover { color: #fff; }
+
+        @media (max-width: 480px) {
+            .slogan { font-size: 1rem; }
+            .highlight-text { font-size: 1.15rem; }
+            .launch-btn { padding: 13px 36px; font-size: 1rem; }
+        }
 
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation: none !important;
                 transition: none !important;
-                scroll-behavior: auto !important;
             }
         }
     </style>
 </head>
 <body>
+
+    <nav class="lang-toggle" aria-label="Language selector">
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    </nav>
+
     <main class="content-wrapper">
-        <img src="logo.png" alt="MindSeeder logo" class="main-logo">
+        <img src="logo.png" alt="mindseeder logo" class="main-logo">
 
         <p class="slogan">
-            We seed the Mind, not just Data.<br>
-            We cultivate Technology with the roots of Heritage.<br>
-            We harvest Resonance, not just Outputs.
-            <span class="highlight-text">Planting Play, Growing Genuine with AI.</span>
+            <span data-i18n="slogan1"></span><br>
+            <span data-i18n="slogan2"></span><br>
+            <span data-i18n="slogan3"></span>
+            <span class="highlight-text" data-i18n="slogan4"></span>
         </p>
 
-        <a href="mailto:support@mindseeder.io" class="contact-btn">Get in Touch</a>
+        <div class="features">
+            <span class="feature-pill" data-i18n="feat1"></span>
+            <span class="feature-pill" data-i18n="feat2"></span>
+            <span class="feature-pill" data-i18n="feat3"></span>
+            <span class="feature-pill" data-i18n="feat4"></span>
+        </div>
+
+        <div class="cta-group">
+            <a href="https://app.mindseeder.io" class="launch-btn" data-i18n="launchBtn"></a>
+            <a href="mailto:support@mindseeder.io" class="contact-btn" data-i18n="contactBtn"></a>
+        </div>
     </main>
 
     <footer>
         <div class="footer-links">
-            <a href="privacy.html">Privacy Policy</a> |
-            <a href="terms.html">Terms &amp; Conditions</a> |
-            <a href="mailto:support@mindseeder.io">Support</a>
+            <a href="privacy.html" data-i18n="privacyLink"></a>
+            <a href="terms.html" data-i18n="termsLink"></a>
+            <a href="mailto:support@mindseeder.io" data-i18n="supportLink"></a>
         </div>
         <div>
             &copy; 2026 mindseeder.<br>
-            mindseeder is a brand operated by Hyoweon Kim.<br>
-            Perth, Western Australia
+            <span data-i18n="footerOp"></span>
         </div>
     </footer>
+
+    <script>
+        const i18n = {
+            en: {
+                slogan1: "We seed the Mind, not just Data.",
+                slogan2: "We cultivate Technology with the roots of Heritage.",
+                slogan3: "We harvest Resonance, not just Outputs.",
+                slogan4: "Planting Play, Growing Genuine with AI.",
+                feat1: "🌱 Spatial Knowledge Garden",
+                feat2: "✍️ Local-first Notes",
+                feat3: "☁️ Cloud Sync",
+                feat4: "🤝 Collaborative Plots",
+                launchBtn: "Launch App →",
+                contactBtn: "Get in Touch",
+                privacyLink: "Privacy Policy",
+                termsLink: "Terms & Conditions",
+                supportLink: "Support",
+                footerOp: "mindseeder is a brand operated by Hyoweon Kim · Perth, Western Australia"
+            },
+            ko: {
+                slogan1: "데이터가 아닌, 마음에 씨앗을 심습니다.",
+                slogan2: "전통의 뿌리로 기술을 가꿉니다.",
+                slogan3: "결과물이 아닌, 공명을 수확합니다.",
+                slogan4: "놀이를 심고, AI와 함께 진정성을 키웁니다.",
+                feat1: "🌱 공간형 지식 정원",
+                feat2: "✍️ 로컬 우선 노트",
+                feat3: "☁️ 클라우드 동기화",
+                feat4: "🤝 협업 플롯",
+                launchBtn: "앱 시작하기 →",
+                contactBtn: "문의하기",
+                privacyLink: "개인정보처리방침",
+                termsLink: "이용약관",
+                supportLink: "고객지원",
+                footerOp: "mindseeder는 김효원이 운영하는 브랜드입니다 · 오스트레일리아 서호주 퍼스"
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (i18n[lang] && i18n[lang][key] !== undefined) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+            localStorage.setItem('ms_lang', lang);
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+        }
+
+        const saved = localStorage.getItem('ms_lang');
+        const auto = saved || (navigator.language && navigator.language.startsWith('ko') ? 'ko' : 'en');
+        setLang(auto);
+    </script>
 </body>
 </html>

@@ -1,78 +1,280 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="mindseeder privacy policy for mindseeder app.">
-    <title>Privacy Policy - mindseeder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="mindseeder Privacy Policy">
+    <title>Privacy Policy — mindseeder</title>
     <style>
+        :root { color-scheme: dark; }
+        * { box-sizing: border-box; }
+
         body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 1.5em;
-            line-height: 1.65;
-            color: #202124;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #111111;
+            color: #cccccc;
+            margin: 0;
+            padding: 0;
         }
 
-        h1 {
-            margin-bottom: 0.2em;
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            display: flex;
+            gap: 4px;
+            z-index: 10;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 5px 12px;
+            font-size: 0.78rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active { border-color: #ff9e00; color: #ff9e00; background: rgba(255,158,0,0.08); }
+        .lang-btn:hover:not(.active) { border-color: #666; color: #ccc; }
+
+        .doc-header {
+            background: linear-gradient(135deg, #1a1a1a, #222);
+            border-bottom: 1px solid #2a2a2a;
+            padding: 48px 24px 32px;
+            text-align: center;
+        }
+
+        .doc-header h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            margin: 0 0 8px;
+        }
+
+        .doc-header .effective {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .doc-body {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+            line-height: 1.75;
         }
 
         h2 {
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-            margin-top: 1.8em;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-bottom: 1px solid #2a2a2a;
+            padding-bottom: 8px;
+            margin-top: 2.2em;
+            margin-bottom: 0.8em;
         }
+
+        p { margin: 0.6em 0 1em; color: #bbb; }
+        ul { color: #bbb; padding-left: 1.4em; }
+        ul li { margin-bottom: 6px; }
+        a { color: #ff9e00; text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
         .back-link {
             display: inline-block;
-            margin-top: 1.5em;
+            margin-top: 2em;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .back-link:hover { color: #fff; }
+
+        footer {
+            border-top: 1px solid #222;
+            text-align: center;
+            padding: 20px 24px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        @media (max-width: 480px) {
+            .doc-header h1 { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
-    <h1>Privacy Policy</h1>
-    <p>This privacy policy applies to the <strong>mindseeder</strong> app (hereby referred to as "Application") for mobile devices that was created by <strong>Hyoweon Kim</strong> (hereby referred to as "Service Provider") as a Commercial service. This service is intended for use "AS IS".</p>
 
-    <h2>Information Collection and Use</h2>
-    <p>The Application collects information when you download and use it. This information may include information such as:</p>
-    <ul>
-        <li>Your device's Internet Protocol address (e.g. IP address)</li>
-        <li>The pages of the Application that you visit, the time and date of your visit, the time spent on those pages</li>
-        <li>The time spent on the Application</li>
-        <li>The operating system you use on your mobile device</li>
-    </ul>
-    <p>The Application does not gather precise information about the location of your mobile device.</p>
+    <nav class="lang-toggle" aria-label="Language selector">
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+        <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+    </nav>
 
-    <h2>Third Party Access</h2>
-    <p>Only aggregated, anonymized data is periodically transmitted to external services to aid the Service Provider in improving the Application and their service. The Service Provider may share your information with third parties in the ways that are described in this privacy statement.</p>
-    <p>Please note that the Application utilizes third-party services that have their own Privacy Policy about handling data. Below are the links to the Privacy Policy of the third-party service providers used by the Application:</p>
-    <ul>
-        <li><a href="https://www.google.com/policies/privacy/" target="_blank" rel="noopener noreferrer">Google Play Services</a></li>
-        <li><a href="https://support.google.com/admob/answer/6128543?hl=en" target="_blank" rel="noopener noreferrer">AdMob</a></li>
-    </ul>
+    <header class="doc-header">
+        <h1 data-i18n="title"></h1>
+        <p class="effective" data-i18n="effective"></p>
+    </header>
 
-    <h2>Data Retention Policy</h2>
-    <p>The Service Provider will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. If you'd like them to delete User Provided Data that you have provided via the Application, please contact them at <strong>support@mindseeder.io</strong>.</p>
+    <div class="doc-body">
+        <div id="doc-content"></div>
+        <a class="back-link" href="index.html" data-i18n="backLink"></a>
+    </div>
 
-    <h2>Children</h2>
-    <p>The Service Provider does not knowingly collect personally identifiable information from children under 13 years of age. The Application is not intended for children under the age of 13. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact the Service Provider so that they will be able to take the necessary actions.</p>
+    <footer>
+        &copy; 2026 mindseeder &nbsp;·&nbsp;
+        <a href="index.html">Home</a> &nbsp;·&nbsp;
+        <a href="terms.html" data-i18n="termsLink"></a>
+    </footer>
 
-    <h2>Security</h2>
-    <p>The Service Provider provides physical, electronic, and procedural safeguards to protect information the Service Provider processes and maintains.</p>
+    <script>
+        const content = {
+            en: {
+                title: "Privacy Policy",
+                effective: "Effective date: 2026-03-09",
+                backLink: "← Back to Home",
+                termsLink: "Terms & Conditions",
+                body: `
+                    <p>This Privacy Policy applies to the <strong>mindseeder</strong> web application and any associated mobile applications (collectively referred to as the "Service"), operated by <strong>Hyoweon Kim</strong> ("Service Provider") as a commercial service. By using the Service, you agree to the collection and use of information as described in this policy.</p>
 
-    <h2>Governing Law</h2>
-    <p>This Privacy Policy shall be governed by and construed in accordance with the laws of <strong>Western Australia, Australia</strong>. Any disputes arising under or in connection with this Privacy Policy shall be subject to the exclusive jurisdiction of the courts located in Perth, Western Australia.</p>
+                    <h2>1. Information We Collect</h2>
+                    <p>We collect the following categories of information:</p>
+                    <ul>
+                        <li><strong>Account data:</strong> Email address provided during registration.</li>
+                        <li><strong>User content:</strong> Notes, titles, tags, and knowledge blocks you create within the Service. This content is stored on our servers when you use cloud sync features.</li>
+                        <li><strong>Usage data:</strong> IP address, browser type and version, pages visited, time and date of access, and other diagnostic data collected automatically to maintain and improve the Service.</li>
+                        <li><strong>Local data:</strong> When used without an account (guest mode), your content is stored locally in your browser's storage (IndexedDB) and is not transmitted to our servers.</li>
+                    </ul>
 
-    <h2>Changes</h2>
-    <p>This Privacy Policy may be updated from time to time for any reason. The Service Provider will notify you of any changes to the Privacy Policy by updating this page with the new Privacy Policy.</p>
+                    <h2>2. How We Use Your Information</h2>
+                    <ul>
+                        <li>To provide, operate, and maintain the Service</li>
+                        <li>To authenticate your identity and manage your account</li>
+                        <li>To store and sync your content across devices when cloud features are enabled</li>
+                        <li>To monitor and analyze usage to improve the Service</li>
+                        <li>To respond to your support requests</li>
+                        <li>To notify you of material changes to the Service or this policy</li>
+                    </ul>
 
-    <h2>Contact Us</h2>
-    <p>If you have any questions regarding privacy while using the Application, please contact the Service Provider via email at <strong>support@mindseeder.io</strong>.</p>
+                    <h2>3. Third-Party Services</h2>
+                    <p>We use the following third-party services to operate the Service. Each has its own privacy policy:</p>
+                    <ul>
+                        <li><a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase</a> — Authentication and database hosting. Your account credentials and synced content are stored on Supabase's infrastructure.</li>
+                        <li><a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel</a> — Web application hosting and content delivery.</li>
+                    </ul>
+                    <p>For users of any associated mobile applications, the relevant app store platform (Apple App Store or Google Play Store) may also collect data in accordance with their respective privacy policies.</p>
 
-    <hr>
-    <p>This privacy policy is effective as of 2025-12-22.</p>
-    <a class="back-link" href="index.html">&larr; Back to Home</a>
+                    <h2>4. Data Storage and Security</h2>
+                    <p>Your data is stored on Supabase's servers. Access to your content is protected by Row-Level Security (RLS) policies, ensuring that only you can read or modify your own data. We implement reasonable technical and organizational measures to protect your information, but no method of transmission over the internet is 100% secure.</p>
+
+                    <h2>5. Data Retention</h2>
+                    <p>We retain your account data and synced content for as long as your account remains active. If you delete your account or request deletion of your data, we will remove your information from our active systems within 30 days. Local data stored in your browser is managed by your browser and can be cleared at any time.</p>
+
+                    <h2>6. Your Rights</h2>
+                    <p>You have the right to:</p>
+                    <ul>
+                        <li>Access the personal data we hold about you</li>
+                        <li>Request correction of inaccurate data</li>
+                        <li>Request deletion of your account and associated data</li>
+                        <li>Export your content at any time using the built-in export features</li>
+                    </ul>
+                    <p>To exercise these rights, please contact us at <a href="mailto:support@mindseeder.io">support@mindseeder.io</a>.</p>
+
+                    <h2>7. Children's Privacy</h2>
+                    <p>The Service is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us immediately.</p>
+
+                    <h2>8. Governing Law</h2>
+                    <p>This Privacy Policy is governed by the laws of <strong>Western Australia, Australia</strong>. Any disputes shall be subject to the exclusive jurisdiction of the courts of Perth, Western Australia.</p>
+
+                    <h2>9. Changes to This Policy</h2>
+                    <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the effective date at the top of this page. Continued use of the Service after changes constitutes your acceptance of the updated policy.</p>
+
+                    <h2>10. Contact</h2>
+                    <p>For privacy-related inquiries, please contact: <a href="mailto:support@mindseeder.io">support@mindseeder.io</a></p>
+                `
+            },
+            ko: {
+                title: "개인정보처리방침",
+                effective: "시행일: 2026년 3월 9일",
+                backLink: "← 홈으로 돌아가기",
+                termsLink: "이용약관",
+                body: `
+                    <p>본 개인정보처리방침은 <strong>김효원</strong>("서비스 제공자")이 상업적 서비스로 운영하는 <strong>mindseeder</strong> 웹 애플리케이션 및 관련 모바일 애플리케이션(통칭 "서비스")에 적용됩니다. 서비스를 이용함으로써 본 방침에 기술된 정보 수집 및 이용에 동의하는 것으로 간주됩니다.</p>
+
+                    <h2>1. 수집하는 정보</h2>
+                    <p>다음 범주의 정보를 수집합니다:</p>
+                    <ul>
+                        <li><strong>계정 정보:</strong> 회원가입 시 제공하는 이메일 주소</li>
+                        <li><strong>사용자 콘텐츠:</strong> 서비스 내에서 생성하는 노트, 제목, 태그 및 지식 블록. 클라우드 동기화 기능 사용 시 서버에 저장됩니다.</li>
+                        <li><strong>이용 정보:</strong> IP 주소, 브라우저 종류 및 버전, 방문 페이지, 접속 일시 등 서비스 유지 및 개선을 위해 자동 수집되는 진단 데이터</li>
+                        <li><strong>로컬 데이터:</strong> 비회원(게스트) 모드 사용 시, 콘텐츠는 사용자의 브라우저 저장소(IndexedDB)에만 저장되며 서버에 전송되지 않습니다.</li>
+                    </ul>
+
+                    <h2>2. 정보 이용 목적</h2>
+                    <ul>
+                        <li>서비스 제공, 운영 및 유지</li>
+                        <li>사용자 인증 및 계정 관리</li>
+                        <li>클라우드 기능 활성화 시 기기 간 콘텐츠 저장 및 동기화</li>
+                        <li>서비스 개선을 위한 이용 현황 분석</li>
+                        <li>고객 지원 요청에 대한 응대</li>
+                        <li>서비스 또는 본 방침의 중요 변경 사항 안내</li>
+                    </ul>
+
+                    <h2>3. 제3자 서비스</h2>
+                    <p>서비스 운영을 위해 다음 제3자 서비스를 이용합니다. 각 서비스는 자체 개인정보처리방침을 가집니다:</p>
+                    <ul>
+                        <li><a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase</a> — 인증 및 데이터베이스 호스팅. 계정 정보와 동기화된 콘텐츠가 저장됩니다.</li>
+                        <li><a href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel</a> — 웹 애플리케이션 호스팅 및 콘텐츠 전송</li>
+                    </ul>
+                    <p>관련 모바일 애플리케이션 이용 시, Apple App Store 또는 Google Play Store 등 앱 마켓 플랫폼도 각자의 개인정보처리방침에 따라 데이터를 수집할 수 있습니다.</p>
+
+                    <h2>4. 데이터 저장 및 보안</h2>
+                    <p>데이터는 Supabase 서버에 저장됩니다. 콘텐츠 접근은 행 수준 보안(RLS) 정책으로 보호되어 본인만 자신의 데이터를 조회 및 수정할 수 있습니다. 합리적인 기술적·관리적 보호조치를 시행하고 있으나, 인터넷을 통한 데이터 전송의 완전한 보안을 보장할 수는 없습니다.</p>
+
+                    <h2>5. 데이터 보유 기간</h2>
+                    <p>계정이 활성 상태인 동안 계정 정보 및 동기화된 콘텐츠를 보유합니다. 계정 삭제 또는 데이터 삭제를 요청하시면 30일 이내에 활성 시스템에서 정보를 삭제합니다. 브라우저에 저장된 로컬 데이터는 브라우저에서 직접 삭제하실 수 있습니다.</p>
+
+                    <h2>6. 이용자 권리</h2>
+                    <p>이용자는 다음 권리를 가집니다:</p>
+                    <ul>
+                        <li>보유 중인 개인정보 열람 요청</li>
+                        <li>부정확한 정보의 정정 요청</li>
+                        <li>계정 및 관련 데이터 삭제 요청</li>
+                        <li>내장된 내보내기 기능을 통한 콘텐츠 언제든지 내보내기</li>
+                    </ul>
+                    <p>권리 행사를 원하시면 <a href="mailto:support@mindseeder.io">support@mindseeder.io</a>로 연락해 주세요.</p>
+
+                    <h2>7. 아동 개인정보 보호</h2>
+                    <p>서비스는 만 14세 미만 아동을 대상으로 하지 않습니다. 만 14세 미만 아동의 개인정보를 의도치 않게 수집한 경우, 즉시 연락해 주시면 필요한 조치를 취하겠습니다.</p>
+
+                    <h2>8. 준거법</h2>
+                    <p>본 개인정보처리방침은 <strong>오스트레일리아 서호주</strong> 법률의 적용을 받습니다. 분쟁 발생 시 서호주 퍼스 소재 법원의 전속 관할에 따릅니다.</p>
+
+                    <h2>9. 방침 변경</h2>
+                    <p>본 방침은 수시로 업데이트될 수 있습니다. 중요한 변경 사항은 페이지 상단의 시행일을 업데이트하여 공지합니다. 변경 후 서비스를 계속 이용하면 업데이트된 방침에 동의한 것으로 간주됩니다.</p>
+
+                    <h2>10. 문의</h2>
+                    <p>개인정보 관련 문의는 <a href="mailto:support@mindseeder.io">support@mindseeder.io</a>로 연락해 주세요.</p>
+                `
+            }
+        };
+
+        function setLang(lang) {
+            const t = content[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.dataset.i18n;
+                if (t[key] !== undefined) el.innerHTML = t[key];
+            });
+            document.getElementById('doc-content').innerHTML = t.body;
+            document.documentElement.lang = lang;
+            localStorage.setItem('ms_lang', lang);
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
+        }
+
+        const saved = localStorage.getItem('ms_lang');
+        const auto = saved || (navigator.language && navigator.language.startsWith('ko') ? 'ko' : 'en');
+        setLang(auto);
+    </script>
 </body>
 </html>
