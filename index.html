@@ -3,151 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="mindseeder — Plant your ideas, grow your thinking. A personal knowledge garden powered by spatial thinking.">
+    <meta name="description" content="mindseeder — A 3D knowledge garden where your ideas grow from seeds to fruits. Think spatially, write in Markdown, grow with AI.">
     <title>mindseeder — Plant your ideas, Build your Plot.</title>
     <link rel="icon" type="image/png" href="favicon.png">
     <style>
-        :root { color-scheme: dark; }
+        :root {
+            color-scheme: dark;
+            --bg: #111111;
+            --surface: #161616;
+            --border: #252525;
+            --text: #ffffff;
+            --text-muted: #999;
+            --text-dim: #555;
+            --accent: #EB5E28;
+            --accent-purple: #7b2cbf;
+            --soil: #8B7355;
+            --seed: #D2691E;
+            --sprout: #90EE90;
+            --stem: #228B22;
+            --flower: #FFD700;
+            --fruit: #DC143C;
+        }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: radial-gradient(circle at 50% 40%, #2a2a2a 0%, #111111 100%);
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            text-align: center;
-            padding: 20px;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Language toggle */
         .lang-toggle {
             position: fixed;
-            top: 20px;
-            right: 24px;
+            top: 16px;
+            right: 20px;
             display: flex;
             gap: 4px;
-            z-index: 10;
+            z-index: 100;
         }
 
         .lang-btn {
-            background: transparent;
-            border: 1px solid #444;
+            background: rgba(17,17,17,0.85);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border: 1px solid #333;
             color: #888;
-            padding: 5px 12px;
-            font-size: 0.78rem;
+            padding: 4px 11px;
+            font-size: 0.75rem;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.2s;
-            letter-spacing: 0.5px;
         }
 
         .lang-btn.active {
-            border-color: #ff9e00;
-            color: #ff9e00;
-            background: rgba(255,158,0,0.08);
+            border-color: var(--accent);
+            color: var(--accent);
+            background: rgba(235,94,40,0.1);
         }
 
-        .lang-btn:hover:not(.active) {
-            border-color: #666;
-            color: #ccc;
+        .lang-btn:hover:not(.active) { border-color: #666; color: #ccc; }
+
+        section {
+            padding: 56px 24px;
+            max-width: 880px;
+            margin: 0 auto;
         }
 
-        /* Main */
-        .content-wrapper {
-            flex: 1;
+        .section-divider {
+            border: none;
+            border-top: 1px solid var(--border);
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .section-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            max-width: 560px;
+            line-height: 1.65;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            width: 100%;
-            max-width: 760px;
-            padding: 60px 0 40px;
+            text-align: center;
+            padding: 100px 24px 56px;
         }
 
-        .main-logo {
-            max-width: 80%;
-            width: 360px;
+        .hero-logo {
+            width: 240px;
             height: auto;
-            margin-bottom: 2.5rem;
-            filter: drop-shadow(0 0 20px rgba(255,255,255,0.08));
+            margin-bottom: 1.8rem;
+            filter: drop-shadow(0 0 24px rgba(235,94,40,0.15));
         }
 
-        .slogan {
-            font-size: 1.2rem;
-            color: #bbbbbb;
-            margin-bottom: 1.2rem;
-            font-weight: 300;
-            letter-spacing: 0.3px;
-            line-height: 2;
+        .hero h1 {
+            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-weight: 800;
+            line-height: 1.3;
+            margin-bottom: 0.8rem;
+            max-width: 600px;
         }
 
-        .highlight-text {
-            display: block;
-            margin-top: 16px;
-            color: #ffffff;
-            font-weight: 600;
-            font-size: 1.4rem;
-            text-shadow: 0 0 12px rgba(255,255,255,0.25);
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        /* Feature pills */
-        .features {
+        .hero-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            max-width: 480px;
+            margin-bottom: 1.8rem;
+            line-height: 1.65;
+        }
+
+        .hero-cta {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 2rem 0 2.8rem;
-        }
-
-        .feature-pill {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 20px;
-            padding: 6px 16px;
-            font-size: 0.85rem;
-            color: #aaa;
-            letter-spacing: 0.2px;
-        }
-
-        /* CTA buttons */
-        .cta-group {
-            display: flex;
-            flex-direction: column;
+            gap: 12px;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .launch-btn {
-            background: linear-gradient(45deg, #7b2cbf, #ff9e00);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent));
             border: none;
             color: #fff;
-            padding: 15px 48px;
-            font-size: 1.1rem;
+            padding: 12px 36px;
+            font-size: 0.95rem;
             font-weight: 700;
             border-radius: 50px;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 20px rgba(123,44,191,0.45);
-            letter-spacing: 0.3px;
+            box-shadow: 0 4px 20px rgba(235,94,40,0.25);
         }
 
-        .launch-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 28px rgba(255,158,0,0.5);
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 28px rgba(235,94,40,0.4);
             color: #fff;
         }
 
-        .contact-btn {
+        .btn-secondary {
             background: transparent;
-            border: 1px solid #444;
+            border: 1px solid #3a3a3a;
             color: #aaa;
-            padding: 10px 28px;
+            padding: 11px 28px;
             font-size: 0.9rem;
             font-weight: 500;
             border-radius: 50px;
@@ -155,41 +178,258 @@
             transition: all 0.2s;
         }
 
-        .contact-btn:hover {
-            border-color: #888;
-            color: #fff;
+        .btn-secondary:hover { border-color: #777; color: #fff; }
+
+        .hero-note {
+            margin-top: 0.8rem;
+            font-size: 0.78rem;
+            color: var(--text-dim);
         }
 
-        .launch-btn:focus-visible,
-        .contact-btn:focus-visible,
-        footer a:focus-visible,
-        .lang-btn:focus-visible {
-            outline: 2px solid #ff9e00;
-            outline-offset: 3px;
+        /* ─── HOW IT WORKS ─── */
+        .how-section { text-align: center; }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 28px;
         }
 
-        /* Footer */
-        footer {
-            border-top: 1px solid #2a2a2a;
-            padding-top: 20px;
-            width: 100%;
-            max-width: 620px;
-            font-size: 0.82rem;
-            color: #666;
-            line-height: 1.7;
+        .step {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.2s;
         }
 
-        .footer-links {
+        .step:hover { border-color: #3a3a3a; }
+
+        .step-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent));
+            border-radius: 50%;
+            font-weight: 800;
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+        }
+
+        .step-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .step h3 {
+            font-size: 0.92rem;
+            margin-bottom: 6px;
+        }
+
+        .step p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* ─── GROWTH STAGES ─── */
+        .growth-section { text-align: center; }
+
+        .growth-track {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-top: 28px;
+        }
+
+        .growth-stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 14px 12px;
+            min-width: 80px;
+        }
+
+        .growth-block {
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .growth-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .growth-desc {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            max-width: 80px;
+        }
+
+        .growth-arrow {
+            color: #3a3a3a;
+            font-size: 1rem;
+            margin: 0 -2px;
+            align-self: center;
+            padding-bottom: 24px;
+        }
+
+        /* ─── FEATURES ─── */
+        .features-section { text-align: center; }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .feature-card {
+            text-align: left;
+            padding: 22px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: border-color 0.2s;
+        }
+
+        .feature-card:hover { border-color: #3a3a3a; }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 0.92rem;
+            margin-bottom: 5px;
+        }
+
+        .feature-card p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        /* ─── CONTROLS ─── */
+        .controls-section { text-align: center; }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 28px;
+        }
+
+        .control-group {
+            text-align: left;
+            padding: 20px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .control-group h3 {
+            font-size: 0.85rem;
+            margin-bottom: 12px;
+            color: var(--accent);
+        }
+
+        .control-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 0;
+            font-size: 0.8rem;
+        }
+
+        .control-row + .control-row { border-top: 1px solid #1e1e1e; }
+
+        .key {
+            display: inline-block;
+            background: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 1px 7px;
+            font-size: 0.72rem;
+            font-family: 'SF Mono', 'Consolas', monospace;
+            color: #ccc;
+            min-width: 24px;
+            text-align: center;
+        }
+
+        .control-action { color: var(--text-muted); }
+
+        /* ─── BOTTOM CTA ─── */
+        .bottom-cta {
+            text-align: center;
+            padding: 56px 24px;
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        .bottom-cta h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
             margin-bottom: 10px;
         }
 
-        footer a { color: #777; text-decoration: none; margin: 0 8px; transition: color 0.2s; }
+        .bottom-cta p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 24px 24px;
+            text-align: center;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            line-height: 1.7;
+        }
+
+        .footer-links { margin-bottom: 8px; }
+
+        footer a { color: #666; text-decoration: none; margin: 0 8px; transition: color 0.2s; }
         footer a:hover { color: #fff; }
 
+        /* Focus */
+        .btn-primary:focus-visible,
+        .btn-secondary:focus-visible,
+        footer a:focus-visible,
+        .lang-btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            .feature-grid { grid-template-columns: repeat(2, 1fr); }
+            .controls-grid { grid-template-columns: 1fr; }
+        }
+
         @media (max-width: 480px) {
-            .slogan { font-size: 1rem; }
-            .highlight-text { font-size: 1.15rem; }
-            .launch-btn { padding: 13px 36px; font-size: 1rem; }
+            .hero { padding: 80px 20px 40px; }
+            section { padding: 40px 20px; }
+            .steps { grid-template-columns: 1fr; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .growth-stage { min-width: 60px; padding: 10px 6px; }
+            .growth-block { width: 28px; height: 28px; }
+            .growth-arrow { display: none; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -207,28 +447,206 @@
         <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
     </nav>
 
-    <main class="content-wrapper">
-        <img src="logo.png" alt="mindseeder logo" class="main-logo">
-
-        <p class="slogan">
-            <span data-i18n="slogan1"></span><br>
-            <span data-i18n="slogan2"></span><br>
-            <span data-i18n="slogan3"></span>
-            <span class="highlight-text" data-i18n="slogan4"></span>
-        </p>
-
-        <div class="features">
-            <span class="feature-pill" data-i18n="feat1"></span>
-            <span class="feature-pill" data-i18n="feat2"></span>
-            <span class="feature-pill" data-i18n="feat3"></span>
-            <span class="feature-pill" data-i18n="feat4"></span>
+    <section class="hero">
+        <img src="logo.png" alt="mindseeder logo" class="hero-logo">
+        <h1 data-i18n="heroTitle"></h1>
+        <p class="hero-sub" data-i18n="heroSub"></p>
+        <div class="hero-cta">
+            <a href="https://app.mindseeder.io" class="btn-primary" data-i18n="launchBtn"></a>
+            <a href="#how" class="btn-secondary" data-i18n="learnMore"></a>
         </div>
+        <p class="hero-note" data-i18n="heroNote"></p>
+    </section>
 
-        <div class="cta-group">
-            <a href="https://app.mindseeder.io" class="launch-btn" data-i18n="launchBtn"></a>
-            <a href="mailto:support@mindseeder.io" class="contact-btn" data-i18n="contactBtn"></a>
+    <hr class="section-divider">
+
+    <section class="how-section" id="how">
+        <p class="section-label" data-i18n="howLabel"></p>
+        <h2 class="section-title" data-i18n="howTitle"></h2>
+        <div class="steps">
+            <div class="step">
+                <span class="step-num">1</span>
+                <span class="step-icon">🌍</span>
+                <h3 data-i18n="step1Title"></h3>
+                <p data-i18n="step1Desc"></p>
+            </div>
+            <div class="step">
+                <span class="step-num">2</span>
+                <span class="step-icon">✍️</span>
+                <h3 data-i18n="step2Title"></h3>
+                <p data-i18n="step2Desc"></p>
+            </div>
+            <div class="step">
+                <span class="step-num">3</span>
+                <span class="step-icon">🌱</span>
+                <h3 data-i18n="step3Title"></h3>
+                <p data-i18n="step3Desc"></p>
+            </div>
+            <div class="step">
+                <span class="step-num">4</span>
+                <span class="step-icon">📄</span>
+                <h3 data-i18n="step4Title"></h3>
+                <p data-i18n="step4Desc"></p>
+            </div>
         </div>
-    </main>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="growth-section">
+        <p class="section-label" data-i18n="growthLabel"></p>
+        <h2 class="section-title" data-i18n="growthTitle"></h2>
+        <p class="section-desc" style="margin:0 auto" data-i18n="growthDesc"></p>
+        <div class="growth-track">
+            <div class="growth-stage">
+                <div class="growth-block" style="background:var(--soil)"></div>
+                <span class="growth-name" data-i18n="gSoil"></span>
+                <span class="growth-desc" data-i18n="gSoilD"></span>
+            </div>
+            <span class="growth-arrow">›</span>
+            <div class="growth-stage">
+                <div class="growth-block" style="background:var(--seed)"></div>
+                <span class="growth-name" data-i18n="gSeed"></span>
+                <span class="growth-desc" data-i18n="gSeedD"></span>
+            </div>
+            <span class="growth-arrow">›</span>
+            <div class="growth-stage">
+                <div class="growth-block" style="background:var(--sprout)"></div>
+                <span class="growth-name" data-i18n="gSprout"></span>
+                <span class="growth-desc" data-i18n="gSproutD"></span>
+            </div>
+            <span class="growth-arrow">›</span>
+            <div class="growth-stage">
+                <div class="growth-block" style="background:var(--stem)"></div>
+                <span class="growth-name" data-i18n="gStem"></span>
+                <span class="growth-desc" data-i18n="gStemD"></span>
+            </div>
+            <span class="growth-arrow">›</span>
+            <div class="growth-stage">
+                <div class="growth-block" style="background:var(--flower)"></div>
+                <span class="growth-name" data-i18n="gFlower"></span>
+                <span class="growth-desc" data-i18n="gFlowerD"></span>
+            </div>
+            <span class="growth-arrow">›</span>
+            <div class="growth-stage">
+                <div class="growth-block" style="background:var(--fruit);box-shadow:0 0 12px rgba(220,20,60,0.4)"></div>
+                <span class="growth-name" data-i18n="gFruit"></span>
+                <span class="growth-desc" data-i18n="gFruitD"></span>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="features-section">
+        <p class="section-label" data-i18n="featLabel"></p>
+        <h2 class="section-title" data-i18n="featTitle"></h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="feature-icon">🎮</span>
+                <h3 data-i18n="f1Title"></h3>
+                <p data-i18n="f1Desc"></p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">📝</span>
+                <h3 data-i18n="f2Title"></h3>
+                <p data-i18n="f2Desc"></p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🔀</span>
+                <h3 data-i18n="f3Title"></h3>
+                <p data-i18n="f3Desc"></p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">💾</span>
+                <h3 data-i18n="f4Title"></h3>
+                <p data-i18n="f4Desc"></p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">☁️</span>
+                <h3 data-i18n="f5Title"></h3>
+                <p data-i18n="f5Desc"></p>
+            </div>
+            <div class="feature-card">
+                <span class="feature-icon">🤝</span>
+                <h3 data-i18n="f6Title"></h3>
+                <p data-i18n="f6Desc"></p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="controls-section">
+        <p class="section-label" data-i18n="ctrlLabel"></p>
+        <h2 class="section-title" data-i18n="ctrlTitle"></h2>
+        <div class="controls-grid">
+            <div class="control-group">
+                <h3 data-i18n="ctrlMove"></h3>
+                <div class="control-row">
+                    <span><span class="key">W</span> <span class="key">A</span> <span class="key">S</span> <span class="key">D</span></span>
+                    <span class="control-action" data-i18n="ctrlMoveAction"></span>
+                </div>
+                <div class="control-row">
+                    <span class="key">Space</span>
+                    <span class="control-action" data-i18n="ctrlJump"></span>
+                </div>
+                <div class="control-row">
+                    <span><span class="key">Space</span> ×2</span>
+                    <span class="control-action" data-i18n="ctrlFly"></span>
+                </div>
+                <div class="control-row">
+                    <span class="key">Shift</span>
+                    <span class="control-action" data-i18n="ctrlCrouch"></span>
+                </div>
+            </div>
+            <div class="control-group">
+                <h3 data-i18n="ctrlNote"></h3>
+                <div class="control-row">
+                    <span data-i18n="ctrlLClick"></span>
+                    <span class="control-action" data-i18n="ctrlEdit"></span>
+                </div>
+                <div class="control-row">
+                    <span data-i18n="ctrlRClick"></span>
+                    <span class="control-action" data-i18n="ctrlNew"></span>
+                </div>
+                <div class="control-row">
+                    <span><span class="key">Shift</span> + <span data-i18n="ctrlLClickShort"></span></span>
+                    <span class="control-action" data-i18n="ctrlGrow"></span>
+                </div>
+                <div class="control-row">
+                    <span data-i18n="ctrlLongPress"></span>
+                    <span class="control-action" data-i18n="ctrlDrag"></span>
+                </div>
+            </div>
+            <div class="control-group">
+                <h3 data-i18n="ctrlEditor"></h3>
+                <div class="control-row">
+                    <span><span class="key">Ctrl</span> + <span class="key">Enter</span></span>
+                    <span class="control-action" data-i18n="ctrlSave"></span>
+                </div>
+                <div class="control-row">
+                    <span class="key">Esc</span>
+                    <span class="control-action" data-i18n="ctrlCancel"></span>
+                </div>
+                <div class="control-row">
+                    <span class="key">Tab</span>
+                    <span class="control-action" data-i18n="ctrlPreview"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <section class="bottom-cta">
+        <h2 data-i18n="ctaTitle"></h2>
+        <p data-i18n="ctaSub"></p>
+        <div class="hero-cta">
+            <a href="https://app.mindseeder.io" class="btn-primary" data-i18n="launchBtn"></a>
+        </div>
+        <p class="hero-note" data-i18n="heroNote"></p>
+    </section>
 
     <footer>
         <div class="footer-links">
@@ -245,36 +663,136 @@
     <script>
         const i18n = {
             en: {
-                slogan1: "We seed the Mind, not just Data.",
-                slogan2: "We cultivate Technology with the roots of Heritage.",
-                slogan3: "We harvest Resonance, not just Outputs.",
-                slogan4: "Planting Play, Growing Genuine with AI.",
-                feat1: "🌱 Spatial Knowledge Garden",
-                feat2: "✍️ Local-first Notes",
-                feat3: "☁️ Cloud Sync",
-                feat4: "🤝 Collaborative Plots",
-                launchBtn: "Launch App →",
-                contactBtn: "Get in Touch",
-                privacyLink: "Privacy Policy",
-                termsLink: "Terms & Conditions",
-                supportLink: "Support",
-                footerOp: "mindseeder is a brand operated by Hyoweon Kim · Perth, Western Australia"
+                heroTitle: 'A <span class="gradient-text">3D Knowledge Garden</span> where ideas grow.',
+                heroSub: 'Plant notes as blocks in a 3D world. Nurture them from Seed to Fruit. Think spatially, write in Markdown.',
+                launchBtn: 'Launch App →',
+                learnMore: 'See How It Works',
+                heroNote: 'Free · Works offline',
+
+                howLabel: 'How It Works',
+                howTitle: 'Four steps to grow your ideas',
+                step1Title: 'Explore your garden',
+                step1Desc: 'Walk through a first-person 3D world. Your ideas live as colorful blocks arranged in space.',
+                step2Title: 'Plant a note',
+                step2Desc: 'Right-click to place a block. Write in Markdown with a full editor — title, content, and growth stage.',
+                step3Title: 'Grow through stages',
+                step3Desc: 'Evolve notes from Soil → Seed → Sprout → Stem → Flower → Fruit as your thinking deepens.',
+                step4Title: 'Switch to Office view',
+                step4Desc: 'Toggle to a 2D document layout anytime. Same notes, different perspective — cards you can pan and zoom.',
+
+                growthLabel: 'Growth System',
+                growthTitle: 'From raw thought to refined insight',
+                growthDesc: 'Each note has a growth stage that reflects your thinking process. Advance stages as ideas mature.',
+                gSoil: 'Soil', gSoilD: 'Source & definitions',
+                gSeed: 'Seed', gSeedD: 'Questions & reactions',
+                gSprout: 'Sprout', gSproutD: 'Possibilities',
+                gStem: 'Stem', gStemD: 'Connections',
+                gFlower: 'Flower', gFlowerD: 'Organization',
+                gFruit: 'Fruit', gFruitD: 'Final insight',
+
+                featLabel: 'Features',
+                featTitle: 'Everything you need to think better',
+                f1Title: 'Craft Mode', f1Desc: 'First-person 3D world with WASD controls. Walk, fly, and build your knowledge landscape like a game.',
+                f2Title: 'Markdown Editor', f2Desc: 'Full-featured note editor with live preview, auto-resize, and keyboard shortcuts.',
+                f3Title: 'Dual View', f3Desc: 'Switch between 3D Craft Mode and 2D Office Mode. Spatial exploration meets document workflow.',
+                f4Title: 'Local-first', f4Desc: 'All data saved locally in your browser. Works completely offline — your notes never leave your device unless you choose.',
+                f5Title: 'Cloud Sync', f5Desc: 'Optional push/pull sync to the cloud. Access your garden from any device, resolve conflicts when needed.',
+                f6Title: 'Collaboration', f6Desc: 'Invite others to your plot. Real-time editing with block-level locking prevents conflicts.',
+
+                ctrlLabel: 'Controls',
+                ctrlTitle: 'Quick reference',
+                ctrlMove: 'Movement',
+                ctrlMoveAction: 'Move',
+                ctrlJump: 'Jump',
+                ctrlFly: 'Toggle flight',
+                ctrlCrouch: 'Crouch',
+                ctrlNote: 'Notes',
+                ctrlLClick: 'Left click',
+                ctrlLClickShort: 'Click',
+                ctrlRClick: 'Right click',
+                ctrlEdit: 'Edit block',
+                ctrlNew: 'New block',
+                ctrlGrow: 'Grow stage',
+                ctrlLongPress: 'Long press',
+                ctrlDrag: 'Drag & drop',
+                ctrlEditor: 'Editor',
+                ctrlSave: 'Save',
+                ctrlCancel: 'Cancel',
+                ctrlPreview: 'Preview toggle',
+
+                ctaTitle: 'Start growing your ideas today.',
+                ctaSub: 'No sign-up required. Open the app and start planting.',
+
+                privacyLink: 'Privacy Policy',
+                termsLink: 'Terms & Conditions',
+                supportLink: 'Support',
+                footerOp: 'mindseeder is a brand operated by Hyoweon Kim · Perth, Western Australia'
             },
             ko: {
-                slogan1: "데이터가 아닌, 마음에 씨앗을 심습니다.",
-                slogan2: "전통의 뿌리로 기술을 가꿉니다.",
-                slogan3: "결과물이 아닌, 공명을 수확합니다.",
-                slogan4: "놀이를 심고, AI와 함께 진정성을 키웁니다.",
-                feat1: "🌱 공간형 지식 정원",
-                feat2: "✍️ 로컬 우선 노트",
-                feat3: "☁️ 클라우드 동기화",
-                feat4: "🤝 협업 플롯",
-                launchBtn: "앱 시작하기 →",
-                contactBtn: "문의하기",
-                privacyLink: "개인정보처리방침",
-                termsLink: "이용약관",
-                supportLink: "고객지원",
-                footerOp: "mindseeder는 김효원이 운영하는 브랜드입니다 · 오스트레일리아 서호주 퍼스"
+                heroTitle: '아이디어가 자라는 <span class="gradient-text">3D 지식 정원</span>',
+                heroSub: '노트를 3D 공간에 블록으로 심고, 씨앗에서 열매까지 키워보세요. 공간적으로 사고하고, 마크다운으로 기록하세요.',
+                launchBtn: '앱 시작하기 →',
+                learnMore: '사용법 보기',
+                heroNote: '무료 · 오프라인 저장 가능',
+
+                howLabel: '사용 방법',
+                howTitle: '네 단계로 아이디어를 키우세요',
+                step1Title: '정원을 탐험하세요',
+                step1Desc: '1인칭 3D 세계를 걸어 다니세요. 아이디어가 공간에 배치된 색색의 블록으로 존재합니다.',
+                step2Title: '노트를 심으세요',
+                step2Desc: '우클릭으로 블록을 배치하세요. 마크다운 에디터에서 제목, 내용, 성장 단계를 설정합니다.',
+                step3Title: '단계별로 성장시키세요',
+                step3Desc: '생각이 깊어질수록 흙 → 씨앗 → 새싹 → 줄기 → 꽃 → 열매로 노트를 진화시키세요.',
+                step4Title: '오피스 뷰로 전환하세요',
+                step4Desc: '언제든 2D 문서 레이아웃으로 전환 가능합니다. 같은 노트를 카드 형태로 탐색하세요.',
+
+                growthLabel: '성장 시스템',
+                growthTitle: '날것의 생각에서 정제된 통찰까지',
+                growthDesc: '각 노트에는 사고 과정을 반영하는 성장 단계가 있습니다. 아이디어가 성숙할수록 단계를 올려보세요.',
+                gSoil: '흙', gSoilD: '출처와 정의',
+                gSeed: '씨앗', gSeedD: '질문과 반응',
+                gSprout: '새싹', gSproutD: '가능성 탐색',
+                gStem: '줄기', gStemD: '연결과 발전',
+                gFlower: '꽃', gFlowerD: '사전 정리',
+                gFruit: '열매', gFruitD: '최종 통찰',
+
+                featLabel: '기능',
+                featTitle: '더 나은 사고를 위한 모든 것',
+                f1Title: '크래프트 모드', f1Desc: 'WASD로 조작하는 1인칭 3D 세계. 걷고, 날고, 게임처럼 지식 풍경을 구축하세요.',
+                f2Title: '마크다운 에디터', f2Desc: '실시간 미리보기, 자동 크기 조절, 키보드 단축키를 갖춘 노트 에디터.',
+                f3Title: '듀얼 뷰', f3Desc: '3D 크래프트 모드와 2D 오피스 모드를 자유롭게 전환. 공간 탐색과 문서 작업을 동시에.',
+                f4Title: '로컬 우선', f4Desc: '모든 데이터가 브라우저에 로컬 저장됩니다. 완전한 오프라인 작동 — 선택하지 않는 한 노트는 기기를 떠나지 않습니다.',
+                f5Title: '클라우드 동기화', f5Desc: '선택적 푸시/풀 클라우드 동기화. 어떤 기기에서든 정원에 접근하세요.',
+                f6Title: '협업', f6Desc: '다른 사람을 플롯에 초대하세요. 블록 단위 잠금으로 충돌 없는 실시간 편집.',
+
+                ctrlLabel: '조작법',
+                ctrlTitle: '빠른 참조 가이드',
+                ctrlMove: '이동',
+                ctrlMoveAction: '이동',
+                ctrlJump: '점프',
+                ctrlFly: '비행 모드 전환',
+                ctrlCrouch: '웅크리기',
+                ctrlNote: '노트',
+                ctrlLClick: '좌클릭',
+                ctrlLClickShort: '클릭',
+                ctrlRClick: '우클릭',
+                ctrlEdit: '블록 편집',
+                ctrlNew: '새 블록',
+                ctrlGrow: '성장 단계 올리기',
+                ctrlLongPress: '길게 누르기',
+                ctrlDrag: '드래그 앤 드롭',
+                ctrlEditor: '에디터',
+                ctrlSave: '저장',
+                ctrlCancel: '취소',
+                ctrlPreview: '미리보기 전환',
+
+                ctaTitle: '오늘부터 아이디어를 키워보세요.',
+                ctaSub: '가입 없이 바로 시작할 수 있습니다. 앱을 열고 심기 시작하세요.',
+
+                privacyLink: '개인정보처리방침',
+                termsLink: '이용약관',
+                supportLink: '고객지원',
+                footerOp: 'mindseeder는 김효원이 운영하는 브랜드입니다 · 오스트레일리아 서호주 퍼스'
             }
         };
 
@@ -285,7 +803,7 @@
                     el.innerHTML = i18n[lang][key];
                 }
             });
-            document.documentElement.lang = lang;
+            document.documentElement.lang = lang === 'ko' ? 'ko' : 'en';
             localStorage.setItem('ms_lang', lang);
             document.getElementById('btn-en').classList.toggle('active', lang === 'en');
             document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
