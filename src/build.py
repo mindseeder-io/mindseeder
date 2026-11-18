@@ -102,6 +102,45 @@ def build_guide(lang: str) -> None:
     print('wrote', dest.relative_to(ROOT), len(out))
 
 
+def build_edition(lang: str, slug: str) -> None:
+    """정원 한 편(웹 글) — src/edition.html 틀 + src/edition.<slug>.<lang>.json. 묶음 이름은 strings.<lang>.json의 collection_name 하나에서 온다"""
+    s = json.loads((ROOT / f'src/edition.{slug}.{lang}.json').read_text())
+    s['collection_name'] = json.loads((ROOT / f'src/strings.{lang}.json').read_text())['collection_name']
+    tpl = (ROOT / 'src/edition.html').read_text()
+    canonical = 'https://mindseeder.io/' + s['path']
+    utm = 'utm_source=mindseeder.io&utm_medium=edition&utm_campaign=' + s.get('campaign', f'{slug}-1')
+    app_href = f'{APP}?sample={s["sample"]}&{utm}'
+    next_href = f'{APP}?sample={s["next_sample"]}&{utm}'
+    picks = '\n'.join(f'          <label><input type="radio" name="first-look" value="{i}">{esc(p)}</label>' for i, p in enumerate(s['picks']))
+    do = '\n'.join(f'        <li>{esc(t)}</li>' for t in s['do'])
+    sources = '\n'.join(f'        <li>{esc(t)}<span class="links">' + ''.join(f'<a class="link" href="{esc(u)}" rel="noopener">{esc(n)}</a>' for n, u in links) + '</span></li>'
+                        for t, links in s['sources'])
+    how = '\n'.join(f'        <dt>{esc(a)}</dt><dd>{esc(b)}</dd>' for a, b in s['how'])
+    meta = esc(s['meta']) + (f' <b>{esc(s["notes_lang"])}</b>' if s.get('notes_lang') else '')
+    art = lambda name, url, date: {'@type': 'VisualArtwork', 'name': name, 'creator': {'@type': 'Person', 'name': 'Katsushika Hokusai'},
+                                   'dateCreated': date, 'artform': 'Woodblock print', 'url': url, 'license': 'https://creativecommons.org/publicdomain/zero/1.0/'}
+    jsonld = {'@context': 'https://schema.org', '@type': 'Article', 'headline': s['h1'], 'description': s['description'], 'inLanguage': lang,
+              'url': canonical, 'datePublished': s['published'], 'image': 'https://mindseeder.io/img/' + s['og_image'],
+              'isPartOf': {'@type': 'CreativeWorkSeries', 'name': s['collection_name']},
+              'publisher': {'@type': 'Organization', 'name': 'mindseeder', 'url': 'https://mindseeder.io/'},
+              'about': [art('Under the Wave off Kanagawa (The Great Wave)', 'https://www.metmuseum.org/art/collection/search/45434', 'ca. 1830–32'),
+                        art('South Wind, Clear Sky (Red Fuji)', 'https://www.metmuseum.org/art/collection/search/36490', 'ca. 1830–32')]}
+    special = {'canonical': canonical, 'font_href': FONTS[lang], 'font_extra': ', "Gothic A1"' if lang == 'ko' else '',
+               'app_href': esc(app_href), 'next_href': esc(next_href), 'picks_html': picks, 'do_html': do, 'sources_html': sources,
+               'how_html': how, 'meta_html': meta, 'jsonld': json.dumps(jsonld, ensure_ascii=False).replace('</', '<\\/')}
+    def rep(m):
+        k = m.group(1)
+        if k in special: return special[k]
+        if k not in s: raise KeyError(f'edition {slug} {lang}: missing {k}')
+        return esc(s[k])
+    out = re.sub(r'\{\{(\w+)\}\}', rep, tpl)
+    dest = ROOT / s['path'] / 'index.html'
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(out)
+    print('wrote', dest.relative_to(ROOT), len(out))
+
+
 for lang in ('en', 'ko'):
     build(lang)
     build_guide(lang)
+    build_edition(lang, 'hokusai')

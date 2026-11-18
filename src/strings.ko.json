@@ -250,5 +250,7 @@
   "doc_list_aria": "마인드시더 노트 목록: 나무 두 그루의 노트 11개와 단계",
   "guide_link": "AI로 발표 자료·메모 만들기",
   "md_link": "예시 Markdown 내려받기 (.md)",
-  "md_href": "../samples/next-release-harvest.ko.md"
+  "md_href": "../samples/next-release-harvest.ko.md",
+  "collection_name": "샘플 정원",
+  "edition_link": "1호: 호쿠사이의 판화 두 장 읽기"
 }

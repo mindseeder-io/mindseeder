@@ -18,5 +18,6 @@ Use it when someone wants to turn a long AI conversation into notes they can see
 - [Home, English](https://mindseeder.io/)
 - [Home, Korean](https://mindseeder.io/ko/)
 - [Guide: make a deck, memo, report or HTML page from your notes with ChatGPT, Claude or Gemini](https://mindseeder.io/guide/) (Korean: https://mindseeder.io/ko/guide/)
+- [Sample gardens No. 1: What catches your eye the second time you look at The Great Wave?](https://mindseeder.io/gardens/hokusai/) (Korean: https://mindseeder.io/ko/gardens/hokusai/): a short read moving between two Hokusai prints from The Met (public domain, CC0), with the matching sample garden to open in the app (garden notes in Korean)
 - [Privacy](https://mindseeder.io/privacy.html)
 - [Terms](https://mindseeder.io/terms.html)

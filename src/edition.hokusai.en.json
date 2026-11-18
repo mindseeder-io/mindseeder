@@ -1,0 +1,146 @@
+{
+  "lang": "en",
+  "root": "../../",
+  "path": "gardens/hokusai/",
+  "path_en": "gardens/hokusai/",
+  "path_ko": "ko/gardens/hokusai/",
+  "other_href": "../../ko/gardens/hokusai/",
+  "other_lang": "ko",
+  "other_label": "한국어",
+  "home_href": "../../",
+  "skip": "Skip to content",
+  "menu_label": "Menu",
+  "nav_aria": "Main",
+  "back": "Back to home",
+  "nav_cta": "Open this garden",
+  "logo_alt": "mindseeder",
+  "privacy": "Privacy",
+  "terms": "Terms",
+  "og_image": "share-hokusai-en.jpg",
+  "og_alt": "Hokusai's prints The Great Wave and Red Fuji side by side, under the question: What catches your eye the second time you look at The Great Wave?",
+  "published": "2026-11-19",
+  "sample": "hokusai-fuji",
+  "next_sample": "snow-cholera",
+  "campaign": "hokusai-1",
+  "title": "What catches your eye the second time you look at The Great Wave? | mindseeder",
+  "description": "A short read that moves between two Hokusai prints, The Great Wave and Red Fuji. Pick where your eye went first, look at another print from the same series, then go back. Public-domain images from The Met, and a garden you can open in the mindseeder app.",
+  "kicker": "No. 1 · Two prints by Hokusai",
+  "h1": "What catches your eye the second time you look at The Great Wave?",
+  "lead": "Two woodblock prints from the same series by Katsushika Hokusai, dated around 1830–32. Decide where your eye went first in one, look at the other, then go back to the first.",
+  "meta": "Images: The Metropolitan Museum of Art, public domain (CC0) · 19 November 2026 ·",
+  "notes_lang": "The garden's notes are in Korean.",
+  "s1_h": "Look at one print first",
+  "s1_intro": "Look before you read. Where your eye went in the first few seconds is where this piece starts.",
+  "wave_alt": "Katsushika Hokusai, Under the Wave off Kanagawa: a huge wave rising on the left and curling to the right, three boats in the waves, a small mountain beyond the trough, a title cartouche at top left",
+  "wave_alt_short": "The Great Wave: the wave, three boats and a small mountain beyond the trough",
+  "wave_cap": "Katsushika Hokusai, Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, ca. 1830–32, woodblock print. The Metropolitan Museum of Art (JP1847). The whole print, uncropped.",
+  "pick_legend": "Where did your eye go first?",
+  "picks": [
+    "The crest of the wave",
+    "The boats and the people",
+    "The small mountain beyond the trough",
+    "The writing at top left"
+  ],
+  "pick_note": "Pick one and remember it. Step 3 asks again. Your pick stays on this screen; it is not sent or saved anywhere.",
+  "s1_p1": "Nothing in the print gives the wave's height in numbers. If it still feels huge, what did you measure it against?",
+  "s1_p2": "In the boat at the front, a row of people crouch low. The crest of the big wave on the left sits far above the boats, close to the top edge. We know roughly how big a boat and a person are, so the wave beside them can be sized against them.",
+  "s2_h": "Another print from the same series",
+  "s2_intro": "Now a print from the same series.",
+  "fuji_alt": "Katsushika Hokusai, South Wind, Clear Sky: a red mountain filling most of the right side, rows of white clouds in the sky, small dots of trees at its foot",
+  "fuji_alt_short": "Red Fuji: a red mountain filling the picture, white clouds",
+  "fuji_cap": "Katsushika Hokusai, South Wind, Clear Sky (Gaifū kaisei), also known as Red Fuji, ca. 1830–32, woodblock print. The Metropolitan Museum of Art (JP9). The whole print, uncropped.",
+  "s2_p1": "A mountain with red slopes fills most of the right side, and white clouds lie in rows across the sky. No people, no boats. The colours, and what fills the picture, differ from the first print.",
+  "s2_p2": "Both prints have a tall title cartouche at top left. The first six characters are the same; only the rest differs.",
+  "table_caption": "The cartouche text, with our own translation",
+  "th_print": "Print",
+  "th_series": "Series",
+  "th_title": "Title",
+  "row_wave": "The Great Wave",
+  "row_fuji": "Red Fuji",
+  "tr_series": "Thirty-six Views of Mount Fuji",
+  "tr_wave": "Under the Wave off Kanagawa",
+  "tr_fuji": "South Wind, Clear Sky",
+  "table_note": "The first character is printed as 冨, a variant of 富. The series title names Mount Fuji; the title of The Great Wave does not.",
+  "s3_h": "Back to The Great Wave",
+  "s3_intro": "Keep the mountain that filled Red Fuji in mind, and look for it in the first print.",
+  "echo_label": "Your first pick in step 1:",
+  "reveal": "Show where the mountain is",
+  "reveal_text": "Beyond the trough, a little right of and below the centre. A small mountain with a white peak shows past the boat; its foot is hidden by the boat and the waves.",
+  "s3_p1": "Once you have found it, look from the small mountain to the wave rising over it and back. Is your first pick still the same? When you size the wave now, do you stop at the boats and people, or does the mountain come in too? People may see this differently.",
+  "measure": "Our measurement: in the two Met images scaled to 1200px on the long side, the visible mountain is about 77% of the image height in Red Fuji and about 9% in The Great Wave. These are sizes on the picture, not of the prints or the mountain.",
+  "interp_label": "Our reading",
+  "interp": "What repeats across the two prints is the mountain; what changes a great deal is its size on the picture and what stands beside it. We read it as the same mountain placed to fill one picture and set small beyond the waves in the other. This is a reading you can check on the two prints, not a claim about the artist's intent, and it rests on two prints out of the series.",
+  "take_label": "One sentence to take away · an example",
+  "take": "“Once I found the same mountain in both prints, I stopped looking only at the height of the wave and started comparing the wave with the mountain.”",
+  "take_note": "One observation a reader might make. If you saw it differently, write that difference in your own sentence.",
+  "s4_h": "In the app, the two prints become two trees",
+  "s4_p": "This piece is a shortened version of mindseeder's Hokusai sample garden. The garden holds 19 notes: nine each in the trees ‘The Great Wave’ and ‘Two prints’, and one conclusion note floating above and between them that joins the two. The garden also includes explanations and objections omitted here, and the introductory note for each print links to its Met collection record. The garden's notes are in Korean.",
+  "garden_alt": "The Hokusai sample garden open in mindseeder's 3D view: two trees of stacked coloured note blocks with a pink conclusion note above and between them, and a guide card at bottom left with the first question and a five-step reading order (all in Korean)",
+  "garden_cap": "The Hokusai sample opened in the app's 3D view, one step back (captured 19 November 2026). When it opens, a guide card with the first question and the reading order comes up with it. The notes are in Korean.",
+  "do": [
+    "Each of the guide card's five steps opens its note. The last step is the conclusion that joins the two trees.",
+    "Step back to see both trees at once, or switch to Office view to read the same notes as cards side by side.",
+    "Opening it makes your own copy on this device. Edit the notes, or add one note of your own about what you saw."
+  ],
+  "open_p": "Move between the two trees yourself.",
+  "open_sub": "No account needed. On a first visit, choose ‘Start on this device without an account’, then ‘Open’ in the sample window. The notes are in Korean.",
+  "open_cta": "Open this garden in the app",
+  "sources_h": "Sources",
+  "sources": [
+    [
+      "Katsushika Hokusai (1760–1849), Under the Wave off Kanagawa (Kanagawa oki nami ura), also known as The Great Wave, from the series Thirty-six Views of Mount Fuji (Fugaku sanjūrokkei), ca. 1830–32, woodblock print; ink and color on paper, 25.7 × 37.9 cm. The Metropolitan Museum of Art, H. O. Havemeyer Collection, Bequest of Mrs. H. O. Havemeyer, 1929 (JP1847). Met Open Access public-domain image (CC0), uncropped, scaled to 1200px on the long side.",
+      [
+        [
+          "Met object page 45434",
+          "https://www.metmuseum.org/art/collection/search/45434"
+        ],
+        [
+          "Collection API",
+          "https://collectionapi.metmuseum.org/public/collection/v1/objects/45434"
+        ]
+      ]
+    ],
+    [
+      "Katsushika Hokusai (1760–1849), South Wind, Clear Sky (Gaifū kaisei), also known as Red Fuji, from the series Thirty-six Views of Mount Fuji (Fugaku sanjūrokkei), ca. 1830–32, woodblock print; ink and color on paper, 24.4 × 35.6 cm. The Metropolitan Museum of Art, Rogers Fund, 1914 (JP9). Met Open Access public-domain image (CC0), uncropped, scaled to 1200px on the long side.",
+      [
+        [
+          "Met object page 36490",
+          "https://www.metmuseum.org/art/collection/search/36490"
+        ],
+        [
+          "Collection API",
+          "https://collectionapi.metmuseum.org/public/collection/v1/objects/36490"
+        ]
+      ]
+    ],
+    [
+      "The Met's Open Access policy: images of public-domain works are released under CC0.",
+      [
+        [
+          "Open Access",
+          "https://www.metmuseum.org/about-the-met/policies-and-documents/open-access"
+        ]
+      ]
+    ]
+  ],
+  "how_h": "How this was made",
+  "how": [
+    [
+      "It starts from the records",
+      "The images and each print's title, date, size and accession number come from The Met's collection records and Open Access images. The cartouche text was read off the prints and translated by us."
+    ],
+    [
+      "Readings are labelled",
+      "The conclusion that joins the two prints, the measurement and the examples are marked as ours, here and in the garden's notes. Nothing here claims to know the artist's intent."
+    ],
+    [
+      "AI checked it against the sources",
+      "The notes and this piece were written with AI, and AI checked the print details and descriptions against the sources again. No art historian has reviewed it. If you spot an error, write to support@mindseeder.io."
+    ]
+  ],
+  "next_h": "Read next",
+  "next_label": "What you miss when you only look at where things are",
+  "next_title": "John Snow — the pump handle and two water companies",
+  "next_p": "With Hokusai, we looked at where the mountain sits in the picture. In John Snow's 1855 record, you first see where deaths gathered around a pump in Soho, then open a different relation: which water supply split the houses on the same streets. The notes are in Korean.",
+  "next_go": "Open the John Snow garden in the app"
+}

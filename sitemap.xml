@@ -24,6 +24,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://mindseeder.io/guide/"/>
     <xhtml:link rel="alternate" hreflang="ko" href="https://mindseeder.io/ko/guide/"/>
   </url>
+  <url>
+    <loc>https://mindseeder.io/gardens/hokusai/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mindseeder.io/gardens/hokusai/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://mindseeder.io/ko/gardens/hokusai/"/>
+  </url>
+  <url>
+    <loc>https://mindseeder.io/ko/gardens/hokusai/</loc>
+    <lastmod>2026-11-19</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mindseeder.io/gardens/hokusai/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://mindseeder.io/ko/gardens/hokusai/"/>
+  </url>
   <url><loc>https://mindseeder.io/privacy.html</loc></url>
   <url><loc>https://mindseeder.io/terms.html</loc></url>
 </urlset>
