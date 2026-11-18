@@ -1,817 +1,455 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en" data-type="software" data-radius="soft" data-ground="sand" data-buttons="solid" data-motion>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="mindseeder — A 3D knowledge garden where your ideas grow from seeds to fruits. Think spatially, write in Markdown, grow with AI.">
-    <title>mindseeder — Plant your ideas, Build your Plot.</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <style>
-        :root {
-            color-scheme: dark;
-            --bg: #111111;
-            --surface: #161616;
-            --border: #252525;
-            --text: #ffffff;
-            --text-muted: #999;
-            --text-dim: #555;
-            --accent: #EB5E28;
-            --accent-purple: #7b2cbf;
-            --soil: #8B7355;
-            --seed: #D2691E;
-            --sprout: #90EE90;
-            --stem: #228B22;
-            --flower: #FFD700;
-            --fruit: #DC143C;
-        }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>mindseeder: 3D garden for notes and AI chats</title>
+<meta name="description" content="mindseeder is a web app for organising AI chats into notes, comparing them in a 3D garden or as cards, and saving a conclusion you choose as Markdown. Free, no sign-up.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="mindseeder">
+<meta property="og:title" content="mindseeder: a 3D garden for your notes and AI chats">
+<meta property="og:description" content="mindseeder is a web app for organising AI chats into notes, comparing them in a 3D garden or as cards, and saving a conclusion you choose as Markdown. Free, no sign-up.">
+<meta property="og:image" content="https://mindseeder.io/img/share-en.jpg">
+<meta property="og:url" content="https://mindseeder.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mindseeder.io/">
+<link rel="alternate" hreflang="en" href="https://mindseeder.io/">
+<link rel="alternate" hreflang="ko" href="https://mindseeder.io/ko/">
+<link rel="alternate" hreflang="x-default" href="https://mindseeder.io/">
+<link rel="icon" href="img/favicon-64.png" type="image/png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .lang-toggle {
-            position: fixed;
-            top: 16px;
-            right: 20px;
-            display: flex;
-            gap: 4px;
-            z-index: 100;
-        }
-
-        .lang-btn {
-            background: rgba(17,17,17,0.85);
-            -webkit-backdrop-filter: blur(8px);
-            backdrop-filter: blur(8px);
-            border: 1px solid #333;
-            color: #888;
-            padding: 4px 11px;
-            font-size: 0.75rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .lang-btn.active {
-            border-color: var(--accent);
-            color: var(--accent);
-            background: rgba(235,94,40,0.1);
-        }
-
-        .lang-btn:hover:not(.active) { border-color: #666; color: #ccc; }
-
-        section {
-            padding: 56px 24px;
-            max-width: 880px;
-            margin: 0 auto;
-        }
-
-        .section-divider {
-            border: none;
-            border-top: 1px solid var(--border);
-            max-width: 880px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 0.72rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .section-title {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            line-height: 1.3;
-        }
-
-        .section-desc {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            max-width: 560px;
-            line-height: 1.65;
-        }
-
-        /* ─── HERO ─── */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 100px 24px 56px;
-        }
-
-        .hero-logo {
-            width: 240px;
-            height: auto;
-            margin-bottom: 1.8rem;
-            filter: drop-shadow(0 0 24px rgba(235,94,40,0.15));
-        }
-
-        .hero h1 {
-            font-size: clamp(1.6rem, 4vw, 2.4rem);
-            font-weight: 800;
-            line-height: 1.3;
-            margin-bottom: 0.8rem;
-            max-width: 600px;
-        }
-
-        .hero h1 .gradient-text {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-sub {
-            font-size: 1rem;
-            color: var(--text-muted);
-            max-width: 480px;
-            margin-bottom: 1.8rem;
-            line-height: 1.65;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent));
-            border: none;
-            color: #fff;
-            padding: 12px 36px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 20px rgba(235,94,40,0.25);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 28px rgba(235,94,40,0.4);
-            color: #fff;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            border: 1px solid #3a3a3a;
-            color: #aaa;
-            padding: 11px 28px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .btn-secondary:hover { border-color: #777; color: #fff; }
-
-        .hero-note {
-            margin-top: 0.8rem;
-            font-size: 0.78rem;
-            color: var(--text-dim);
-        }
-
-        /* ─── HOW IT WORKS ─── */
-        .how-section { text-align: center; }
-
-        .steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        .step {
-            text-align: center;
-            padding: 24px 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: border-color 0.2s;
-        }
-
-        .step:hover { border-color: #3a3a3a; }
-
-        .step-num {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--accent));
-            border-radius: 50%;
-            font-weight: 800;
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-        }
-
-        .step-icon {
-            font-size: 1.8rem;
-            margin-bottom: 8px;
-            display: block;
-        }
-
-        .step h3 {
-            font-size: 0.92rem;
-            margin-bottom: 6px;
-        }
-
-        .step p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-        }
-
-        /* ─── GROWTH STAGES ─── */
-        .growth-section { text-align: center; }
-
-        .growth-track {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0;
-            margin-top: 28px;
-        }
-
-        .growth-stage {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 14px 12px;
-            min-width: 80px;
-        }
-
-        .growth-block {
-            width: 36px;
-            height: 36px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .growth-name {
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
-
-        .growth-desc {
-            font-size: 0.65rem;
-            color: var(--text-dim);
-            max-width: 80px;
-        }
-
-        .growth-arrow {
-            color: #3a3a3a;
-            font-size: 1rem;
-            margin: 0 -2px;
-            align-self: center;
-            padding-bottom: 24px;
-        }
-
-        /* ─── FEATURES ─── */
-        .features-section { text-align: center; }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        .feature-card {
-            text-align: left;
-            padding: 22px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: border-color 0.2s;
-        }
-
-        .feature-card:hover { border-color: #3a3a3a; }
-
-        .feature-icon {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-size: 0.92rem;
-            margin-bottom: 5px;
-        }
-
-        .feature-card p {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            line-height: 1.55;
-        }
-
-        /* ─── CONTROLS ─── */
-        .controls-section { text-align: center; }
-
-        .controls-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 28px;
-        }
-
-        .control-group {
-            text-align: left;
-            padding: 20px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .control-group h3 {
-            font-size: 0.85rem;
-            margin-bottom: 12px;
-            color: var(--accent);
-        }
-
-        .control-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 5px 0;
-            font-size: 0.8rem;
-        }
-
-        .control-row + .control-row { border-top: 1px solid #1e1e1e; }
-
-        .key {
-            display: inline-block;
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 4px;
-            padding: 1px 7px;
-            font-size: 0.72rem;
-            font-family: 'SF Mono', 'Consolas', monospace;
-            color: #ccc;
-            min-width: 24px;
-            text-align: center;
-        }
-
-        .control-action { color: var(--text-muted); }
-
-        /* ─── BOTTOM CTA ─── */
-        .bottom-cta {
-            text-align: center;
-            padding: 56px 24px;
-            max-width: 880px;
-            margin: 0 auto;
-        }
-
-        .bottom-cta h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .bottom-cta p {
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        /* ─── FOOTER ─── */
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 24px 24px;
-            text-align: center;
-            font-size: 0.78rem;
-            color: var(--text-dim);
-            line-height: 1.7;
-        }
-
-        .footer-links { margin-bottom: 8px; }
-
-        footer a { color: #666; text-decoration: none; margin: 0 8px; transition: color 0.2s; }
-        footer a:hover { color: #fff; }
-
-        /* Focus */
-        .btn-primary:focus-visible,
-        .btn-secondary:focus-visible,
-        footer a:focus-visible,
-        .lang-btn:focus-visible {
-            outline: 2px solid var(--accent);
-            outline-offset: 3px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .steps { grid-template-columns: repeat(2, 1fr); }
-            .feature-grid { grid-template-columns: repeat(2, 1fr); }
-            .controls-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 480px) {
-            .hero { padding: 80px 20px 40px; }
-            section { padding: 40px 20px; }
-            .steps { grid-template-columns: 1fr; }
-            .feature-grid { grid-template-columns: 1fr; }
-            .growth-stage { min-width: 60px; padding: 10px 6px; }
-            .growth-block { width: 28px; height: 28px; }
-            .growth-arrow { display: none; }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation: none !important;
-                transition: none !important;
-            }
-        }
-    </style>
+<meta name="theme-color" content="#f7f8f9">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<script type="application/ld+json">[{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "mindseeder", "url": "https://mindseeder.io/", "applicationCategory": "ProductivityApplication", "operatingSystem": "Web browser", "inLanguage": ["en", "ko", "ja", "zh-Hans"], "description": "mindseeder is a web app for organising AI chats into notes, comparing them in a 3D garden or as cards, and saving a conclusion you choose as Markdown. Free, no sign-up.", "image": "https://mindseeder.io/img/share-en.jpg", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "featureList": ["AI chats become notes", "Notes from two sources, side by side", "Harvests conclusions from the garden", "Exports Markdown and backups", "Plants up to 100 items at once", "Marks each note with one of 7 stages"], "sameAs": ["https://app.mindseeder.io/"]}, {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "How do I turn a ChatGPT conversation into notes?", "acceptedAnswer": {"@type": "Answer", "text": "Open Plant from the menu, select Copy request for AI and paste it into your ChatGPT conversation. Paste the reply back into Plant, check it and plant it."}}, {"@type": "Question", "name": "How can I see a ChatGPT or Claude chat as notes together?", "acceptedAnswer": {"@type": "Answer", "text": "Plant the note bundle, then walk around its trees in the 3D garden or read them side by side as cards in Office view."}}, {"@type": "Question", "name": "Where are my notes saved?", "acceptedAnswer": {"@type": "Answer", "text": "In this browser, no account needed. Clearing browser data deletes them, so keep a copy with Download backup file in the menu and restore it with New garden from backup."}}, {"@type": "Question", "name": "What can I export from a garden?", "acceptedAnswer": {"@type": "Answer", "text": "A harvest document or all notes as Markdown, all notes as JSON, and a backup file. PDF works too but can lose some symbols; Markdown keeps the text exact."}}, {"@type": "Question", "name": "How is a garden different from Obsidian or Notion?", "acceptedAnswer": {"@type": "Answer", "text": "They are better for writing and organising pages. mindseeder is for stacking material, comparing sources and choosing a conclusion, saved as a .md file."}}]}]</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/system.css">
+<link rel="stylesheet" href="assets/ui/cards.css">
+<link rel="stylesheet" href="assets/motion/motion.css">
+<link rel="stylesheet" href="assets/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="assets/layout/layout.css">
+<link rel="stylesheet" href="assets/icons/icon.css">
+<style>
+:root {
+  --p-bg: #f7f8f9; --p-surface: #edf0f2; --p-ink: #1b1f24; --p-muted: #56606b;
+  --p-accent: #ffd200; --p-accent-ink: #111111; --p-action: #1b1f24; --p-action-ink: #f7f8f9;
+  --p-inv-bg: #1b1f24; --p-inv-surface: #282c30; --p-inv-ink: #f7f8f9; --p-inv-muted: #9b9ea1;
+  --p-inv-accent: #ffd200; --p-inv-accent-ink: #111111; --p-inv-action: #ffd200; --p-inv-action-ink: #111111;
+  --font-display: "Instrument Sans", system-ui, sans-serif;
+  --font-text: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500;
+  --display-tracking: -0.028em;
+  --display-tracking-xl: -0.036em;
+  --display-stretch: 96%;
+  --ly-scale: 1.04;
+}
+</style>
+<link rel="stylesheet" href="assets/ui/base.css">
+<link rel="stylesheet" href="assets/ui/window/fragment.css">
+<link rel="stylesheet" href="assets/ui/doc/fragment.css">
+<link rel="stylesheet" href="assets/ui/files/fragment.css">
+<link rel="stylesheet" href="assets/diagrams/diagram.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+<script src="assets/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(()=>document.documentElement.classList.add('mo-safe'),2500)</script>
+<link rel="modulepreload" href="assets/moments/moments.js">
+<link rel="modulepreload" href="assets/moments/lib.js">
+<link rel="modulepreload" href="assets/moments/liquid-type/moment.js">
+<link rel="modulepreload" href="assets/moments/word-highlight/moment.js">
+<style>
+  /* page CSS: inside visuals only, and one --p-h per card group */
+  /* a short desktop window (a laptop browser under 900px tall): every section keeps at least its screens and grows
+     past them rather than lie over the next one, as system.css already does from 640 to 1279 */
+  @media (min-width: 1280px) {
+    main > :is(section, .section):not(.hero), footer.closing { height: auto; min-height: calc(var(--h, 1) * 100svh); display: flex; flex-direction: column; }
+    main > :is(section, .section):not(.hero) > .wrap, footer.closing > .wrap { flex: 1 0 auto; height: auto; min-height: 0; }
+  }
+  @media (min-width: 1280px) and (max-height: 860px) {
+    main > .hero { height: auto; min-height: 100svh; }
+    main > .hero > .wrap { height: auto; min-height: calc(100svh - var(--nav) - var(--hgap) - var(--hpadb)); }
+  }
+  :lang(ko) { word-break: keep-all; overflow-wrap: anywhere; }
+  #why { --accent: var(--ink); }
+  @media (max-width: 639px) { .nav__actions [data-lang-switch] { display: none; } .nav__actions .btn { padding-inline: 14px; } }
+  @media (max-width: 639px) {
+    .hero--product { --ly-h1: 34px; }
+    .hero--product .hero__stage { aspect-ratio: auto; flex: 1 1 auto; min-height: 240px; }
+  }
+  .nav__logo img { display: block; height: 34px; width: auto; }
+  .footer .nav__logo img { height: 40px; }
+  .hero--product .hero__stage > img { --ly-pos: 50% 62%; }
+  .shot { display: block; max-width: none; border-radius: 12px; border: 1px solid rgb(27 31 36 / 0.12); box-shadow: 0 1px 2px rgb(27 31 36 / 0.06), 0 12px 32px -12px rgb(27 31 36 / 0.22); background: #fff; }
+  /* garden: Office view of the two trees rising out of the lit frame */
+  #garden .frame { --ratio: 0px; height: 404px; padding: 0; }
+  #garden .trees { display: flex; gap: 56px; align-items: flex-start; }
+  #garden .shot { width: 322px; }
+  #garden .facts { margin-top: var(--s-7); }
+  #garden .facts p { margin: 0; }
+  @media (max-width: 1023px) { #garden .frame { height: 360px; } }
+  @media (max-width: 639px) { #garden .frame { height: 470px; } #garden .trees { flex-direction: column; gap: 12px; align-items: center; } #garden .shot { width: 250px; } }
+  /* document: the app frame (sections-library.md, app-frame) */
+  .app.ui { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); margin-top: var(--s-7); background: var(--u-bg); border: 1px solid var(--u-border); border-radius: var(--u-r); box-shadow: var(--u-shadow); }
+  .app > .app__pane { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+  .app > .app__pane + .app__pane { border-left: 1px solid var(--u-line); }
+  .app > .app__pane > .ui-panel, .app > .app__pane > .ui { width: 100%; border: 0; border-radius: 0; box-shadow: none; }
+  .app > .app__pane::after { content: ""; position: absolute; inset: auto 0 0 0; height: 64px; background: linear-gradient(transparent, var(--u-bg)); pointer-events: none; }
+  .app .ui-avatar[data-tone="4"] { font-size: 10px; letter-spacing: -0.02em; }
+  .app .ui-doc__page :is(p, h3) { margin: 0; }
+  .app .ui-doc__page p.ui-doc__text { font-size: 15px; line-height: 1.6; margin-top: 10px; }
+  .app .ui-doc__page h3.ui-doc__title { font-size: 19px; line-height: 1.35; font-weight: 500; margin-top: 6px; }
+  @media (min-width: 1024px) and (max-width: 1279px) { .app.ui { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); } }
+  @media (max-width: 1023px) {
+    .app.ui { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+    .app > .app__pane--list { max-height: 252px; }
+    .app > .app__pane--list::after { display: none; }
+    .app .ui-win__side { display: none; }
+    .app .ui-win__body { grid-template-columns: minmax(0, 1fr); }
+    .app > .app__pane + .app__pane { border-left: 0; border-top: 1px solid var(--u-line); }
+  }
+  @media (max-width: 639px) {
+    /* a phone shows the exported document whole, so it can be read to its last line */
+    #document .app.fill { flex: none; }
+    .app > .app__pane--open { overflow: visible; }
+    .app > .app__pane--open::after { display: none; }
+    .app.ui { grid-template-rows: minmax(0, 1fr); }
+    .app > .app__pane--list { display: none; }
+    .app > .app__pane + .app__pane { border-top: 0; }
+  }
+  /* ai chats: steps and the hub */
+  #ai .mo-lt__type { font-size: clamp(48px, 6vw, 88px); }
+  #ai .steps { list-style: none; margin: var(--s-7) 0 0; padding: 0; display: grid; gap: var(--s-5); counter-reset: s; }
+  #ai .steps li { counter-increment: s; }
+  #ai .steps p { margin: 0; }
+  #ai .steps b { display: flex; align-items: center; gap: var(--s-3); font-weight: 500; }
+  #ai .steps b::before { content: counter(s); width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font: 500 13px/1 var(--font-mono); background: var(--accent); color: var(--accent-ink); }
+  #ai .steps span { display: block; margin-top: var(--s-2); color: #c9ccd0; }
+  #ai .mcp { margin-top: var(--s-6); color: #c9ccd0; max-width: 46ch; }
+  #ai .panel { --p-h: 640px; }
+  @media (max-width: 1023px) { #ai .panel { --p-h: 420px; } }
+  @media (max-width: 639px) { #ai .panel { --p-h: 340px; } }
+  #faq .opens { list-style: none; margin: var(--s-6) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--s-3); max-width: 480px; }
+  #faq .opens li { display: flex; align-items: center; gap: var(--s-3); padding: var(--s-3); border: 1px solid rgb(27 31 36 / 0.1); border-radius: var(--r-sm); background: #fff; font-weight: 500; }
+  /* features: one --p-h for the group */
+  #features .panel { --p-h: 336px; }
+  #features .shot--note { width: 560px; }
+  @media (min-width: 640px) and (max-width: 1279px) { #features .panel { --p-h: 300px; } }
+  #features .shot--plant { width: 640px; }
+  #features .shot--basket { width: 306px; }
+  @media (max-width: 639px) { #features .panel { --p-h: 200px; } #features .shot--note, #features .shot--plant { width: 520px; } #features .stage > .at-corner { right: auto; } }
+</style>
 </head>
 <body>
-
-    <nav class="lang-toggle" aria-label="Language selector">
-        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
-        <button class="lang-btn" id="btn-ko" onclick="setLang('ko')">한국어</button>
+<!-- type: software
+     deal: hero product (the 3D garden screenshot full width), nav nav-cards, close close-type, footer footer-columns,
+     rhythm dark-band (#ai), buttons solid, mark: the client's own logo (dealt initial replaced), palette: the client's own
+     colours via start.mjs brand (metro-garden theme: #f7f8f9 ground, #1b1f24 ink, #ffd200 yellow), type instrument
+     (+ Gothic A1 for Korean), grounds: lit ground sand behind UI, effect silk-folds in the one [data-visual] (#garden),
+     card ground fluted-glass (#features)
+     moments: liquid-type (#ai h2), word-highlight (#why statement) -->
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="#top"><img src="img/logo-384.webp" srcset="img/logo-384.webp 1x, img/logo-768.webp 2x" width="82" height="34" alt="mindseeder"></a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item">
+        <a class="nav__link" href="#garden">Garden <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="nav__menu">
+          <div class="wrap grid">
+            <a class="menu-card span-4" href="#top">
+              <div class="panel"><img class="frame__img" src="img/garden-3d-1440.webp" alt="" loading="lazy"></div>
+              <span class="t-card">3D garden</span>
+              <span class="t-small muted">Walk among your notes, stacked as trees</span>
+            </a>
+            <a class="menu-card span-4" href="#garden">
+              <div class="panel"><img class="frame__img" src="img/office-trees-en.webp" alt="" loading="lazy" style="object-position: 0 50%"></div>
+              <span class="t-card">Office view</span>
+              <span class="t-small muted">The same notes as cards, tree by tree</span>
+            </a>
+            <a class="menu-card span-4" href="#features">
+              <div class="panel"><img class="frame__img" src="img/basket-en.webp" alt="" loading="lazy" style="object-position: 50% 60%"></div>
+              <span class="t-card">Harvest basket</span>
+              <span class="t-small muted">Collect conclusions and export them</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="nav__item"><a class="nav__link" href="#document">Document</a></div>
+      <div class="nav__item"><a class="nav__link" href="#ai">AI chats</a></div>
+      <div class="nav__item"><a class="nav__link" href="#features">Features</a></div>
+      <div class="nav__item"><a class="nav__link" href="#faq">Questions</a></div>
     </nav>
-
-    <section class="hero">
-        <img src="logo.png" alt="mindseeder logo" class="hero-logo">
-        <h1 data-i18n="heroTitle"></h1>
-        <p class="hero-sub" data-i18n="heroSub"></p>
-        <div class="hero-cta">
-            <a href="https://app.mindseeder.io" class="btn-primary" data-i18n="launchBtn"></a>
-            <a href="#how" class="btn-secondary" data-i18n="learnMore"></a>
-        </div>
-        <p class="hero-note" data-i18n="heroNote"></p>
-    </section>
-
-    <hr class="section-divider">
-
-    <section class="how-section" id="how">
-        <p class="section-label" data-i18n="howLabel"></p>
-        <h2 class="section-title" data-i18n="howTitle"></h2>
-        <div class="steps">
-            <div class="step">
-                <span class="step-num">1</span>
-                <span class="step-icon">🌍</span>
-                <h3 data-i18n="step1Title"></h3>
-                <p data-i18n="step1Desc"></p>
-            </div>
-            <div class="step">
-                <span class="step-num">2</span>
-                <span class="step-icon">✍️</span>
-                <h3 data-i18n="step2Title"></h3>
-                <p data-i18n="step2Desc"></p>
-            </div>
-            <div class="step">
-                <span class="step-num">3</span>
-                <span class="step-icon">🌱</span>
-                <h3 data-i18n="step3Title"></h3>
-                <p data-i18n="step3Desc"></p>
-            </div>
-            <div class="step">
-                <span class="step-num">4</span>
-                <span class="step-icon">📄</span>
-                <h3 data-i18n="step4Title"></h3>
-                <p data-i18n="step4Desc"></p>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <section class="growth-section">
-        <p class="section-label" data-i18n="growthLabel"></p>
-        <h2 class="section-title" data-i18n="growthTitle"></h2>
-        <p class="section-desc" style="margin:0 auto" data-i18n="growthDesc"></p>
-        <div class="growth-track">
-            <div class="growth-stage">
-                <div class="growth-block" style="background:var(--soil)"></div>
-                <span class="growth-name" data-i18n="gSoil"></span>
-                <span class="growth-desc" data-i18n="gSoilD"></span>
-            </div>
-            <span class="growth-arrow">›</span>
-            <div class="growth-stage">
-                <div class="growth-block" style="background:var(--seed)"></div>
-                <span class="growth-name" data-i18n="gSeed"></span>
-                <span class="growth-desc" data-i18n="gSeedD"></span>
-            </div>
-            <span class="growth-arrow">›</span>
-            <div class="growth-stage">
-                <div class="growth-block" style="background:var(--sprout)"></div>
-                <span class="growth-name" data-i18n="gSprout"></span>
-                <span class="growth-desc" data-i18n="gSproutD"></span>
-            </div>
-            <span class="growth-arrow">›</span>
-            <div class="growth-stage">
-                <div class="growth-block" style="background:var(--stem)"></div>
-                <span class="growth-name" data-i18n="gStem"></span>
-                <span class="growth-desc" data-i18n="gStemD"></span>
-            </div>
-            <span class="growth-arrow">›</span>
-            <div class="growth-stage">
-                <div class="growth-block" style="background:var(--flower)"></div>
-                <span class="growth-name" data-i18n="gFlower"></span>
-                <span class="growth-desc" data-i18n="gFlowerD"></span>
-            </div>
-            <span class="growth-arrow">›</span>
-            <div class="growth-stage">
-                <div class="growth-block" style="background:var(--fruit);box-shadow:0 0 12px rgba(220,20,60,0.4)"></div>
-                <span class="growth-name" data-i18n="gFruit"></span>
-                <span class="growth-desc" data-i18n="gFruitD"></span>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <section class="features-section">
-        <p class="section-label" data-i18n="featLabel"></p>
-        <h2 class="section-title" data-i18n="featTitle"></h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <span class="feature-icon">🎮</span>
-                <h3 data-i18n="f1Title"></h3>
-                <p data-i18n="f1Desc"></p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">📝</span>
-                <h3 data-i18n="f2Title"></h3>
-                <p data-i18n="f2Desc"></p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🔀</span>
-                <h3 data-i18n="f3Title"></h3>
-                <p data-i18n="f3Desc"></p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">💾</span>
-                <h3 data-i18n="f4Title"></h3>
-                <p data-i18n="f4Desc"></p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">☁️</span>
-                <h3 data-i18n="f5Title"></h3>
-                <p data-i18n="f5Desc"></p>
-            </div>
-            <div class="feature-card">
-                <span class="feature-icon">🤝</span>
-                <h3 data-i18n="f6Title"></h3>
-                <p data-i18n="f6Desc"></p>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <section class="controls-section">
-        <p class="section-label" data-i18n="ctrlLabel"></p>
-        <h2 class="section-title" data-i18n="ctrlTitle"></h2>
-        <div class="controls-grid">
-            <div class="control-group">
-                <h3 data-i18n="ctrlMove"></h3>
-                <div class="control-row">
-                    <span><span class="key">W</span> <span class="key">A</span> <span class="key">S</span> <span class="key">D</span></span>
-                    <span class="control-action" data-i18n="ctrlMoveAction"></span>
-                </div>
-                <div class="control-row">
-                    <span class="key">Space</span>
-                    <span class="control-action" data-i18n="ctrlJump"></span>
-                </div>
-                <div class="control-row">
-                    <span><span class="key">Space</span> ×2</span>
-                    <span class="control-action" data-i18n="ctrlFly"></span>
-                </div>
-                <div class="control-row">
-                    <span class="key">Shift</span>
-                    <span class="control-action" data-i18n="ctrlCrouch"></span>
-                </div>
-            </div>
-            <div class="control-group">
-                <h3 data-i18n="ctrlNote"></h3>
-                <div class="control-row">
-                    <span data-i18n="ctrlLClick"></span>
-                    <span class="control-action" data-i18n="ctrlEdit"></span>
-                </div>
-                <div class="control-row">
-                    <span data-i18n="ctrlRClick"></span>
-                    <span class="control-action" data-i18n="ctrlNew"></span>
-                </div>
-                <div class="control-row">
-                    <span><span class="key">Shift</span> + <span data-i18n="ctrlLClickShort"></span></span>
-                    <span class="control-action" data-i18n="ctrlGrow"></span>
-                </div>
-                <div class="control-row">
-                    <span data-i18n="ctrlLongPress"></span>
-                    <span class="control-action" data-i18n="ctrlDrag"></span>
-                </div>
-            </div>
-            <div class="control-group">
-                <h3 data-i18n="ctrlEditor"></h3>
-                <div class="control-row">
-                    <span><span class="key">Ctrl</span> + <span class="key">Enter</span></span>
-                    <span class="control-action" data-i18n="ctrlSave"></span>
-                </div>
-                <div class="control-row">
-                    <span class="key">Esc</span>
-                    <span class="control-action" data-i18n="ctrlCancel"></span>
-                </div>
-                <div class="control-row">
-                    <span class="key">Tab</span>
-                    <span class="control-action" data-i18n="ctrlPreview"></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="section-divider">
-
-    <section class="bottom-cta">
-        <h2 data-i18n="ctaTitle"></h2>
-        <p data-i18n="ctaSub"></p>
-        <div class="hero-cta">
-            <a href="https://app.mindseeder.io" class="btn-primary" data-i18n="launchBtn"></a>
-        </div>
-        <p class="hero-note" data-i18n="heroNote"></p>
-    </section>
-
-    <footer>
-        <div class="footer-links">
-            <a href="privacy.html" data-i18n="privacyLink"></a>
-            <a href="terms.html" data-i18n="termsLink"></a>
-            <a href="mailto:support@mindseeder.io" data-i18n="supportLink"></a>
-        </div>
+    <div class="nav__actions">
+      <a class="nav__link" href="ko/" hreflang="ko" lang="ko" data-lang-switch>한국어</a>
+      <a class="btn btn--primary" href="https://app.mindseeder.io/" data-app-link>Start with my notes</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<main id="top">
+  <section class="hero hero--product" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text hero__in">
+      <div class="hero__head">
         <div>
-            &copy; 2026 mindseeder.<br>
-            <span data-i18n="footerOp"></span>
+          <h1 id="hero-h">3D garden for your notes and AI chats</h1>
+          <p class="hero__lead">Stack notes into trees and compare two sources side by side. Save the conclusion you choose as Markdown. Free, no sign-up.</p>
         </div>
-    </footer>
+        <div class="btn-row"><a class="btn btn--primary" href="https://app.mindseeder.io/" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#document">See the exported document</a></div>
+      </div>
+      <div class="hero__stage">
+        <img src="img/garden-3d-1440.webp" srcset="img/garden-3d-1440.webp 1440w, img/garden-3d-2880.webp 2880w" sizes="(max-width: 639px) 930px, 100vw" width="1440" height="590" alt="The mindseeder 3D garden: two stacked trees of coloured note blocks among sand-coloured terrain blocks, with a pink fruit block in front of them" fetchpriority="high" data-source="client" data-subject="mindseeder 3D garden screenshot">
+      </div>
+    </div></div>
+  </section>
 
-    <script>
-        const i18n = {
-            en: {
-                heroTitle: 'A <span class="gradient-text">3D Knowledge Garden</span> where ideas grow.',
-                heroSub: 'Plant notes as blocks in a 3D world. Nurture them from Seed to Fruit. Think spatially, write in Markdown.',
-                launchBtn: 'Launch App →',
-                learnMore: 'See How It Works',
-                heroNote: 'Free · Works offline',
+  <section class="section" id="garden" aria-labelledby="garden-h">
+    <div class="wrap">
+      <div class="grid">
+        <h2 class="span-5" id="garden-h">Notes from two sources, side by side</h2>
+        <div class="span-6 start-7 stack-4">
+          <p class="t-lead">In this sample garden, a planning meeting and a usability test are two trees of five notes each. Office view, the app’s card view, lays them out side by side.</p>
+          <a class="link" href="#document">Read the conclusion</a>
+        </div>
+      </div>
+      <div class="frame frame--hero" data-visual data-fx="silk-folds" data-fx-seed="11" style="margin-top: var(--s-7)">
+        <div class="stage stage--fade-b">
+          <div class="at-rise to-edge"  style="--ax: max(24px, 50% - 352px); --ay: 40px; --ay-sm: 24px"><div class="ui trees" role="img" aria-label="Office view in mindseeder: two tree cards, First planning meeting and Usability test retro, each listing five notes with their stage colours">
+            <img class="shot" src="img/tree-a-en.webp" width="322" height="295" alt="" loading="lazy" data-source="client" data-subject="mindseeder Office view, tree A">
+            <img class="shot" src="img/tree-b-en.webp" width="325" height="295" alt="" loading="lazy" data-source="client" data-subject="mindseeder Office view, tree B">
+          </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid facts">
+        <div class="span-4"><p><b>Stacked by source</b></p><p>Group notes from one meeting, paper or chat into one tree.</p></div>
+        <div class="span-4"><p><b>Seven stages</b></p><p>Soil, seed, sprout, stem, leaf, flower and fruit.</p></div>
+        <div class="span-4"><p><b>Grafts</b></p><p>A link between two trees, with the reason written down.</p></div>
+      </div>
+    </div>
+  </section>
 
-                howLabel: 'How It Works',
-                howTitle: 'Four steps to grow your ideas',
-                step1Title: 'Explore your garden',
-                step1Desc: 'Walk through a first-person 3D world. Your ideas live as colorful blocks arranged in space.',
-                step2Title: 'Plant a note',
-                step2Desc: 'Right-click to place a block. Write in Markdown with a full editor — title, content, and growth stage.',
-                step3Title: 'Grow through stages',
-                step3Desc: 'Evolve notes from Soil → Seed → Sprout → Stem → Flower → Fruit as your thinking deepens.',
-                step4Title: 'Switch to Office view',
-                step4Desc: 'Toggle to a 2D document layout anytime. Same notes, different perspective — cards you can pan and zoom.',
+  <section class="section" id="document" aria-labelledby="document-h">
+    <div class="wrap">
+      <div class="grid">
+        <h2 class="span-5" id="document-h">From eleven notes to one decision</h2>
+        <div class="span-6 start-7 stack-4">
+          <p class="t-lead">The sample garden holds 10 notes from two sources and 1 conclusion that joins them. Two conclusions went into the basket; this is the Markdown it exported.</p>
+          <a class="link" href="samples/next-release-harvest.en.md" download type="text/markdown">Download the sample Markdown (.md)</a>
+          <a class="link" href="#harvest">See how harvesting works</a>
+        </div>
+      </div>
+      <div class="ui app fill" data-ui-pause-host>
+        <div class="app__pane app__pane--list">
+          <div class="ui ui-panel ui-win" data-ui="window" data-ui-opts='{"still":true}' role="img" aria-label="mindseeder notes list: 11 notes in two trees, with their stages">
+            <div class="ui-win__bar">
+              <span class="ui-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="ui-win__crumb"><img class="ui-brand" src="img/favicon-64.png" alt="" width="16" height="16">What goes into the next release? <i>/</i> <b>Notes</b></span>
+              <span class="ui-spacer"></span>
+              <span class="ui-win__search" aria-hidden="true"><svg class="ui-icon" viewBox="0 0 16 16"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg><span class="ui-kbd">⌘K</span></span>
+            </div>
+            <div class="ui-win__body">
+              <nav class="ui-win__side" aria-hidden="true">
+                <span class="ui-win__nav is-on"><svg class="ui-icon" viewBox="0 0 16 16"><path d="M3 4h10M3 8h10M3 12h7"/></svg>All<em>11</em></span>
+                <span class="ui-win__nav"><span class="ui-win__hash" style="color:#c8b49a">■</span>Soil<em>2</em></span>
+                <span class="ui-win__nav"><span class="ui-win__hash" style="color:#f0a888">■</span>Seed<em>2</em></span>
+                <span class="ui-win__nav"><span class="ui-win__hash" style="color:#b8e3d6">■</span>Sprout<em>1</em></span>
+                <span class="ui-win__nav"><span class="ui-win__hash" style="color:#86c2a4">■</span>Stem<em>3</em></span>
+                <span class="ui-win__nav"><span class="ui-win__hash" style="color:#f5d36b">■</span>Flower<em>1</em></span>
+                <span class="ui-win__nav"><span class="ui-win__hash" style="color:#f08fa6">■</span>Fruit<em>2</em></span>
+                <span class="ui-win__label">Trees</span>
+                <span class="ui-win__nav"><span class="ui-win__hash">A</span>Planning meeting</span>
+                <span class="ui-win__nav"><span class="ui-win__hash">B</span>Usability test</span>
+              </nav>
+              <div class="ui-win__main">
+                <div class="ui-win__cols" aria-hidden="true"><span>Tree</span><span>Note</span><span>Stage</span><span>Edited</span></div>
+                <ul class="ui-win__rows">
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">A</span><span class="ui-win__who">Tree A</span><span class="ui-win__sub">Planning: what goes into release v2.4</span><span class="ui-win__st " data-st>Seed</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">A</span><span class="ui-win__who">Tree A</span><span class="ui-win__sub">Support: note-lost tickets went from 5 to 12</span><span class="ui-win__st " data-st>Sprout</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">A</span><span class="ui-win__who">Tree A</span><span class="ui-win__sub">PM: make share links the headline feature</span><span class="ui-win__st " data-st>Stem</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">A</span><span class="ui-win__who">Tree A</span><span class="ui-win__sub">Dev lead: two weeks sharing, one week bugs</span><span class="ui-win__st " data-st>Stem</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="1">A</span><span class="ui-win__who">Tree A</span><span class="ui-win__sub">What the meeting agreed, and what stayed a proposal</span><span class="ui-win__st " data-st>Flower</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">B</span><span class="ui-win__who">Tree B</span><span class="ui-win__sub">Usability test: 5 first-time users, 3 tasks</span><span class="ui-win__st " data-st>Seed</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">B</span><span class="ui-win__who">Tree B</span><span class="ui-win__sub">Task 1: 3 of 5 failed to save their first note</span><span class="ui-win__st " data-st>Soil</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">B</span><span class="ui-win__who">Tree B</span><span class="ui-win__sub">What participants said right after failing</span><span class="ui-win__st " data-st>Soil</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">B</span><span class="ui-win__who">Tree B</span><span class="ui-win__sub">Task 3: with a saved note, 4 of 5 shared</span><span class="ui-win__st " data-st>Stem</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="3">B</span><span class="ui-win__who">Tree B</span><span class="ui-win__sub">Retro: saving is the first wall for new users</span><span class="ui-win__st " data-st>Fruit</span><span class="ui-win__age">6h</span></li>
+                  <li class="ui-win__row" data-row><span class="ui-avatar" data-tone="4">AB</span><span class="ui-win__who">Tree A+B</span><span class="ui-win__sub">Fix the first save before shipping sharing</span><span class="ui-win__st is-you" data-st>Fruit</span><span class="ui-win__age">now</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app__pane app__pane--open">
+          <div class="ui ui-doc" data-ui="doc" data-ui-opts='{"still":true}'>
+            <article class="ui-doc__page">
+              <p class="ui-doc__label">next-release-harvest.md · Markdown · 2 notes</p>
+              <h3 class="ui-doc__title">Fix the first save before shipping sharing</h3>
+              <p class="ui-doc__text">Fictional example. Planning (tree A): the team agreed to <mark class="ui-doc__mark is-on">fix v2.4 scope after seeing the usability test</mark>. Sharing as the headline stayed a proposal.</p>
+              <p class="ui-doc__text">Usability test (tree B): <mark class="ui-doc__mark">3 of 5 failed their first save</mark>. Sharing needs a saved note.</p>
+              <p class="ui-doc__text">Put together: by the team’s own rule, the case is to fix the first save first.</p>
+              <p class="ui-doc__text">Next question: are last month’s 12 “note disappeared” tickets the same first-save failure?</p>
+              <h3 class="ui-doc__title" style="margin-top: 20px">Retro: saving is the first wall for new users</h3>
+              <p class="ui-doc__text">All 3 first-save failures happened at the same spot: a save button hidden by the keyboard, and back with no warning.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                growthLabel: 'Growth System',
-                growthTitle: 'From raw thought to refined insight',
-                growthDesc: 'Each note has a growth stage that reflects your thinking process. Advance stages as ideas mature.',
-                gSoil: 'Soil', gSoilD: 'Source & definitions',
-                gSeed: 'Seed', gSeedD: 'Questions & reactions',
-                gSprout: 'Sprout', gSproutD: 'Possibilities',
-                gStem: 'Stem', gStemD: 'Connections',
-                gFlower: 'Flower', gFlowerD: 'Organization',
-                gFruit: 'Fruit', gFruitD: 'Final insight',
+  <section class="section ground-inverse" id="ai" aria-labelledby="ai-h">
+    <div class="wrap">
+      <div class="grid">
+        <div class="span-5">
+          <div data-moment="liquid-type" class="section-head" style="max-width:none; margin-bottom: 0">
+            <h2 class="mo-lt__type" id="ai-h">AI chats become notes</h2>
+            <p class="t-lead">Long chats end in a scroll you never reopen. One request has your AI turn the chat into a note bundle, which you review in mindseeder and plant.</p>
+          </div>
+          <ol class="steps">
+            <li><p><b>Copy the request</b><span>In mindseeder, open Plant from the menu and select Copy request for AI.</span></p></li>
+            <li><p><b>Paste it into the chat</b><span>Paste it into the ChatGPT, Claude or Gemini conversation you want to organise. It replies with a note bundle.</span></p></li>
+            <li><p><b>Bring the reply back</b><span>Paste the reply into Plant, check how it was split, then plant it.</span></p></li>
+          </ol>
+          <p class="mcp">With a configured MCP client such as Claude Code, notes go straight into a signed-in garden.</p>
+        </div>
+        <div class="span-6 start-7">
+          <div class="panel"><div class="dg" data-diagram data-icon-base="assets/icons/"><script type="application/json">{"layout": "hub", "alt": "Note bundles from ChatGPT, Claude, Gemini and Perplexity are pasted into mindseeder; Claude Code plants directly over MCP", "center": {"label": "mindseeder", "icon": "mindseeder"}, "spokes": [{"label": "ChatGPT \u00b7 paste", "icon": "openai"}, {"label": "Claude \u00b7 paste", "icon": "claude"}, {"label": "Gemini \u00b7 paste", "icon": "gemini"}, {"label": "Perplexity \u00b7 paste", "icon": "perplexity"}, {"label": "Claude Code \u00b7 MCP", "icon": "claude-code"}]}</script></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                featLabel: 'Features',
-                featTitle: 'Everything you need to think better',
-                f1Title: 'Craft Mode', f1Desc: 'First-person 3D world with WASD controls. Walk, fly, and build your knowledge landscape like a game.',
-                f2Title: 'Markdown Editor', f2Desc: 'Full-featured note editor with live preview, auto-resize, and keyboard shortcuts.',
-                f3Title: 'Dual View', f3Desc: 'Switch between 3D Craft Mode and 2D Office Mode. Spatial exploration meets document workflow.',
-                f4Title: 'Local-first', f4Desc: 'All data saved locally in your browser. Works completely offline — your notes never leave your device unless you choose.',
-                f5Title: 'Cloud Sync', f5Desc: 'Optional push/pull sync to the cloud. Access your garden from any device, resolve conflicts when needed.',
-                f6Title: 'Collaboration', f6Desc: 'Invite others to your plot. Real-time editing with block-level locking prevents conflicts.',
+  <section class="section g2" id="features" aria-labelledby="features-h">
+    <div class="wrap">
+      <div class="group">
+        <div class="section-head">
+          <h2 id="features-h">Plant, grow, harvest. <span class="muted">Notes are saved in this browser.</span></h2>
+        </div>
+        <div class="grid">
+          <article class="card card--row card--open span-6 m-nolift">
+            <h3>Exports Markdown and backups</h3>
+            <p>Take a harvest document or every note as Markdown, or the whole garden as a backup file you can restore.</p>
+            <div class="panel" data-fx="fluted-glass" data-fx-seed="21">
+              <div class="stage stage--fade-br"><div class="at-corner wide" style="--w: 680px; --ax: 32px; --ay: 40px" data-ui-loop>
+                <div class="ui ui-files" data-ui="files" data-reading="Exporting {n} of {total}">
+                  <div class="ui-files__status"><span class="ui-dot"></span><span data-files-status>4 files ready</span></div>
+                  <ul class="ui-files__grid">
+                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="md" src="assets/icons/md.svg" alt=""></span><span class="ui-file__name">Harvest document.md</span><span class="ui-file__kind">Markdown</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="md" src="assets/icons/md.svg" alt=""></span><span class="ui-file__name">All notes.md</span><span class="ui-file__kind">Markdown</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="json" src="assets/icons/json.svg" alt=""></span><span class="ui-file__name">All notes.json</span><span class="ui-file__kind">JSON</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+                    <li class="ui-file is-done"><span class="ui-file__icon"><img data-icon="json" src="assets/icons/json.svg" alt=""></span><span class="ui-file__name">Garden backup.json</span><span class="ui-file__kind">Backup</span><span class="ui-file__bar"><i></i></span><span class="ui-file__check"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m4.5 8.2 2.3 2.3 4.7-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></li>
+                  </ul>
+                </div>
+              </div></div>
+            </div>
+          </article>
+          <article class="card card--row card--open span-6 m-nolift">
+            <h3>Plants up to 100 items at once</h3>
+            <p>Paste a meeting, a reading list or a chat. Every paragraph or link becomes a note you can check first.</p>
+            <div class="panel" data-fx="fluted-glass" data-fx-seed="22">
+              <div class="stage stage--fade-br"><div class="at-corner" style="--ax: 32px; --ay: 40px"><img class="shot shot--plant" src="img/plant-en.webp" width="640" height="540" alt="The Plant material dialog listing four items to plant, each with a checkbox, a suggested stage and an edit button" loading="lazy" data-source="client" data-subject="mindseeder plant dialog screenshot"></div></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card card--row card--open span-6 m-nolift">
+          <h3>Marks each note with one of 7 stages</h3>
+          <p>A leaf marks a dropped alternative, a flower a tentative conclusion, a fruit an adopted one. You choose what to export.</p>
+          <div class="panel" data-fx="fluted-glass" data-fx-seed="23">
+            <div class="stage stage--fade-br"><div class="at-corner" style="--ax: 32px; --ay: 40px"><img class="shot shot--note" src="img/note-stages-en.webp" width="560" height="706" alt="A note open in mindseeder with its seven stage buttons, Soil to Fruit, Fruit selected" loading="lazy" data-source="client" data-subject="mindseeder note editor screenshot"></div></div>
+          </div>
+        </article>
+        <article class="card card--row card--open span-6 m-nolift" id="harvest">
+          <h3>Harvests conclusions from the garden</h3>
+          <p>Turn on harvest mode (H on a keyboard, the menu on a phone), pick flowers and fruit near you and export them together.</p>
+          <div class="panel" data-fx="fluted-glass" data-fx-seed="24">
+            <div class="stage stage--fade-b"><div class="at-rise fit" style="--fit-max: 306px; --ax: max(24px, 50% - 153px); --ay: calc(100% - 300px); --ay-sm: 24px"><img class="shot shot--basket" src="img/basket-en.webp" width="306" height="345" alt="The harvest basket with two fruit notes and the Export document (MD) and PDF buttons" loading="lazy" data-source="client" data-subject="mindseeder harvest basket screenshot"></div></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-                ctrlLabel: 'Controls',
-                ctrlTitle: 'Quick reference',
-                ctrlMove: 'Movement',
-                ctrlMoveAction: 'Move',
-                ctrlJump: 'Jump',
-                ctrlFly: 'Toggle flight',
-                ctrlCrouch: 'Crouch',
-                ctrlNote: 'Notes',
-                ctrlLClick: 'Left click',
-                ctrlLClickShort: 'Click',
-                ctrlRClick: 'Right click',
-                ctrlEdit: 'Edit block',
-                ctrlNew: 'New block',
-                ctrlGrow: 'Grow stage',
-                ctrlLongPress: 'Long press',
-                ctrlDrag: 'Drag & drop',
-                ctrlEditor: 'Editor',
-                ctrlSave: 'Save',
-                ctrlCancel: 'Cancel',
-                ctrlPreview: 'Preview toggle',
+  <section class="section statement" id="why" data-moment="word-highlight" aria-labelledby="why-h">
+    <div class="wrap">
+      <h2 class="t-label" id="why-h">Example garden</h2>
+      <p class="mo-wh__text">The meeting proposed sharing. The usability test showed people getting stuck on their first save. Comparing the two led to one decision: <strong>fix saving first</strong>.</p>
+    </div>
+  </section>
 
-                ctaTitle: 'Start growing your ideas today.',
-                ctaSub: 'No sign-up required. Open the app and start planting.',
-
-                privacyLink: 'Privacy Policy',
-                termsLink: 'Terms & Conditions',
-                supportLink: 'Support',
-                footerOp: 'mindseeder is a brand operated by Hyoweon Kim · Perth, Western Australia'
-            },
-            ko: {
-                heroTitle: '아이디어가 자라는 <span class="gradient-text">3D 지식 정원</span>',
-                heroSub: '노트를 3D 공간에 블록으로 심고, 씨앗에서 열매까지 키워보세요. 공간적으로 사고하고, 마크다운으로 기록하세요.',
-                launchBtn: '앱 시작하기 →',
-                learnMore: '사용법 보기',
-                heroNote: '무료 · 오프라인 저장 가능',
-
-                howLabel: '사용 방법',
-                howTitle: '네 단계로 아이디어를 키우세요',
-                step1Title: '정원을 탐험하세요',
-                step1Desc: '1인칭 3D 세계를 걸어 다니세요. 아이디어가 공간에 배치된 색색의 블록으로 존재합니다.',
-                step2Title: '노트를 심으세요',
-                step2Desc: '우클릭으로 블록을 배치하세요. 마크다운 에디터에서 제목, 내용, 성장 단계를 설정합니다.',
-                step3Title: '단계별로 성장시키세요',
-                step3Desc: '생각이 깊어질수록 흙 → 씨앗 → 새싹 → 줄기 → 꽃 → 열매로 노트를 진화시키세요.',
-                step4Title: '오피스 뷰로 전환하세요',
-                step4Desc: '언제든 2D 문서 레이아웃으로 전환 가능합니다. 같은 노트를 카드 형태로 탐색하세요.',
-
-                growthLabel: '성장 시스템',
-                growthTitle: '날것의 생각에서 정제된 통찰까지',
-                growthDesc: '각 노트에는 사고 과정을 반영하는 성장 단계가 있습니다. 아이디어가 성숙할수록 단계를 올려보세요.',
-                gSoil: '흙', gSoilD: '출처와 정의',
-                gSeed: '씨앗', gSeedD: '질문과 반응',
-                gSprout: '새싹', gSproutD: '가능성 탐색',
-                gStem: '줄기', gStemD: '연결과 발전',
-                gFlower: '꽃', gFlowerD: '사전 정리',
-                gFruit: '열매', gFruitD: '최종 통찰',
-
-                featLabel: '기능',
-                featTitle: '더 나은 사고를 위한 모든 것',
-                f1Title: '크래프트 모드', f1Desc: 'WASD로 조작하는 1인칭 3D 세계. 걷고, 날고, 게임처럼 지식 풍경을 구축하세요.',
-                f2Title: '마크다운 에디터', f2Desc: '실시간 미리보기, 자동 크기 조절, 키보드 단축키를 갖춘 노트 에디터.',
-                f3Title: '듀얼 뷰', f3Desc: '3D 크래프트 모드와 2D 오피스 모드를 자유롭게 전환. 공간 탐색과 문서 작업을 동시에.',
-                f4Title: '로컬 우선', f4Desc: '모든 데이터가 브라우저에 로컬 저장됩니다. 완전한 오프라인 작동 — 선택하지 않는 한 노트는 기기를 떠나지 않습니다.',
-                f5Title: '클라우드 동기화', f5Desc: '선택적 푸시/풀 클라우드 동기화. 어떤 기기에서든 정원에 접근하세요.',
-                f6Title: '협업', f6Desc: '다른 사람을 플롯에 초대하세요. 블록 단위 잠금으로 충돌 없는 실시간 편집.',
-
-                ctrlLabel: '조작법',
-                ctrlTitle: '빠른 참조 가이드',
-                ctrlMove: '이동',
-                ctrlMoveAction: '이동',
-                ctrlJump: '점프',
-                ctrlFly: '비행 모드 전환',
-                ctrlCrouch: '웅크리기',
-                ctrlNote: '노트',
-                ctrlLClick: '좌클릭',
-                ctrlLClickShort: '클릭',
-                ctrlRClick: '우클릭',
-                ctrlEdit: '블록 편집',
-                ctrlNew: '새 블록',
-                ctrlGrow: '성장 단계 올리기',
-                ctrlLongPress: '길게 누르기',
-                ctrlDrag: '드래그 앤 드롭',
-                ctrlEditor: '에디터',
-                ctrlSave: '저장',
-                ctrlCancel: '취소',
-                ctrlPreview: '미리보기 전환',
-
-                ctaTitle: '오늘부터 아이디어를 키워보세요.',
-                ctaSub: '가입 없이 바로 시작할 수 있습니다. 앱을 열고 심기 시작하세요.',
-
-                privacyLink: '개인정보처리방침',
-                termsLink: '이용약관',
-                supportLink: '고객지원',
-                footerOp: 'mindseeder는 김효원이 운영하는 브랜드입니다 · 오스트레일리아 서호주 퍼스'
-            }
-        };
-
-        function setLang(lang) {
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.dataset.i18n;
-                if (i18n[lang] && i18n[lang][key] !== undefined) {
-                    el.innerHTML = i18n[lang][key];
-                }
-            });
-            document.documentElement.lang = lang === 'ko' ? 'ko' : 'en';
-            localStorage.setItem('ms_lang', lang);
-            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-            document.getElementById('btn-ko').classList.toggle('active', lang === 'ko');
-        }
-
-        const saved = localStorage.getItem('ms_lang');
-        const auto = saved || (navigator.language && navigator.language.startsWith('ko') ? 'ko' : 'en');
-        setLang(auto);
-    </script>
+  <section class="section" id="faq" aria-labelledby="faq-h">
+    <div class="wrap">
+      <div class="grid">
+        <div class="span-5 stack-4">
+          <h2 id="faq-h">Questions about mindseeder</h2>
+          <p>Anything else: write to support.</p>
+          <a class="link" href="mailto:support@mindseeder.io">Email support</a>
+          <a class="link" href="guide/">Make a deck or memo with your AI</a>
+          <ul class="opens" aria-label="Formats and editors">
+            <li><img src="assets/icons/obsidian.svg" alt="" width="28" height="28">Obsidian</li>
+            <li><img src="assets/icons/notion.svg" alt="" width="28" height="28">Notion</li>
+            <li><img src="assets/icons/md.svg" alt="" width="28" height="28">Markdown</li>
+          </ul>
+        </div>
+        <div class="faq span-6 start-7">
+          <div class="faq__item"><h3>How do I turn a ChatGPT conversation into notes?</h3><p>Open Plant from the menu, select Copy request for AI and paste it into your ChatGPT conversation. Paste the reply back into Plant, check it and plant it.</p></div>
+          <div class="faq__item"><h3>How can I see a ChatGPT or Claude chat as notes together?</h3><p>Plant the note bundle, then walk around its trees in the 3D garden or read them side by side as cards in Office view.</p></div>
+          <div class="faq__item"><h3>Where are my notes saved?</h3><p>In this browser, no account needed. Clearing browser data deletes them, so keep a copy with Download backup file in the menu and restore it with New garden from backup.</p></div>
+          <div class="faq__item"><h3>What can I export from a garden?</h3><p>A harvest document or all notes as Markdown, all notes as JSON, and a backup file. PDF works too but can lose some symbols; Markdown keeps the text exact.</p></div>
+          <div class="faq__item"><h3>How is a garden different from Obsidian or Notion?</h3><p>They are better for writing and organising pages. mindseeder is for stacking material, comparing sources and choosing a conclusion, saved as a .md file.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer closing" id="contact" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="closing__cta close--type">
+      <div class="section-head">
+        <h2 id="close-h">Start with notes you already have</h2>
+        <p>No sign-up. Notes stay in this browser until you sync.</p>
+      </div>
+      <a class="btn btn--primary btn--xl btn--wide" href="https://app.mindseeder.io/" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-4 stack-4">
+          <a class="nav__logo" href="#top"><img src="img/logo-384.webp" srcset="img/logo-384.webp 1x, img/logo-768.webp 2x" width="96" height="40" alt="mindseeder"></a>
+          <p class="footer__lede">A 3D garden for notes and AI chats.</p>
+        </div>
+        <div class="span-2 start-9 footer__col"><h3>Product</h3><ul><li><a href="#garden">Garden</a></li><li><a href="#document">Document</a></li><li><a href="#ai">AI chats</a></li><li><a href="#features">Features</a></li></ul></div>
+        <div class="span-2 start-11 footer__col"><h3>Help</h3><ul><li><a href="#faq">Questions</a></li><li><a href="mailto:support@mindseeder.io">Email support</a></li><li><a href="guide/">Make a deck or memo with your AI</a></li><li><a href="ko/" hreflang="ko" lang="ko">한국어</a></li></ul></div>
+      </div>
+      <div class="footer__legal">
+        <span>&copy; 2026 mindseeder &nbsp; <a href="privacy.html">Privacy</a> &nbsp; <a href="terms.html">Terms</a></span>
+        <div class="socials"></div>
+        <span class="t-small muted">mindseeder is a brand operated by Hyoweon Kim · Perth, Western Australia. Product names and logos are trademarks of their owners.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>
+  // carry a campaign's utm_* and ms_* values from this page to the app links, so the app counts the channel (docs/ANALYTICS_CHANNELS.md)
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search), keep = new URLSearchParams();
+      q.forEach(function (v, k) { if (/^utm_(source|medium|campaign)$/.test(k)) keep.set(k, v); });
+      if (![...keep.keys()].length) return;
+      document.querySelectorAll('a[data-app-link]').forEach(function (a) { var u = new URL(a.href); keep.forEach(function (v, k) { u.searchParams.set(k, v); }); a.href = u.toString(); });
+    } catch (e) {}
+  })();
+  // remember an explicit language choice (the root page sends Korean browsers to /ko/ until one is made)
+  document.querySelectorAll('[data-lang-switch], a[hreflang]').forEach(function (a) { a.addEventListener('click', function () { try { localStorage.setItem('ms-lang', a.getAttribute('hreflang')); } catch (e) {} }); });
+</script>
+<script type="module" src="assets/system.js"></script>
+<script type="module" src="assets/motion/motion.js"></script>
+<script type="module" src="assets/layout/layout.js"></script>
+<script type="module" src="assets/diagrams/mount.js"></script>
 </body>
 </html>

@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="ko" data-type="software" data-radius="soft" data-buttons="solid" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ChatGPT·Claude·Gemini로 노트를 발표 자료·메모·웹 페이지로 만들기 | mindseeder</title>
+<meta name="description" content="마인드시더 수확 문서(Markdown)를 ChatGPT, Claude, Gemini로 PowerPoint 발표 자료, PDF·Word 결정 메모, 보고서, HTML 페이지로 만드는 방법. 무료 경로, 단계, 바로 복사할 요청문.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="mindseeder">
+<meta property="og:title" content="쓰시는 AI로 노트를 발표 자료, 메모, 웹 페이지로 만들기">
+<meta property="og:description" content="마인드시더 수확 문서(Markdown)를 ChatGPT, Claude, Gemini로 PowerPoint 발표 자료, PDF·Word 결정 메모, 보고서, HTML 페이지로 만드는 방법. 무료 경로, 단계, 바로 복사할 요청문.">
+<meta property="og:image" content="https://mindseeder.io/img/share-ko.jpg">
+<meta property="og:url" content="https://mindseeder.io/ko/guide/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mindseeder.io/ko/guide/">
+<link rel="alternate" hreflang="en" href="https://mindseeder.io/guide/">
+<link rel="alternate" hreflang="ko" href="https://mindseeder.io/ko/guide/">
+<link rel="alternate" hreflang="x-default" href="https://mindseeder.io/guide/">
+<link rel="icon" href="../../img/favicon-64.png" type="image/png">
+<meta name="theme-color" content="#f7f8f9">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "쓰시는 AI로 노트를 발표 자료, 메모, 웹 페이지로 만들기", "description": "마인드시더 수확 문서(Markdown)를 ChatGPT, Claude, Gemini로 PowerPoint 발표 자료, PDF·Word 결정 메모, 보고서, HTML 페이지로 만드는 방법. 무료 경로, 단계, 바로 복사할 요청문.", "inLanguage": "ko", "url": "https://mindseeder.io/ko/guide/", "step": [{"@type": "HowToStep", "position": 1, "name": "마인드시더에서 Markdown 받기", "text": "수확 모드(키보드는 H, 휴대폰은 메뉴)에서 고른 결론을 바구니에 담고 ‘문서로 내보내기(MD)’를 누르세요. 받은 파일을 열어 내용 전체를 복사합니다."}, {"@type": "HowToStep", "position": 2, "name": "필요한 형식에 맞는 서비스 고르기", "text": "Gemini와 Claude는 무료 계정으로 아래 형식을 모두 만들 수 있습니다. ChatGPT는 캔버스에서 PDF와 Word를 무료로 만들고, Slides는 Pro 이상이 필요합니다. Perplexity의 파일 만들기는 유료 전용입니다."}, {"@type": "HowToStep", "position": 3, "name": "요청문을 붙이고 그 아래에 Markdown 붙이기", "text": "요청문을 복사해 새 대화에 붙여넣고, 그 아래에 Markdown을 붙이세요. 모든 요청문은 숫자·인용·마이너스 기호·링크를 원문 그대로 지키고, 노트에 없는 내용은 더하지 않게 합니다."}, {"@type": "HowToStep", "position": 4, "name": "보내기 전에 파일 확인하기", "text": "파일을 열어 숫자·인용·링크를 노트와 하나씩 비교하세요. 요청문이 AI에게 대조 결과를 보고하게 하지만, 직접 읽어 보는 것이 가장 확실합니다. 서비스에 한글 글꼴이 없으면 PDF의 한글이 네모(□)로 나올 수 있습니다. Noto Sans KR이나 나눔고딕을 쓰라고 요청하거나, Google Docs로 먼저 내보낸 뒤 그곳에서 PDF로 받으세요. PowerPoint 파일에는 글꼴이 담기지 않습니다. 공유하기 전에 데스크톱 PowerPoint에서 파일 › 옵션 › 저장 › ‘파일에 글꼴 포함’을 켜세요. 가상 예시로 표시된 내용은 결과 파일에서도 그 표시를 유지하세요."}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&family=Gothic+A1:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/system.css">
+<style>
+:root {
+  --p-bg: #f7f8f9; --p-surface: #edf0f2; --p-ink: #1b1f24; --p-muted: #56606b;
+  --p-accent: #ffd200; --p-accent-ink: #111111; --p-action: #1b1f24; --p-action-ink: #f7f8f9;
+  --p-inv-bg: #1b1f24; --p-inv-surface: #282c30; --p-inv-ink: #f7f8f9; --p-inv-muted: #9b9ea1;
+  --p-inv-accent: #ffd200; --p-inv-accent-ink: #111111; --p-inv-action: #ffd200; --p-inv-action-ink: #111111;
+  --font-display: "Instrument Sans", "Gothic A1", system-ui, sans-serif;
+  --font-text: "Instrument Sans", "Gothic A1", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500; --display-tracking: -0.028em; --display-tracking-xl: -0.036em; --display-stretch: 96%;
+}
+:lang(ko) { word-break: keep-all; overflow-wrap: anywhere; }
+.nav__logo img { display: block; height: 34px; width: auto; }
+@media (max-width: 639px) { .nav__actions [data-lang-switch] { display: none; } .nav__actions .btn { padding-inline: 14px; } }
+/* a reading page: one column, normal flow (not the landing's screen-per-section frame) */
+main.guide { padding: calc(var(--nav) + 64px) 0 96px; }
+main.guide > article > .wrap { max-width: 860px; }
+.guide h1 { font: var(--display-weight) clamp(34px, 3.2vw + 18px, 56px)/1.08 var(--font-display); letter-spacing: var(--display-tracking-xl); margin: 0 0 24px; }
+.guide .lead { font-size: 20px; line-height: 1.55; margin: 0 0 12px; max-width: 62ch; }
+.guide .checked { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
+.guide h2 { font: var(--display-weight) clamp(24px, 1vw + 18px, 32px)/1.2 var(--font-display); letter-spacing: var(--display-tracking); margin: 64px 0 16px; display: flex; gap: 14px; align-items: baseline; }
+.guide h2 .n { flex: none; width: 32px; height: 32px; border-radius: 50%; display: inline-grid; place-items: center; font: 500 15px/1 var(--font-mono); background: var(--p-accent); color: var(--p-accent-ink); transform: translateY(-3px); }
+.guide p { font-size: 17px; line-height: 1.7; margin: 0 0 16px; max-width: 66ch; }
+.guide table { width: 100%; border-collapse: collapse; margin: 16px 0 8px; font-size: 16px; }
+.guide caption { text-align: left; color: var(--muted); font-size: 14px; padding-bottom: 8px; }
+.guide th, .guide td { text-align: left; padding: 12px 10px; border-bottom: 1px solid rgb(27 31 36 / 0.12); vertical-align: top; }
+.guide th { font-weight: 500; }
+.guide .prompt { margin: 20px 0 28px; border: 1px solid rgb(27 31 36 / 0.14); border-radius: 14px; background: #fff; overflow: hidden; }
+.guide .prompt__head { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid rgb(27 31 36 / 0.1); }
+.guide .prompt__head h3 { margin: 0 0 4px; font-size: 19px; font-weight: 500; }
+.guide .prompt__head p { margin: 0; font-size: 15px; color: var(--muted); }
+.guide .prompt pre { margin: 0; padding: 18px 20px; max-height: 260px; overflow: auto; white-space: pre-wrap; font: 400 14px/1.6 var(--font-mono); background: var(--p-surface); }
+.guide .prompt .btn { flex: none; }
+.guide ul.tips { padding-left: 20px; margin: 0; }
+.guide ul.tips li { font-size: 17px; line-height: 1.7; margin-bottom: 10px; max-width: 66ch; }
+.guide ul.sources { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 32px; }
+.guide ul.sources li { font-size: 15px; line-height: 1.6; margin-bottom: 6px; break-inside: avoid; }
+@media (max-width: 639px) { .guide ul.sources { columns: 1; } .guide .prompt__head { flex-direction: column; } .guide th, .guide td { padding: 10px 6px; font-size: 15px; } }
+.guide .close { margin-top: 72px; padding: 40px; border-radius: 20px; background: var(--p-inv-bg); color: var(--p-inv-ink); display: flex; gap: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.guide .close p { margin: 0; font-size: 20px; color: inherit; }
+.guide .close .btn { background: var(--p-inv-action); color: var(--p-inv-action-ink); border-color: var(--p-inv-action); }
+footer.guide-foot { border-top: 1px solid rgb(27 31 36 / 0.12); padding: 28px 0 40px; font-size: 14px; color: var(--muted); }
+footer.guide-foot .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+footer.guide-foot a { color: inherit; }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">본문으로 건너뛰기</a>
+    <a class="nav__logo" href="../"><img src="../../img/logo-384.webp" srcset="../../img/logo-384.webp 1x, ../../img/logo-768.webp 2x" width="82" height="34" alt="mindseeder"></a>
+    <nav class="nav__links" aria-label="주 메뉴">
+      <div class="nav__item"><a class="nav__link" href="../">홈페이지로 돌아가기</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="nav__link" href="../../guide/" hreflang="en" lang="en" data-lang-switch>English</a>
+      <a class="btn btn--primary" href="https://app.mindseeder.io/" data-app-link>내 메모로 시작하기</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="메뉴">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<main id="top" class="guide">
+  <article><div class="wrap">
+    <h1>쓰시는 AI로 노트를 발표 자료, 메모, 웹 페이지로 만들기</h1>
+    <p class="lead">마인드시더는 고른 결론을 Markdown으로 내보냅니다. 아래 요청문 하나와 함께 ChatGPT, Claude, Gemini에 붙여넣으면 PDF·Word 메모, PowerPoint 발표 자료, 보고서, HTML 페이지를 파일로 받을 수 있습니다.</p>
+    <p class="checked">서비스 기능은 2026년 11월 18일에 확인했습니다. 요금제와 기능은 바뀔 수 있으니 쓰시는 계정에서 확인하세요.</p>
+
+    <h2><span class="n" aria-hidden="true">1</span>마인드시더에서 Markdown 받기</h2>
+    <p>수확 모드(키보드는 H, 휴대폰은 메뉴)에서 고른 결론을 바구니에 담고 ‘문서로 내보내기(MD)’를 누르세요. 받은 파일을 열어 내용 전체를 복사합니다.</p>
+
+    <h2><span class="n" aria-hidden="true">2</span>필요한 형식에 맞는 서비스 고르기</h2>
+    <p>Gemini와 Claude는 무료 계정으로 아래 형식을 모두 만들 수 있습니다. ChatGPT는 캔버스에서 PDF와 Word를 무료로 만들고, Slides는 Pro 이상이 필요합니다. Perplexity의 파일 만들기는 유료 전용입니다.</p>
+    <table>
+      <caption>서비스별로 만들 수 있는 파일</caption>
+      <thead><tr><th scope="col">형식</th><th scope="col">무료 경로</th><th scope="col">유료 경로</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">PDF 메모·보고서</th><td>Gemini 또는 Claude</td><td>Claude Pro, ChatGPT Work</td></tr>
+        <tr><th scope="row">Word(.docx)</th><td>ChatGPT 캔버스, Gemini</td><td>Word의 Copilot, Claude Pro</td></tr>
+        <tr><th scope="row">PowerPoint·슬라이드</th><td>Gemini 슬라이드 덱, Claude</td><td>PowerPoint의 Copilot, ChatGPT Slides</td></tr>
+        <tr><th scope="row">HTML 페이지 한 장</th><td>Claude 아티팩트</td><td>Claude 아티팩트</td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="n" aria-hidden="true">3</span>요청문을 붙이고 그 아래에 Markdown 붙이기</h2>
+    <p>요청문을 복사해 새 대화에 붙여넣고, 그 아래에 Markdown을 붙이세요. 모든 요청문은 숫자·인용·마이너스 기호·링크를 원문 그대로 지키고, 노트에 없는 내용은 더하지 않게 합니다.</p>
+    <section class="prompt" aria-labelledby="a-decision-memo-h">
+      <div class="prompt__head"><div><h3 id="a-decision-memo-h">결정 메모, 1~2쪽</h3><p>결론을 먼저, 이어서 근거·위험·다음 단계·출처. PDF, 가능하면 Word도.</p></div>
+        <button class="btn btn--secondary" type="button" data-copy="a-decision-memo-text" data-copied="복사했습니다">요청문 복사</button></div>
+      <pre id="a-decision-memo-text">아래 [수확 문서]는 마인드시더(mindseeder)에서 내보낸 Markdown입니다. 이 내용만 사용해 1~2쪽 분량의 의사결정 메모를 만들고, 내려받을 수 있는 PDF 파일로 주세요. Word(.docx) 파일을 만들 수 있으면 함께 주세요.
+
+## 구성 (이 순서대로)
+1. 제목: 정원 이름을 살린 한 줄 제목
+2. 결론: 열매·꽃 노트에서 고른 결론을 맨 앞에 2~4문장으로
+3. 근거: 결론을 받치는 내용을 항목별로 정리하고, 각 항목 끝에 출처 노트 제목을 괄호로 표시
+4. 위험과 반대 근거: 노트에 적힌 우려·반론·불확실성만 정리. 없으면 &quot;노트에 기록된 위험 없음&quot;
+5. 다음 단계: 노트에 적힌 할 일·제안을 행동 문장으로 정리. 없으면 &quot;노트에 기록된 다음 단계 없음&quot;
+6. 출처: 노트에 있는 링크 전부
+
+## 지킬 규칙
+- 숫자·날짜·단위·인용문·고유명사는 원문 문자 그대로 옮깁니다. 반올림, 단위 환산, 바꿔 말하기를 하지 않습니다.
+- 마이너스 기호(−, -), 범위 기호(~, –), 퍼센트·통화 표기도 원문에 쓰인 문자 그대로 유지합니다.
+- 노트에 없는 사실·수치·사례·출처를 추가하지 않습니다. 요약 문장은 노트 내용만으로 씁니다.
+- &quot;가상 예시&quot;, &quot;예시&quot;, &quot;fictional&quot; 등 꾸며낸 사례 표시가 붙은 내용은 메모에서도 같은 표시를 붙여 실제 사실과 구분합니다.
+- 노트의 링크는 하나도 빠뜨리지 않고 클릭 가능한 링크로 유지하며, URL은 원문 그대로 둡니다.
+- 노트의 표는 표로 유지합니다.
+- 노트가 한국어면 메모도 한국어로 씁니다. 한글 글꼴(Noto Sans KR, 나눔고딕, Pretendard, 맑은 고딕 중 사용 가능한 것)을 지정하고 PDF에 글꼴을 포함합니다. 파일을 만든 뒤 한글이 네모(□)나 물음표로 보이지 않는지 확인하고, 깨지면 다른 한글 글꼴로 다시 만듭니다.
+- 2쪽을 넘으면 근거 항목만 줄이고, 결론·위험·다음 단계·출처는 그대로 둡니다.
+
+마지막으로 원문과 비교해 바뀐 숫자·인용·링크가 없는지 확인한 결과를 한 줄로 알려 주세요.
+
+[수확 문서]
+(여기에 마인드시더에서 복사한 Markdown을 붙여 넣으세요)</pre>
+    </section>
+    <section class="prompt" aria-labelledby="b-slide-deck-h">
+      <div class="prompt__head"><div><h3 id="b-slide-deck-h">발표 자료, 6~10장</h3><p>한 장에 메시지 하나, 원문 문장은 발표자 노트에. PowerPoint 또는 Google Slides.</p></div>
+        <button class="btn btn--secondary" type="button" data-copy="b-slide-deck-text" data-copied="복사했습니다">요청문 복사</button></div>
+      <pre id="b-slide-deck-text">아래 [수확 문서]는 마인드시더(mindseeder)에서 내보낸 Markdown입니다. 이 내용만 사용해 6~10장짜리 발표 자료를 만들고, 내려받을 수 있는 PowerPoint(.pptx) 파일로 주세요. Google Slides로 만드는 환경이면 Google Slides로 열 수 있게 해 주세요.
+
+## 슬라이드 구성
+1. 표지: 정원 이름을 살린 제목
+2. 결론: 열매·꽃 노트에서 고른 결론을 한 장에
+3. 근거: 2~5장. 한 장에 메시지 하나, 글머리 기호 3~5개 이내
+4. 위험과 반대 근거: 노트에 적힌 것만. 없으면 &quot;노트에 기록된 위험 없음&quot;
+5. 다음 단계: 노트에 적힌 할 일·제안만. 없으면 &quot;노트에 기록된 다음 단계 없음&quot;
+6. 출처: 노트의 링크 전부
+
+각 슬라이드의 발표자 노트에는 그 장에 쓴 내용의 원문 문장과 출처 노트 제목을 넣어 주세요.
+
+## 지킬 규칙
+- 숫자·날짜·단위·인용문·고유명사는 원문 문자 그대로 옮깁니다. 반올림, 단위 환산, 바꿔 말하기를 하지 않습니다.
+- 마이너스 기호(−, -), 범위 기호(~, –), 퍼센트·통화 표기도 원문에 쓰인 문자 그대로 유지합니다.
+- 노트에 없는 사실·수치·사례·출처를 추가하지 않습니다. 차트는 노트에 있는 숫자로만 만들고, 숫자가 없으면 차트를 넣지 않습니다.
+- &quot;가상 예시&quot;, &quot;예시&quot;, &quot;fictional&quot; 등 꾸며낸 사례 표시가 붙은 내용은 슬라이드에서도 같은 표시를 붙입니다.
+- 노트의 링크는 하나도 빠뜨리지 않고 클릭 가능한 링크로 유지하며, URL은 원문 그대로 둡니다.
+- 디자인은 차분하게: 배경 하나, 강조색 하나, 넉넉한 여백, 본문 글자 크기 18pt 이상.
+- 노트가 한국어면 슬라이드도 한국어로 씁니다. 테마 글꼴의 라틴 글꼴과 동아시아 글꼴을 모두 한글 글꼴(Noto Sans KR, 나눔고딕, Pretendard, 맑은 고딕 중 사용 가능한 것)로 지정합니다. 파일을 만든 뒤 한글이 네모(□)로 보이거나 상자 밖으로 넘치지 않는지 확인하고, 문제가 있으면 고쳐서 다시 만듭니다.
+
+마지막으로 원문과 비교해 바뀐 숫자·인용·링크가 없는지 확인한 결과를 한 줄로 알려 주세요.
+
+[수확 문서]
+(여기에 마인드시더에서 복사한 Markdown을 붙여 넣으세요)</pre>
+    </section>
+    <section class="prompt" aria-labelledby="c-html-page-h">
+      <div class="prompt__head"><div><h3 id="c-html-page-h">파일 하나로 끝나는 HTML 페이지</h3><p>결론 상자, 근거, 출처. 외부 스크립트 없이 .html 파일로.</p></div>
+        <button class="btn btn--secondary" type="button" data-copy="c-html-page-text" data-copied="복사했습니다">요청문 복사</button></div>
+      <pre id="c-html-page-text">아래 [수확 문서]는 마인드시더(mindseeder)에서 내보낸 Markdown입니다. 이 내용만 사용해 파일 하나로 완결되는 HTML 페이지를 만들어 주세요. 내려받을 수 있는 .html 파일로 주고, 파일을 만들 수 없는 환경이면 전체 코드를 코드 블록 하나로 주세요.
+
+## 페이지 구성
+1. 머리: 정원 이름을 살린 제목
+2. 결론: 열매·꽃 노트에서 고른 결론을 눈에 띄는 상자로
+3. 근거: 노트별 소제목과 본문. 각 소제목 옆에 출처 노트 제목
+4. 위험과 반대 근거, 다음 단계: 노트에 적힌 것만. 없으면 그 섹션을 &quot;노트에 기록된 내용 없음&quot;으로 표시
+5. 출처: 노트의 링크 전부
+
+## 기술 조건
+- CSS는 `&lt;style&gt;` 안에 넣고, 외부 스크립트·추적 코드·외부 이미지를 쓰지 않습니다.
+- `&lt;meta charset=&quot;utf-8&quot;&gt;`, 휴대폰 폭에서도 읽히는 반응형 배치, 인쇄용 스타일(@media print)을 넣습니다.
+- 노트가 한국어면 `&lt;html lang=&quot;ko&quot;&gt;`로 하고, 글꼴은 `Pretendard, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, &quot;Noto Sans KR&quot;, sans-serif` 순서로 지정해 외부 글꼴 없이도 한글이 보이게 합니다. 노트가 영어면 `&lt;html lang=&quot;en&quot;&gt;`과 시스템 글꼴을 씁니다.
+- 다크 모드(prefers-color-scheme)에서도 글자가 잘 보이게 합니다.
+
+## 지킬 규칙
+- 숫자·날짜·단위·인용문·고유명사는 원문 문자 그대로 옮깁니다. 반올림, 단위 환산, 바꿔 말하기를 하지 않습니다.
+- 마이너스 기호(−, -), 범위 기호(~, –), 퍼센트·통화 표기도 원문에 쓰인 문자 그대로 유지합니다.
+- 노트에 없는 사실·수치·사례·출처를 추가하지 않습니다.
+- &quot;가상 예시&quot;, &quot;예시&quot;, &quot;fictional&quot; 등 꾸며낸 사례 표시가 붙은 내용은 페이지에서도 같은 표시를 붙입니다.
+- 노트의 링크는 하나도 빠뜨리지 않고 `&lt;a href&gt;` 링크로 유지하며, URL은 원문 그대로 둡니다.
+- 노트의 표는 `&lt;table&gt;`로 유지합니다.
+
+마지막으로 원문과 비교해 바뀐 숫자·인용·링크가 없는지 확인한 결과를 한 줄로 알려 주세요.
+
+[수확 문서]
+(여기에 마인드시더에서 복사한 Markdown을 붙여 넣으세요)</pre>
+    </section>
+    <section class="prompt" aria-labelledby="d-report-pdf-h">
+      <div class="prompt__head"><div><h3 id="d-report-pdf-h">목차가 있는 보고서</h3><p>목차, 쪽 번호, 장 구성, 원문 노트 부록. PDF.</p></div>
+        <button class="btn btn--secondary" type="button" data-copy="d-report-pdf-text" data-copied="복사했습니다">요청문 복사</button></div>
+      <pre id="d-report-pdf-text">아래 [수확 문서]는 마인드시더(mindseeder)에서 내보낸 Markdown입니다. 이 내용만 사용해 목차가 있는 보고서를 만들고, 내려받을 수 있는 PDF 파일로 주세요.
+
+## 보고서 구성
+1. 표지: 정원 이름을 살린 제목. 날짜는 노트에 있을 때만 넣습니다.
+2. 목차: 쪽 번호 포함. PDF 책갈피(북마크)도 같은 구조로
+3. 요약: 열매·꽃 노트에서 고른 결론을 반 쪽 이내로
+4. 본문: 결론마다 장을 하나씩 두고, 그 결론을 받치는 노트 내용을 번호 붙은 절(1.1, 1.2 …)로 정리. 각 절 끝에 출처 노트 제목
+5. 위험과 반대 근거, 다음 단계: 노트에 적힌 것만. 없으면 &quot;노트에 기록된 내용 없음&quot;
+6. 부록: 받치는 노트 원문 전체
+7. 출처: 노트의 링크 전부
+
+머리글에는 보고서 제목, 바닥글에는 쪽 번호를 넣어 주세요.
+
+## 지킬 규칙
+- 숫자·날짜·단위·인용문·고유명사는 원문 문자 그대로 옮깁니다. 반올림, 단위 환산, 바꿔 말하기를 하지 않습니다.
+- 마이너스 기호(−, -), 범위 기호(~, –), 퍼센트·통화 표기도 원문에 쓰인 문자 그대로 유지합니다.
+- 노트에 없는 사실·수치·사례·출처를 추가하지 않습니다. 요약과 연결 문장은 노트 내용만으로 씁니다.
+- &quot;가상 예시&quot;, &quot;예시&quot;, &quot;fictional&quot; 등 꾸며낸 사례 표시가 붙은 내용은 보고서에서도 같은 표시를 붙여 실제 사실과 구분합니다.
+- 노트의 링크는 하나도 빠뜨리지 않고 클릭 가능한 링크로 유지하며, URL은 원문 그대로 둡니다.
+- 노트의 표는 표로 유지하고, 쪽이 바뀌면 표 머리글을 반복합니다.
+- 노트가 한국어면 보고서도 한국어로 씁니다. 한글 글꼴(Noto Sans KR, 나눔고딕, Pretendard, 맑은 고딕 중 사용 가능한 것)을 지정하고 PDF에 글꼴을 포함합니다. 파일을 만든 뒤 한글이 네모(□)나 물음표로 보이지 않는지, 목차 쪽 번호가 맞는지 확인하고, 문제가 있으면 고쳐서 다시 만듭니다.
+
+마지막으로 원문과 비교해 바뀐 숫자·인용·링크가 없는지 확인한 결과를 한 줄로 알려 주세요.
+
+[수확 문서]
+(여기에 마인드시더에서 복사한 Markdown을 붙여 넣으세요)</pre>
+    </section>
+
+    <h2><span class="n" aria-hidden="true">4</span>보내기 전에 파일 확인하기</h2>
+    <ul class="tips">
+      <li>파일을 열어 숫자·인용·링크를 노트와 하나씩 비교하세요. 요청문이 AI에게 대조 결과를 보고하게 하지만, 직접 읽어 보는 것이 가장 확실합니다.</li>
+      <li>서비스에 한글 글꼴이 없으면 PDF의 한글이 네모(□)로 나올 수 있습니다. Noto Sans KR이나 나눔고딕을 쓰라고 요청하거나, Google Docs로 먼저 내보낸 뒤 그곳에서 PDF로 받으세요.</li>
+      <li>PowerPoint 파일에는 글꼴이 담기지 않습니다. 공유하기 전에 데스크톱 PowerPoint에서 파일 › 옵션 › 저장 › ‘파일에 글꼴 포함’을 켜세요.</li>
+      <li>가상 예시로 표시된 내용은 결과 파일에서도 그 표시를 유지하세요.</li>
+    </ul>
+
+    <h2>이 내용의 출처</h2>
+    <ul class="sources">
+      <li><a class="link" href="https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt" rel="noopener">ChatGPT 캔버스</a></li>
+      <li><a class="link" href="https://chatgpt.com/features/slides/" rel="noopener">ChatGPT Slides</a></li>
+      <li><a class="link" href="https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude" rel="noopener">Claude 파일 만들기</a></li>
+      <li><a class="link" href="https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them" rel="noopener">Claude 아티팩트</a></li>
+      <li><a class="link" href="https://blog.google/innovation-and-ai/products/gemini-app/generate-files-in-gemini" rel="noopener">Gemini 파일 만들기</a></li>
+      <li><a class="link" href="https://workspaceupdates.googleblog.com/2026/10/create-preview-and-edit-files-directly-in-the-Gemini-app.html" rel="noopener">Gemini 파일 미리보기·편집</a></li>
+      <li><a class="link" href="https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" rel="noopener">PowerPoint의 Copilot</a></li>
+      <li><a class="link" href="https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you" rel="noopener">Perplexity 요금제</a></li>
+      <li><a class="link" href="https://support.microsoft.com/en-us/office/embed-a-font-in-a-presentation-05c16e3f-bedc-485a-a9d7-26a39372495f" rel="noopener">PowerPoint 글꼴 포함</a></li>
+    </ul>
+    <p class="checked" style="margin-top: 16px">제품 이름은 각 소유자의 상표입니다. 마인드시더는 OpenAI, Anthropic, Google, Microsoft, Perplexity와 관계가 없습니다.</p>
+
+    <div class="close">
+      <p>마인드시더는 고른 결론을 Markdown으로 내보냅니다.</p>
+      <a class="btn btn--primary" href="https://app.mindseeder.io/" data-app-link>내 메모로 시작하기</a>
+    </div>
+  </div></article>
+</main>
+<footer class="guide-foot">
+  <div class="wrap">
+    <span>&copy; 2026 mindseeder &nbsp; <a href="../../privacy.html">개인정보 처리방침</a> &nbsp; <a href="../../terms.html">이용약관</a></span>
+    <a href="../../guide/" hreflang="en" lang="en">English</a>
+  </div>
+</footer>
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var pre = document.getElementById(b.getAttribute('data-copy'));
+      var done = function () { var t = b.textContent; b.textContent = b.getAttribute('data-copied'); setTimeout(function () { b.textContent = t; }, 1600); };
+      try { navigator.clipboard.writeText(pre.textContent).then(done); } catch (e) { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    });
+  });
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search), keep = new URLSearchParams();
+      q.forEach(function (v, k) { if (/^utm_(source|medium|campaign)$/.test(k)) keep.set(k, v); });
+      if (![...keep.keys()].length) return;
+      document.querySelectorAll('a[data-app-link]').forEach(function (a) { var u = new URL(a.href); keep.forEach(function (v, k) { u.searchParams.set(k, v); }); a.href = u.toString(); });
+    } catch (e) {}
+  })();
+</script>
+<script>
+  // the phone menu only (this reading page does not load the landing kit: its placeholder guard would mark the [harvest document] slot in the requests)
+  (function () {
+    var nav = document.querySelector('.nav'), toggle = nav && nav.querySelector('.nav__toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', function () {
+      var open = !nav.classList.contains('is-open');
+      nav.classList.toggle('is-open', open); document.body.classList.toggle('nav-locked', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      if (open) requestAnimationFrame(function () { var a = nav.querySelector('.nav__links a'); if (a) a.focus(); });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('is-open')) { nav.classList.remove('is-open'); document.body.classList.remove('nav-locked'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus(); } });
+  })();
+</script>
+</body>
+</html>

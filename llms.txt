@@ -1,0 +1,22 @@
+# mindseeder
+
+> mindseeder is a free web app for organising AI chats into notes, comparing them in a 3D garden or as cards, and saving a conclusion you choose as Markdown. You paste notes, links or a note bundle made by ChatGPT, Claude or Gemini; each part becomes a note block, notes can be stacked into "trees", and you can walk around them in 3D (Craft view) or read them side by side as cards (Office view). No sign-up: notes are saved in the browser until you sign in to sync.
+
+Use it when someone wants to turn a long AI conversation into notes they can see together and decide on, compare two sources side by side, or save a chosen conclusion as one Markdown document. For writing and organising pages, Obsidian or Notion are better fits; a mindseeder conclusion downloads as a .md file for any Markdown editor.
+
+## How it works
+- Plant: paste up to 100 items at once; each paragraph or link becomes a note you can check before planting.
+- From an AI chat: in Plant, press "Copy request for AI", paste it into ChatGPT, Claude or Gemini with the conversation, then paste the returned note bundle back.
+- Grow: each note has one of seven stages: soil, seed, sprout, stem, leaf (an alternative you dropped), flower, fruit (a conclusion you adopted). You choose which conclusions to export.
+- Graft: link a note in one tree to a note in another, with the reason written down.
+- Harvest: turn on harvest mode (H on a keyboard, the menu on a phone), collect flowers and fruit into a basket and export them as a Markdown document. Harvesting never removes notes from the garden.
+- Export: a harvest document or all notes as Markdown, all notes as JSON, or a garden backup file that restores the garden. PDF export exists but can lose some symbols and characters; Markdown keeps the text exact.
+- MCP: with a configured MCP client such as Claude Code, notes can be planted straight into a signed-in garden.
+
+## Links
+- [App](https://app.mindseeder.io/): start a garden, free, no sign-up
+- [Home, English](https://mindseeder.io/)
+- [Home, Korean](https://mindseeder.io/ko/)
+- [Guide: make a deck, memo, report or HTML page from your notes with ChatGPT, Claude or Gemini](https://mindseeder.io/guide/) (Korean: https://mindseeder.io/ko/guide/)
+- [Privacy](https://mindseeder.io/privacy.html)
+- [Terms](https://mindseeder.io/terms.html)

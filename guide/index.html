@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en" data-type="software" data-radius="soft" data-buttons="solid" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Make a deck, memo or web page from your notes with ChatGPT, Claude or Gemini | mindseeder</title>
+<meta name="description" content="Turn a mindseeder harvest document (Markdown) into a PowerPoint deck, a PDF or Word decision memo, a report or a single HTML page with ChatGPT, Claude or Gemini. Free paths, steps and copy-ready requests.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="mindseeder">
+<meta property="og:title" content="Make a deck, memo or web page from your notes with your AI">
+<meta property="og:description" content="Turn a mindseeder harvest document (Markdown) into a PowerPoint deck, a PDF or Word decision memo, a report or a single HTML page with ChatGPT, Claude or Gemini. Free paths, steps and copy-ready requests.">
+<meta property="og:image" content="https://mindseeder.io/img/share-en.jpg">
+<meta property="og:url" content="https://mindseeder.io/guide/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mindseeder.io/guide/">
+<link rel="alternate" hreflang="en" href="https://mindseeder.io/guide/">
+<link rel="alternate" hreflang="ko" href="https://mindseeder.io/ko/guide/">
+<link rel="alternate" hreflang="x-default" href="https://mindseeder.io/guide/">
+<link rel="icon" href="../img/favicon-64.png" type="image/png">
+<meta name="theme-color" content="#f7f8f9">
+<meta name="site-kind" content="software">
+<meta name="page-type" content="software">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Make a deck, memo or web page from your notes with your AI", "description": "Turn a mindseeder harvest document (Markdown) into a PowerPoint deck, a PDF or Word decision memo, a report or a single HTML page with ChatGPT, Claude or Gemini. Free paths, steps and copy-ready requests.", "inLanguage": "en", "url": "https://mindseeder.io/guide/", "step": [{"@type": "HowToStep", "position": 1, "name": "Get the Markdown from mindseeder", "text": "In harvest mode (H on a keyboard, the menu on a phone), put the conclusions you chose in the basket and press Export document (MD). Open the file and copy all of it."}, {"@type": "HowToStep", "position": 2, "name": "Pick a service for the format you need", "text": "Both Gemini and Claude can make every format below on a free account. ChatGPT makes PDF and Word for free in canvas; its Slides need Pro or above. Perplexity's file creation is paid only."}, {"@type": "HowToStep", "position": 3, "name": "Paste a request, then the Markdown", "text": "Copy a request, paste it into a new chat, then paste your Markdown under it. Each request keeps numbers, quotes, minus signs and links exactly as written and adds nothing that is not in your notes."}, {"@type": "HowToStep", "position": 4, "name": "Check the file before you send it", "text": "Open the file and compare every number, quote and link with your notes. The requests ask the AI to report this, but read it yourself. Korean text in a generated PDF can show as boxes when the service has no Korean font. Ask it to use Noto Sans KR or Nanum Gothic, or export to Google Docs first and download the PDF from there. A PowerPoint file does not carry its fonts. In desktop PowerPoint turn on File, Options, Save, Embed fonts in the file before you share it. Content marked as a fictional example stays marked; keep it that way in anything you send."}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/system.css">
+<style>
+:root {
+  --p-bg: #f7f8f9; --p-surface: #edf0f2; --p-ink: #1b1f24; --p-muted: #56606b;
+  --p-accent: #ffd200; --p-accent-ink: #111111; --p-action: #1b1f24; --p-action-ink: #f7f8f9;
+  --p-inv-bg: #1b1f24; --p-inv-surface: #282c30; --p-inv-ink: #f7f8f9; --p-inv-muted: #9b9ea1;
+  --p-inv-accent: #ffd200; --p-inv-accent-ink: #111111; --p-inv-action: #ffd200; --p-inv-action-ink: #111111;
+  --font-display: "Instrument Sans", system-ui, sans-serif;
+  --font-text: "Instrument Sans", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --display-weight: 500; --display-tracking: -0.028em; --display-tracking-xl: -0.036em; --display-stretch: 96%;
+}
+:lang(ko) { word-break: keep-all; overflow-wrap: anywhere; }
+.nav__logo img { display: block; height: 34px; width: auto; }
+@media (max-width: 639px) { .nav__actions [data-lang-switch] { display: none; } .nav__actions .btn { padding-inline: 14px; } }
+/* a reading page: one column, normal flow (not the landing's screen-per-section frame) */
+main.guide { padding: calc(var(--nav) + 64px) 0 96px; }
+main.guide > article > .wrap { max-width: 860px; }
+.guide h1 { font: var(--display-weight) clamp(34px, 3.2vw + 18px, 56px)/1.08 var(--font-display); letter-spacing: var(--display-tracking-xl); margin: 0 0 24px; }
+.guide .lead { font-size: 20px; line-height: 1.55; margin: 0 0 12px; max-width: 62ch; }
+.guide .checked { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
+.guide h2 { font: var(--display-weight) clamp(24px, 1vw + 18px, 32px)/1.2 var(--font-display); letter-spacing: var(--display-tracking); margin: 64px 0 16px; display: flex; gap: 14px; align-items: baseline; }
+.guide h2 .n { flex: none; width: 32px; height: 32px; border-radius: 50%; display: inline-grid; place-items: center; font: 500 15px/1 var(--font-mono); background: var(--p-accent); color: var(--p-accent-ink); transform: translateY(-3px); }
+.guide p { font-size: 17px; line-height: 1.7; margin: 0 0 16px; max-width: 66ch; }
+.guide table { width: 100%; border-collapse: collapse; margin: 16px 0 8px; font-size: 16px; }
+.guide caption { text-align: left; color: var(--muted); font-size: 14px; padding-bottom: 8px; }
+.guide th, .guide td { text-align: left; padding: 12px 10px; border-bottom: 1px solid rgb(27 31 36 / 0.12); vertical-align: top; }
+.guide th { font-weight: 500; }
+.guide .prompt { margin: 20px 0 28px; border: 1px solid rgb(27 31 36 / 0.14); border-radius: 14px; background: #fff; overflow: hidden; }
+.guide .prompt__head { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; padding: 18px 20px; border-bottom: 1px solid rgb(27 31 36 / 0.1); }
+.guide .prompt__head h3 { margin: 0 0 4px; font-size: 19px; font-weight: 500; }
+.guide .prompt__head p { margin: 0; font-size: 15px; color: var(--muted); }
+.guide .prompt pre { margin: 0; padding: 18px 20px; max-height: 260px; overflow: auto; white-space: pre-wrap; font: 400 14px/1.6 var(--font-mono); background: var(--p-surface); }
+.guide .prompt .btn { flex: none; }
+.guide ul.tips { padding-left: 20px; margin: 0; }
+.guide ul.tips li { font-size: 17px; line-height: 1.7; margin-bottom: 10px; max-width: 66ch; }
+.guide ul.sources { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 32px; }
+.guide ul.sources li { font-size: 15px; line-height: 1.6; margin-bottom: 6px; break-inside: avoid; }
+@media (max-width: 639px) { .guide ul.sources { columns: 1; } .guide .prompt__head { flex-direction: column; } .guide th, .guide td { padding: 10px 6px; font-size: 15px; } }
+.guide .close { margin-top: 72px; padding: 40px; border-radius: 20px; background: var(--p-inv-bg); color: var(--p-inv-ink); display: flex; gap: 24px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+.guide .close p { margin: 0; font-size: 20px; color: inherit; }
+.guide .close .btn { background: var(--p-inv-action); color: var(--p-inv-action-ink); border-color: var(--p-inv-action); }
+footer.guide-foot { border-top: 1px solid rgb(27 31 36 / 0.12); padding: 28px 0 40px; font-size: 14px; color: var(--muted); }
+footer.guide-foot .wrap { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; }
+footer.guide-foot a { color: inherit; }
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Skip to content</a>
+    <a class="nav__logo" href="../"><img src="../img/logo-384.webp" srcset="../img/logo-384.webp 1x, ../img/logo-768.webp 2x" width="82" height="34" alt="mindseeder"></a>
+    <nav class="nav__links" aria-label="Main">
+      <div class="nav__item"><a class="nav__link" href="../">Back to the home page</a></div>
+    </nav>
+    <div class="nav__actions">
+      <a class="nav__link" href="../ko/guide/" hreflang="ko" lang="ko" data-lang-switch>한국어</a>
+      <a class="btn btn--primary" href="https://app.mindseeder.io/" data-app-link>Start with my notes</a>
+    </div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</header>
+<main id="top" class="guide">
+  <article><div class="wrap">
+    <h1>Make a deck, memo or web page from your notes with your AI</h1>
+    <p class="lead">mindseeder exports the conclusion you chose as Markdown. Paste it into ChatGPT, Claude or Gemini with one of the requests below and get a finished file: a PDF or Word memo, a PowerPoint deck, a report or one HTML page.</p>
+    <p class="checked">Service features checked on 18 November 2026. Plans and features change; check your own account.</p>
+
+    <h2><span class="n" aria-hidden="true">1</span>Get the Markdown from mindseeder</h2>
+    <p>In harvest mode (H on a keyboard, the menu on a phone), put the conclusions you chose in the basket and press Export document (MD). Open the file and copy all of it.</p>
+
+    <h2><span class="n" aria-hidden="true">2</span>Pick a service for the format you need</h2>
+    <p>Both Gemini and Claude can make every format below on a free account. ChatGPT makes PDF and Word for free in canvas; its Slides need Pro or above. Perplexity&#x27;s file creation is paid only.</p>
+    <table>
+      <caption>Which service makes which file</caption>
+      <thead><tr><th scope="col">Format</th><th scope="col">Free path</th><th scope="col">Paid path</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">PDF memo or report</th><td>Gemini or Claude</td><td>Claude Pro, ChatGPT Work</td></tr>
+        <tr><th scope="row">Word (.docx)</th><td>ChatGPT canvas, Gemini</td><td>Copilot in Word, Claude Pro</td></tr>
+        <tr><th scope="row">PowerPoint / slides</th><td>Gemini slide deck, Claude</td><td>Copilot in PowerPoint, ChatGPT Slides</td></tr>
+        <tr><th scope="row">One HTML page</th><td>Claude artifact</td><td>Claude artifact</td></tr>
+      </tbody>
+    </table>
+
+    <h2><span class="n" aria-hidden="true">3</span>Paste a request, then the Markdown</h2>
+    <p>Copy a request, paste it into a new chat, then paste your Markdown under it. Each request keeps numbers, quotes, minus signs and links exactly as written and adds nothing that is not in your notes.</p>
+    <section class="prompt" aria-labelledby="a-decision-memo-h">
+      <div class="prompt__head"><div><h3 id="a-decision-memo-h">Decision memo, 1 to 2 pages</h3><p>Conclusion first, then evidence, risks, next steps and sources. PDF, and Word if the service can.</p></div>
+        <button class="btn btn--secondary" type="button" data-copy="a-decision-memo-text" data-copied="Copied">Copy request</button></div>
+      <pre id="a-decision-memo-text">The [Harvest document] below is Markdown exported from mindseeder. Using only its content, write a 1–2 page decision memo and give it to me as a downloadable PDF file. If you can also create a Word (.docx) file, include it.
+
+## Structure (in this order)
+1. Title: a one-line title based on the garden name
+2. Conclusion: the chosen conclusions from the fruit/flower notes, first, in 2–4 sentences
+3. Evidence: the supporting points as a list, each ending with the source note&#x27;s title in parentheses
+4. Risks and counter-evidence: only concerns, objections and uncertainties written in the notes. If there are none, write &quot;No risks recorded in the notes&quot;
+5. Next steps: tasks or proposals written in the notes, as action sentences. If there are none, write &quot;No next steps recorded in the notes&quot;
+6. Sources: every link in the notes
+
+## Rules
+- Copy numbers, dates, units, quotes and proper names character for character. No rounding, unit conversion or paraphrasing of quotes.
+- Keep minus signs (−, -), range marks (~, –), percent and currency notation exactly as written in the original.
+- Do not add any fact, figure, example or source that is not in the notes. Summary sentences use only what the notes say.
+- Content labeled as a made-up example (&quot;fictional&quot;, &quot;example&quot;, &quot;hypothetical&quot;, &quot;가상 예시&quot;, &quot;예시&quot;) keeps the same label in the memo so it never reads as fact.
+- Keep every link from the notes as a clickable link, with the URL unchanged.
+- Keep tables as tables.
+- If the notes are in Korean, write the memo in Korean, set a Korean font (Noto Sans KR, Nanum Gothic, Pretendard or Malgun Gothic, whichever is available) and embed it in the PDF. After creating the file, check that no Korean text shows as boxes (□) or question marks; if it does, rebuild with another Korean font.
+- If it runs over 2 pages, shorten only the evidence list; keep the conclusion, risks, next steps and sources intact.
+
+Finish with one line confirming that you compared the output against the original and no number, quote or link was changed.
+
+[Harvest document]
+(Paste the Markdown copied from mindseeder here)</pre>
+    </section>
+    <section class="prompt" aria-labelledby="b-slide-deck-h">
+      <div class="prompt__head"><div><h3 id="b-slide-deck-h">Slide deck, 6 to 10 slides</h3><p>One message a slide, original sentences in the speaker notes. PowerPoint or Google Slides.</p></div>
+        <button class="btn btn--secondary" type="button" data-copy="b-slide-deck-text" data-copied="Copied">Copy request</button></div>
+      <pre id="b-slide-deck-text">The [Harvest document] below is Markdown exported from mindseeder. Using only its content, build a 6–10 slide deck and give it to me as a downloadable PowerPoint (.pptx) file. If you work in Google Slides, make it openable in Google Slides.
+
+## Slides
+1. Title slide: a title based on the garden name
+2. Conclusion: the chosen conclusions from the fruit/flower notes, on one slide
+3. Evidence: 2–5 slides, one message per slide, no more than 3–5 bullets each
+4. Risks and counter-evidence: only what the notes say. If none, write &quot;No risks recorded in the notes&quot;
+5. Next steps: only tasks or proposals from the notes. If none, write &quot;No next steps recorded in the notes&quot;
+6. Sources: every link in the notes
+
+Put the original sentences behind each slide, plus the source note&#x27;s title, in that slide&#x27;s speaker notes.
+
+## Rules
+- Copy numbers, dates, units, quotes and proper names character for character. No rounding, unit conversion or paraphrasing of quotes.
+- Keep minus signs (−, -), range marks (~, –), percent and currency notation exactly as written in the original.
+- Do not add any fact, figure, example or source that is not in the notes. Build charts only from numbers in the notes; if there are none, use no charts.
+- Content labeled as a made-up example (&quot;fictional&quot;, &quot;example&quot;, &quot;hypothetical&quot;, &quot;가상 예시&quot;, &quot;예시&quot;) keeps the same label on the slide.
+- Keep every link from the notes as a clickable link, with the URL unchanged.
+- Keep the design calm: one background, one accent color, generous margins, body text 18 pt or larger.
+- If the notes are in Korean, write the slides in Korean and set both the Latin and the East Asian theme fonts to a Korean font (Noto Sans KR, Nanum Gothic, Pretendard or Malgun Gothic, whichever is available). After creating the file, check that no Korean text shows as boxes (□) or overflows its text box; fix and rebuild if it does.
+
+Finish with one line confirming that you compared the output against the original and no number, quote or link was changed.
+
+[Harvest document]
+(Paste the Markdown copied from mindseeder here)</pre>
+    </section>
+    <section class="prompt" aria-labelledby="c-html-page-h">
+      <div class="prompt__head"><div><h3 id="c-html-page-h">One self-contained HTML page</h3><p>Conclusion box, evidence, sources; no external scripts. Download the .html file.</p></div>
+        <button class="btn btn--secondary" type="button" data-copy="c-html-page-text" data-copied="Copied">Copy request</button></div>
+      <pre id="c-html-page-text">The [Harvest document] below is Markdown exported from mindseeder. Using only its content, build a single self-contained HTML page. Give it to me as a downloadable .html file; if you cannot create files, give the full code in one code block.
+
+## Page structure
+1. Header: a title based on the garden name
+2. Conclusion: the chosen conclusions from the fruit/flower notes, in a highlighted box
+3. Evidence: a subheading and body per note, with the source note&#x27;s title next to each subheading
+4. Risks and counter-evidence, next steps: only what the notes say. If a section has nothing, show &quot;Nothing recorded in the notes&quot;
+5. Sources: every link in the notes
+
+## Technical requirements
+- Put all CSS in a `&lt;style&gt;` block. Use no external scripts, tracking code or external images.
+- Include `&lt;meta charset=&quot;utf-8&quot;&gt;`, a responsive layout that reads well at phone width, and print styles (@media print).
+- If the notes are in Korean, use `&lt;html lang=&quot;ko&quot;&gt;` and the font stack `Pretendard, &quot;Apple SD Gothic Neo&quot;, &quot;Malgun Gothic&quot;, &quot;Noto Sans KR&quot;, sans-serif` so Korean renders without loading external fonts. Otherwise use `&lt;html lang=&quot;en&quot;&gt;` and a system font stack.
+- Keep text readable in dark mode (prefers-color-scheme).
+
+## Rules
+- Copy numbers, dates, units, quotes and proper names character for character. No rounding, unit conversion or paraphrasing of quotes.
+- Keep minus signs (−, -), range marks (~, –), percent and currency notation exactly as written in the original.
+- Do not add any fact, figure, example or source that is not in the notes.
+- Content labeled as a made-up example (&quot;fictional&quot;, &quot;example&quot;, &quot;hypothetical&quot;, &quot;가상 예시&quot;, &quot;예시&quot;) keeps the same label on the page.
+- Keep every link from the notes as an `&lt;a href&gt;` link, with the URL unchanged.
+- Keep tables as `&lt;table&gt;`.
+
+Finish with one line confirming that you compared the output against the original and no number, quote or link was changed.
+
+[Harvest document]
+(Paste the Markdown copied from mindseeder here)</pre>
+    </section>
+    <section class="prompt" aria-labelledby="d-report-pdf-h">
+      <div class="prompt__head"><div><h3 id="d-report-pdf-h">Report with a table of contents</h3><p>Contents, page numbers, sections and an appendix of the original notes. PDF.</p></div>
+        <button class="btn btn--secondary" type="button" data-copy="d-report-pdf-text" data-copied="Copied">Copy request</button></div>
+      <pre id="d-report-pdf-text">The [Harvest document] below is Markdown exported from mindseeder. Using only its content, write a report with a table of contents and give it to me as a downloadable PDF file.
+
+## Report structure
+1. Cover: a title based on the garden name. Add a date only if the notes contain one.
+2. Table of contents with page numbers, and PDF bookmarks with the same structure
+3. Summary: the chosen conclusions from the fruit/flower notes, in half a page or less
+4. Body: one chapter per conclusion, with the supporting note content in numbered sections (1.1, 1.2 …), each section ending with the source note&#x27;s title
+5. Risks and counter-evidence, next steps: only what the notes say. If none, write &quot;Nothing recorded in the notes&quot;
+6. Appendix: the full original text of the supporting notes
+7. Sources: every link in the notes
+
+Put the report title in the header and page numbers in the footer.
+
+## Rules
+- Copy numbers, dates, units, quotes and proper names character for character. No rounding, unit conversion or paraphrasing of quotes.
+- Keep minus signs (−, -), range marks (~, –), percent and currency notation exactly as written in the original.
+- Do not add any fact, figure, example or source that is not in the notes. Summaries and linking sentences use only what the notes say.
+- Content labeled as a made-up example (&quot;fictional&quot;, &quot;example&quot;, &quot;hypothetical&quot;, &quot;가상 예시&quot;, &quot;예시&quot;) keeps the same label in the report so it never reads as fact.
+- Keep every link from the notes as a clickable link, with the URL unchanged.
+- Keep tables as tables, repeating the header row when a table breaks across pages.
+- If the notes are in Korean, write the report in Korean, set a Korean font (Noto Sans KR, Nanum Gothic, Pretendard or Malgun Gothic, whichever is available) and embed it in the PDF. After creating the file, check that no Korean text shows as boxes (□) or question marks and that the table of contents page numbers are correct; fix and rebuild if not.
+
+Finish with one line confirming that you compared the output against the original and no number, quote or link was changed.
+
+[Harvest document]
+(Paste the Markdown copied from mindseeder here)</pre>
+    </section>
+
+    <h2><span class="n" aria-hidden="true">4</span>Check the file before you send it</h2>
+    <ul class="tips">
+      <li>Open the file and compare every number, quote and link with your notes. The requests ask the AI to report this, but read it yourself.</li>
+      <li>Korean text in a generated PDF can show as boxes when the service has no Korean font. Ask it to use Noto Sans KR or Nanum Gothic, or export to Google Docs first and download the PDF from there.</li>
+      <li>A PowerPoint file does not carry its fonts. In desktop PowerPoint turn on File, Options, Save, Embed fonts in the file before you share it.</li>
+      <li>Content marked as a fictional example stays marked; keep it that way in anything you send.</li>
+    </ul>
+
+    <h2>Where these facts come from</h2>
+    <ul class="sources">
+      <li><a class="link" href="https://help.openai.com/en/articles/9930697-what-is-the-canvas-feature-in-chatgpt" rel="noopener">ChatGPT canvas</a></li>
+      <li><a class="link" href="https://chatgpt.com/features/slides/" rel="noopener">ChatGPT Slides</a></li>
+      <li><a class="link" href="https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude" rel="noopener">Claude: create and edit files</a></li>
+      <li><a class="link" href="https://support.claude.com/en/articles/17153992-what-are-artifacts-and-how-do-i-use-them" rel="noopener">Claude artifacts</a></li>
+      <li><a class="link" href="https://blog.google/innovation-and-ai/products/gemini-app/generate-files-in-gemini" rel="noopener">Gemini: generate files</a></li>
+      <li><a class="link" href="https://workspaceupdates.googleblog.com/2026/10/create-preview-and-edit-files-directly-in-the-Gemini-app.html" rel="noopener">Gemini: preview and edit files</a></li>
+      <li><a class="link" href="https://support.microsoft.com/en-us/office/create-a-new-presentation-with-copilot-in-powerpoint-3222ee03-f5a4-4d27-8642-9c387ab4854d" rel="noopener">Copilot in PowerPoint</a></li>
+      <li><a class="link" href="https://www.perplexity.ai/help-center/en/articles/11187416-which-perplexity-subscription-plan-is-right-for-you" rel="noopener">Perplexity plans</a></li>
+      <li><a class="link" href="https://support.microsoft.com/en-us/office/embed-a-font-in-a-presentation-05c16e3f-bedc-485a-a9d7-26a39372495f" rel="noopener">Embed fonts in PowerPoint</a></li>
+    </ul>
+    <p class="checked" style="margin-top: 16px">Product names are trademarks of their owners. mindseeder is not affiliated with OpenAI, Anthropic, Google, Microsoft or Perplexity.</p>
+
+    <div class="close">
+      <p>mindseeder exports the conclusion you chose as Markdown.</p>
+      <a class="btn btn--primary" href="https://app.mindseeder.io/" data-app-link>Start with my notes</a>
+    </div>
+  </div></article>
+</main>
+<footer class="guide-foot">
+  <div class="wrap">
+    <span>&copy; 2026 mindseeder &nbsp; <a href="../privacy.html">Privacy</a> &nbsp; <a href="../terms.html">Terms</a></span>
+    <a href="../ko/guide/" hreflang="ko" lang="ko">한국어</a>
+  </div>
+</footer>
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var pre = document.getElementById(b.getAttribute('data-copy'));
+      var done = function () { var t = b.textContent; b.textContent = b.getAttribute('data-copied'); setTimeout(function () { b.textContent = t; }, 1600); };
+      try { navigator.clipboard.writeText(pre.textContent).then(done); } catch (e) { var r = document.createRange(); r.selectNodeContents(pre); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+    });
+  });
+  (function () {
+    try {
+      var q = new URLSearchParams(location.search), keep = new URLSearchParams();
+      q.forEach(function (v, k) { if (/^utm_(source|medium|campaign)$/.test(k)) keep.set(k, v); });
+      if (![...keep.keys()].length) return;
+      document.querySelectorAll('a[data-app-link]').forEach(function (a) { var u = new URL(a.href); keep.forEach(function (v, k) { u.searchParams.set(k, v); }); a.href = u.toString(); });
+    } catch (e) {}
+  })();
+</script>
+<script>
+  // the phone menu only (this reading page does not load the landing kit: its placeholder guard would mark the [harvest document] slot in the requests)
+  (function () {
+    var nav = document.querySelector('.nav'), toggle = nav && nav.querySelector('.nav__toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', function () {
+      var open = !nav.classList.contains('is-open');
+      nav.classList.toggle('is-open', open); document.body.classList.toggle('nav-locked', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      if (open) requestAnimationFrame(function () { var a = nav.querySelector('.nav__links a'); if (a) a.focus(); });
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('is-open')) { nav.classList.remove('is-open'); document.body.classList.remove('nav-locked'); toggle.setAttribute('aria-expanded', 'false'); toggle.focus(); } });
+  })();
+</script>
+</body>
+</html>
