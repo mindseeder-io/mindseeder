@@ -74,8 +74,8 @@
   "take": "“Once I found the same mountain in both prints, I stopped looking only at the height of the wave and started comparing the wave with the mountain.”",
   "take_note": "One observation a reader might make. If you saw it differently, write that difference in your own sentence.",
   "s4_h": "In the app, the two prints become two trees",
-  "s4_p": "This piece is a shortened version of mindseeder's Hokusai sample garden. The garden holds 19 notes: nine each in the trees ‘The Great Wave’ and ‘Two prints’, and one conclusion note floating above and between them that joins the two. The garden also includes explanations and objections omitted here, and the introductory note for each print links to its Met collection record. The garden's notes are in Korean.",
-  "garden_alt": "The Hokusai sample garden open in mindseeder's 3D view: two trees of stacked coloured note blocks with a pink conclusion note above and between them, and a guide card at bottom left with the first question and a five-step reading order (all in Korean)",
+  "s4_p": "This piece is a shortened version of mindseeder's Hokusai Mindseeder read. The garden holds 19 notes: nine each in the trees ‘The Great Wave’ and ‘Two prints’, and one conclusion note floating above and between them that joins the two. The garden also includes explanations and objections omitted here, and the introductory note for each print links to its Met collection record. The garden's notes are in Korean.",
+  "garden_alt": "The Hokusai Mindseeder read open in mindseeder's 3D view: two trees of stacked coloured note blocks with a pink conclusion note above and between them, and a guide card at bottom left with the first question and a five-step reading order (all in Korean)",
   "garden_cap": "The Hokusai sample opened in the app's 3D view, one step back (captured 19 November 2026). When it opens, a guide card with the first question and the reading order comes up with it. The notes are in Korean.",
   "do": [
     "Each of the guide card's five steps opens its note. The last step is the conclusion that joins the two trees.",
@@ -134,8 +134,8 @@
       "The conclusion that joins the two prints, the measurement and the examples are marked as ours, here and in the garden's notes. Nothing here claims to know the artist's intent."
     ],
     [
-      "AI checked it against the sources",
-      "The notes and this piece were written with AI, and AI checked the print details and descriptions against the sources again. No art historian has reviewed it. If you spot an error, write to support@mindseeder.io."
+      "The “Really?” job went to someone else",
+      "One AI wrote the article and built the garden. Another had the “Really?” job and checked the details against the Met’s collection record. No art historian reviewed this piece. Spot an error? Let us know at support@mindseeder.io."
     ]
   ],
   "next_h": "Read next",
