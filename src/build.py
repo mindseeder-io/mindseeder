@@ -49,8 +49,8 @@ def build(lang: str) -> None:
     out = TPL
     special = {
         'canonical': canonical, 'app_url': f'{APP}?lang={lang}', 'guide_href': 'guide/',
-        # 첫 화면 보조 버튼·메뉴 첫 카드: 파일럿 예시(아폴로)로 바로 — 앱은 lang으로 첫 화면 언어를, sample로 그 편을 맨 위에 둔다(사용자 11/21 진입 개선)
-        'app_sample_url': f'{APP}?sample=apollo11-1202&lang={lang}',
+        # 첫 화면 보조 버튼·메뉴 첫 카드: 특정 편 없이 샘플 목록을 연다 — 샘플 안의 읽기 안내가 사용법 안내를 맡는다(사용자 11/21 "아폴로11로 특정하지 말고 샘플 문서로 튜토리얼을 시작")
+        'app_sample_url': f'{APP}?sample=list&lang={lang}',
         'cta_sample_note_html': f'<p class="t-small muted" style="flex-basis: 100%; margin: 0">{esc(s["cta_sample_note"])}</p>' if s.get('cta_sample_note') else '', 'font_href': FONTS[lang], 'font_extra': ', "Gothic A1"' if lang == 'ko' else '',
         'rows_html': '\n'.join(rows), 'files_html': '\n'.join(files), 'faq_html': '\n'.join(faq),
         'jsonld': json.dumps(jsonld, ensure_ascii=False).replace('</', '<\\/'),
