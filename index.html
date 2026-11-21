@@ -159,19 +159,19 @@
         <a class="nav__link" href="#garden">Garden <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav__menu">
           <div class="wrap grid">
-            <a class="menu-card span-4" href="#top">
+            <a class="menu-card span-4" href="https://app.mindseeder.io/?sample=apollo11-1202&lang=en" data-app-link>
               <div class="panel"><img class="frame__img" src="img/garden-3d-1440.webp" alt="" loading="lazy"></div>
-              <span class="t-card">3D garden</span>
+              <span class="t-card">Explore a 3D garden in the app</span>
               <span class="t-small muted">Walk among your notes, stacked as trees</span>
             </a>
             <a class="menu-card span-4" href="#garden">
               <div class="panel"><img class="frame__img" src="img/office-trees-en.webp" alt="" loading="lazy" style="object-position: 0 50%"></div>
-              <span class="t-card">Office view</span>
+              <span class="t-card">About card view</span>
               <span class="t-small muted">The same notes as cards, tree by tree</span>
             </a>
             <a class="menu-card span-4" href="#features">
               <div class="panel"><img class="frame__img" src="img/basket-en.webp" alt="" loading="lazy" style="object-position: 50% 60%"></div>
-              <span class="t-card">Harvest basket</span>
+              <span class="t-card">About the harvest basket</span>
               <span class="t-small muted">Collect conclusions and export them</span>
             </a>
           </div>
@@ -184,7 +184,7 @@
     </nav>
     <div class="nav__actions">
       <a class="nav__link" href="ko/" hreflang="ko" lang="ko" data-lang-switch>한국어</a>
-      <a class="btn btn--primary" href="https://app.mindseeder.io/" data-app-link>Start with my notes</a>
+      <a class="btn btn--primary" href="https://app.mindseeder.io/?lang=en" data-app-link>Open app</a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -199,7 +199,7 @@
           <h1 id="hero-h">Stack your notes. Watch context take shape.</h1>
           <p class="hero__lead">Each note is a 3D block. Step back and compare the shapes of two stacks side by side. You may spot a connection you missed when you looked at each stack on its own. Read the same notes as cards, choose your own conclusion and save it as Markdown. Free, no sign-up.</p>
         </div>
-        <div class="btn-row"><a class="btn btn--primary" href="https://app.mindseeder.io/" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#document">See the exported document</a></div>
+        <div class="btn-row"><a class="btn btn--primary" href="https://app.mindseeder.io/?lang=en" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="https://app.mindseeder.io/?sample=apollo11-1202&lang=en" data-app-link>Open the Apollo 11 sample</a><p class="t-small muted" style="flex-basis: 100%; margin: 0">Sample notes are in Korean.</p></div>
       </div>
       <div class="hero__stage">
         <img src="img/garden-3d-1440.webp" srcset="img/garden-3d-1440.webp 1440w, img/garden-3d-2880.webp 2880w" sizes="(max-width: 639px) 930px, 100vw" width="1440" height="590" alt="The mindseeder 3D garden: two stacked trees of coloured note blocks among sand-coloured terrain blocks, with a pink fruit block in front of them" fetchpriority="high" data-source="client" data-subject="mindseeder 3D garden screenshot">
@@ -416,7 +416,7 @@
         <h2 id="close-h">Start with notes you already have</h2>
         <p>No sign-up. Notes stay in this browser until you sync.</p>
       </div>
-      <a class="btn btn--primary btn--xl btn--wide" href="https://app.mindseeder.io/" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="btn btn--primary btn--xl btn--wide" href="https://app.mindseeder.io/?lang=en" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
     <div class="closing__links">
       <div class="grid">
@@ -440,7 +440,7 @@
   (function () {
     try {
       var q = new URLSearchParams(location.search), keep = new URLSearchParams();
-      q.forEach(function (v, k) { if (/^utm_(source|medium|campaign)$/.test(k)) keep.set(k, v); });
+      q.forEach(function (v, k) { if (/^utm_(source|medium|campaign)$/.test(k) || k === 'ms_internal') keep.set(k, v); });
       if (![...keep.keys()].length) return;
       document.querySelectorAll('a[data-app-link]').forEach(function (a) { var u = new URL(a.href); keep.forEach(function (v, k) { u.searchParams.set(k, v); }); a.href = u.toString(); });
     } catch (e) {}

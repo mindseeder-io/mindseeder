@@ -159,7 +159,7 @@
         <a class="nav__link" href="#garden">{{nav_garden}} <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 4.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         <div class="nav__menu">
           <div class="wrap grid">
-            <a class="menu-card span-4" href="#top">
+            <a class="menu-card span-4" href="{{app_sample_url}}" data-app-link>
               <div class="panel"><img class="frame__img" src="{{root}}img/garden-3d-1440.webp" alt="" loading="lazy"></div>
               <span class="t-card">{{mc1_t}}</span>
               <span class="t-small muted">{{mc1_l}}</span>
@@ -184,7 +184,7 @@
     </nav>
     <div class="nav__actions">
       <a class="nav__link" href="{{other_href}}" hreflang="{{other_lang}}" lang="{{other_lang}}" data-lang-switch>{{other_label}}</a>
-      <a class="btn btn--primary" href="{{app_url}}" data-app-link>{{cta}}</a>
+      <a class="btn btn--primary" href="{{app_url}}" data-app-link>{{cta_nav}}</a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="{{menu_label}}">
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -199,7 +199,7 @@
           <h1 id="hero-h">{{h1}}</h1>
           <p class="hero__lead">{{lead}}</p>
         </div>
-        <div class="btn-row"><a class="btn btn--primary" href="{{app_url}}" data-app-link>{{cta}}<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="#document">{{cta2}}</a></div>
+        <div class="btn-row"><a class="btn btn--primary" href="{{app_url}}" data-app-link>{{cta}}<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="{{app_sample_url}}" data-app-link>{{cta_sample}}</a>{{cta_sample_note_html}}</div>
       </div>
       <div class="hero__stage">
         <img src="{{root}}img/garden-3d-1440.webp" srcset="{{root}}img/garden-3d-1440.webp 1440w, {{root}}img/garden-3d-2880.webp 2880w" sizes="(max-width: 639px) 930px, 100vw" width="1440" height="590" alt="{{hero_alt}}" fetchpriority="high" data-source="client" data-subject="mindseeder 3D garden screenshot">
@@ -423,7 +423,7 @@
   (function () {
     try {
       var q = new URLSearchParams(location.search), keep = new URLSearchParams();
-      q.forEach(function (v, k) { if (/^utm_(source|medium|campaign)$/.test(k)) keep.set(k, v); });
+      q.forEach(function (v, k) { if (/^utm_(source|medium|campaign)$/.test(k) || k === 'ms_internal') keep.set(k, v); });
       if (![...keep.keys()].length) return;
       document.querySelectorAll('a[data-app-link]').forEach(function (a) { var u = new URL(a.href); keep.forEach(function (v, k) { u.searchParams.set(k, v); }); a.href = u.toString(); });
     } catch (e) {}

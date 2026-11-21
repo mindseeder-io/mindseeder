@@ -48,7 +48,10 @@ def build(lang: str) -> None:
     ]
     out = TPL
     special = {
-        'canonical': canonical, 'app_url': APP, 'guide_href': 'guide/', 'font_href': FONTS[lang], 'font_extra': ', "Gothic A1"' if lang == 'ko' else '',
+        'canonical': canonical, 'app_url': f'{APP}?lang={lang}', 'guide_href': 'guide/',
+        # 첫 화면 보조 버튼·메뉴 첫 카드: 파일럿 예시(아폴로)로 바로 — 앱은 lang으로 첫 화면 언어를, sample로 그 편을 맨 위에 둔다(사용자 11/21 진입 개선)
+        'app_sample_url': f'{APP}?sample=apollo11-1202&lang={lang}',
+        'cta_sample_note_html': f'<p class="t-small muted" style="flex-basis: 100%; margin: 0">{esc(s["cta_sample_note"])}</p>' if s.get('cta_sample_note') else '', 'font_href': FONTS[lang], 'font_extra': ', "Gothic A1"' if lang == 'ko' else '',
         'rows_html': '\n'.join(rows), 'files_html': '\n'.join(files), 'faq_html': '\n'.join(faq),
         'jsonld': json.dumps(jsonld, ensure_ascii=False).replace('</', '<\\/'),
         'lang_redirect': '',
@@ -87,7 +90,7 @@ def build_guide(lang: str) -> None:
     jsonld = {'@context': 'https://schema.org', '@type': 'HowTo', 'name': s['h1'], 'description': s['description'], 'inLanguage': lang,
               'url': canonical, 'step': [{'@type': 'HowToStep', 'position': i + 1, 'name': n, 'text': t} for i, (n, t) in
                                          enumerate([(s['s1_h'], s['s1']), (s['s2_h'], s['s2']), (s['s3_h'], s['s3']), (s['s4_h'], ' '.join(s['tips']))])]}
-    special = {'canonical': canonical, 'font_href': FONTS[lang], 'font_extra': ', "Gothic A1"' if lang == 'ko' else '',
+    special = {'canonical': canonical, 'app_url': f'{APP}?lang={lang}', 'font_href': FONTS[lang], 'font_extra': ', "Gothic A1"' if lang == 'ko' else '',
                'rows_html': rows, 'prompts_html': '\n'.join(prompts), 'tips_html': tips, 'sources_html': sources,
                'jsonld': json.dumps(jsonld, ensure_ascii=False).replace('</', '<\\/'), 'lead_short': s['lead'].split('. ')[0] + '.' if lang == 'en' else s['lead'].split('. ')[0] + '.'}
     def rep(m):
@@ -109,8 +112,8 @@ def build_edition(lang: str, slug: str) -> None:
     tpl = (ROOT / 'src/edition.html').read_text()
     canonical = 'https://mindseeder.io/' + s['path']
     utm = 'utm_source=mindseeder.io&utm_medium=edition&utm_campaign=' + s.get('campaign', f'{slug}-1')
-    app_href = f'{APP}?sample={s["sample"]}&{utm}'
-    next_href = f'{APP}?sample={s["next_sample"]}&{utm}'
+    app_href = f'{APP}?sample={s["sample"]}&lang={lang}&{utm}'
+    next_href = f'{APP}?sample={s["next_sample"]}&lang={lang}&{utm}'
     picks = '\n'.join(f'          <label><input type="radio" name="first-look" value="{i}">{esc(p)}</label>' for i, p in enumerate(s['picks']))
     do = '\n'.join(f'        <li>{esc(t)}</li>' for t in s['do'])
     sources = '\n'.join(f'        <li>{esc(t)}<span class="links">' + ''.join(f'<a class="link" href="{esc(u)}" rel="noopener">{esc(n)}</a>' for n, u in links) + '</span></li>'
@@ -125,7 +128,7 @@ def build_edition(lang: str, slug: str) -> None:
               'publisher': {'@type': 'Organization', 'name': 'mindseeder', 'url': 'https://mindseeder.io/'},
               'about': [art('Under the Wave off Kanagawa (The Great Wave)', 'https://www.metmuseum.org/art/collection/search/45434', 'ca. 1830–32'),
                         art('South Wind, Clear Sky (Red Fuji)', 'https://www.metmuseum.org/art/collection/search/36490', 'ca. 1830–32')]}
-    special = {'canonical': canonical, 'font_href': FONTS[lang], 'font_extra': ', "Gothic A1"' if lang == 'ko' else '',
+    special = {'canonical': canonical, 'app_url': f'{APP}?lang={lang}', 'font_href': FONTS[lang], 'font_extra': ', "Gothic A1"' if lang == 'ko' else '',
                'app_href': esc(app_href), 'next_href': esc(next_href), 'picks_html': picks, 'do_html': do, 'sources_html': sources,
                'how_html': how, 'meta_html': meta, 'jsonld': json.dumps(jsonld, ensure_ascii=False).replace('</', '<\\/')}
     def rep(m):
