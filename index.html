@@ -74,6 +74,20 @@
   }
   :lang(ko) { word-break: keep-all; overflow-wrap: anywhere; }
   #why { --accent: var(--ink); }
+  /* 앱으로 가는 실행 버튼 — 앱 첫 화면의 '시작' 버튼과 같은 노랑(#ffd200, metro-garden)으로 이어지게(사용자 11/21 "꼭 눌러야 할 것 느낌으로") */
+  /* :root로 우선순위를 올린다 — motion.css의 html:not([data-motion=off]) .btn--primary:hover가 검은 배경으로 덮었다 */
+ :root .btn.btn--launch { background: var(--p-accent); color: var(--p-accent-ink); font-weight: 600;
+    border-color: color-mix(in oklab, var(--p-accent) 78%, var(--p-ink));
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--p-ink) 14%, transparent), 0 8px 22px -10px color-mix(in oklab, var(--p-accent) 85%, var(--p-ink));
+    transition: background-color var(--dur) var(--ease), transform 140ms var(--ease), box-shadow 180ms var(--ease); }
+ :root .btn.btn--launch:hover { background: color-mix(in oklab, var(--p-accent) 92%, var(--p-ink)); transform: translateY(-2px);
+    box-shadow: 0 1px 0 color-mix(in oklab, var(--p-ink) 14%, transparent), 0 14px 28px -12px color-mix(in oklab, var(--p-accent) 80%, var(--p-ink)); }
+ :root .btn.btn--launch:active { transform: translateY(0) scale(0.98); box-shadow: 0 1px 0 color-mix(in oklab, var(--p-ink) 14%, transparent); }
+ :root .btn.btn--launch:focus-visible { outline: 2px solid var(--p-ink); outline-offset: 3px; }
+ :root .btn.btn--launch .m-arrow { transition: transform 160ms var(--ease); }
+ :root .btn.btn--launch:hover .m-arrow { transform: translateX(3px); }
+  :root .hero .btn.btn--launch { height: 56px; padding-inline: 28px; font-size: 1.125rem; }
+  @media (prefers-reduced-motion: reduce) {:root .btn.btn--launch,:root .btn.btn--launch .m-arrow { transition: none; }:root .btn.btn--launch:hover,:root .btn.btn--launch:active,:root .btn.btn--launch:hover .m-arrow { transform: none; } }
   @media (max-width: 639px) { .nav__actions [data-lang-switch] { display: none; } .nav__actions .btn { padding-inline: 14px; } }
   @media (max-width: 639px) {
     .hero--product { --ly-h1: 34px; }
@@ -184,7 +198,7 @@
     </nav>
     <div class="nav__actions">
       <a class="nav__link" href="ko/" hreflang="ko" lang="ko" data-lang-switch>한국어</a>
-      <a class="btn btn--primary" href="https://app.mindseeder.io/?lang=en" data-app-link>Open app</a>
+      <a class="btn btn--primary btn--launch" href="https://app.mindseeder.io/?lang=en" data-app-link>Open app</a>
     </div>
     <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu">
       <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
@@ -199,7 +213,7 @@
           <h1 id="hero-h">Stack your notes. Watch context take shape.</h1>
           <p class="hero__lead">Each note is a 3D block. Step back and compare the shapes of two stacks side by side. You may spot a connection you missed when you looked at each stack on its own. Read the same notes as cards, choose your own conclusion and save it as Markdown. Free, no sign-up.</p>
         </div>
-        <div class="btn-row"><a class="btn btn--primary" href="https://app.mindseeder.io/?lang=en" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="https://app.mindseeder.io/?sample=apollo11-1202&lang=en" data-app-link>Open the Apollo 11 sample</a><p class="t-small muted" style="flex-basis: 100%; margin: 0">Sample notes are in Korean.</p></div>
+        <div class="btn-row"><a class="btn btn--primary btn--launch" href="https://app.mindseeder.io/?lang=en" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a><a class="btn btn--secondary" href="https://app.mindseeder.io/?sample=apollo11-1202&lang=en" data-app-link>Open the Apollo 11 sample</a><p class="t-small muted" style="flex-basis: 100%; margin: 0">Sample notes are in Korean.</p></div>
       </div>
       <div class="hero__stage">
         <img src="img/garden-3d-1440.webp" srcset="img/garden-3d-1440.webp 1440w, img/garden-3d-2880.webp 2880w" sizes="(max-width: 639px) 930px, 100vw" width="1440" height="590" alt="The mindseeder 3D garden: two stacked trees of coloured note blocks among sand-coloured terrain blocks, with a pink fruit block in front of them" fetchpriority="high" data-source="client" data-subject="mindseeder 3D garden screenshot">
@@ -416,7 +430,7 @@
         <h2 id="close-h">Start with notes you already have</h2>
         <p>No sign-up. Notes stay in this browser until you sync.</p>
       </div>
-      <a class="btn btn--primary btn--xl btn--wide" href="https://app.mindseeder.io/?lang=en" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
+      <a class="btn btn--primary btn--launch btn--xl btn--wide" href="https://app.mindseeder.io/?lang=en" data-app-link>Start with my notes<svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg></a>
     </div>
     <div class="closing__links">
       <div class="grid">
